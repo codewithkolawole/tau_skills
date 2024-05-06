@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class CampusTour extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'video_link',
+        'image',
+        'text',
+
+    ];
+
 }

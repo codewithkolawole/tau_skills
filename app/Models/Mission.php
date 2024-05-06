@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Mission extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'image',
+        'title',
+        'text',
+        
+
+    ];
 }

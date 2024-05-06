@@ -15,6 +15,10 @@ class CreateStudentFeedbackTable extends Migration
     {
         Schema::create('student_feedback', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
+            $table->string('title')->nullable();
+            $table->string('image')->nullable();
+            $table->string('text')->nullable();
             $table->timestamps();
         });
     }

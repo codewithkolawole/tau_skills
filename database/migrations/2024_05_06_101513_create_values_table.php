@@ -15,7 +15,9 @@ class CreateValuesTable extends Migration
     {
         Schema::create('values', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('image')->nullable();
+            $table->string('title');
+            $table->text('text');
         });
     }
 

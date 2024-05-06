@@ -15,6 +15,9 @@ class CreateCampusToursTable extends Migration
     {
         Schema::create('campus_tours', function (Blueprint $table) {
             $table->id();
+            $table->string('video_link')->nullable();
+            $table->string('image')->nullable();
+            $table->text('text')->nullable();
             $table->timestamps();
         });
     }

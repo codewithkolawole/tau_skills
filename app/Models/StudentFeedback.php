@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class StudentFeedback extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'image',
+        'title',
+        'text',
+        'name',
+        
+
+    ];
 }
