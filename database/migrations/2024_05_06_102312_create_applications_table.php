@@ -17,7 +17,6 @@ class CreateApplicationsTable extends Migration
             $table->id();
             $table->string('image')->nullable();
             $table->text('text')->nullable();
-            $table->string('choose_file')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->nullable();
@@ -28,6 +27,7 @@ class CreateApplicationsTable extends Migration
             $table->string('dept')->nullable();
             $table->decimal('gpa', 4, 2)->nullable();
             $table->timestamps();
+            $table->softdeletes();
         });
     }
 

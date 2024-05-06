@@ -18,8 +18,9 @@ class CreateStudentFeedbackTable extends Migration
             $table->string('name')->nullable();
             $table->string('title')->nullable();
             $table->string('image')->nullable();
-            $table->string('text')->nullable();
+            $table->string('feedback')->nullable();
             $table->timestamps();
+            $table->softdeletes();
         });
     }
 

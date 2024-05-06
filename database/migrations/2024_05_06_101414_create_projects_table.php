@@ -20,6 +20,7 @@ class CreateProjectsTable extends Migration
             $table->text('text')->nullable();
             $table->string('facilitator')->nullable();
             $table->timestamps();
+            $table->softdeletes();
         });
     }
 
