@@ -16,8 +16,10 @@ class CreateValuesTable extends Migration
         Schema::create('values', function (Blueprint $table) {
             $table->id();
             $table->string('image')->nullable();
-            $table->string('title');
-            $table->text('text');
+            $table->string('title')->nullable();
+            $table->text('value_text')->nullable();
+            $table->timestamps();
+            $table->softdeletes();
         });
     }
 

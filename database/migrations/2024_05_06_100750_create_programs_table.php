@@ -17,9 +17,10 @@ class CreateProgramsTable extends Migration
             $table->id();
             $table->string('overview')->nullable();
             $table->text('curriculum')->nullable();
-            $table->unsignedBigInteger('instructor_id');
+            $table->unsignedBigInteger('instructor_id')->nullable();
             $table->string('program_image')->nullable();
             $table->timestamps();
+            $table->softdeletes();
         });
     }
 

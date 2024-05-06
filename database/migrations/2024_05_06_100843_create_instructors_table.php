@@ -15,13 +15,14 @@ class CreateInstructorsTable extends Migration
     {
         Schema::create('instructors', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('program_id');
+            $table->unsignedBigInteger('program_id')->nullable();
             $table->string('image')->nullable();
             $table->string('name')->nullable();
             $table->string('portfolio')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->timestamps();
+            $table->softdeletes();
         });
     }
 

@@ -15,7 +15,11 @@ class CreateHistoriesTable extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
+            $table->string('image')->nullable();
+            $table->string('history_text')->nullable();
+            $table->string('title')->nullable();
             $table->timestamps();
+            $table->softdeletes();
         });
     }
 
