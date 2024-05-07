@@ -136,7 +136,7 @@
                                                         <img src="{{asset('assets/images/users/avatar-2.jpg')}}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                         <div class="flex-1">
                                                             <a href="#!" class="stretched-link">
-                                                                <h6 class="mt-0 mb-1 fs-13 fw-semibold">Angela Bernier</h6>
+                                                                <h6 class="mt-0 mb-1 fs-13 fw-semibold">Kolawole</h6>
                                                             </a>
                                                             <div class="fs-13 text-muted">
                                                                 <p class="mb-1">Answered to your comment on the cash flow forecast's
