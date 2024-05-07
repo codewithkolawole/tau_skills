@@ -243,32 +243,7 @@
                                     </li>   
                                 </ul>
                             </div>
-                        </li>
-
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-communications">Communications</span></li>
-
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#communications" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarForms">
-                                <i class="mdi mdi-broadcast"></i> <span data-key="t-communications">Communications</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="communications">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link menu-link" href="{{ url('admin/messageStudent') }}" data-key="t-profile">Message Student/Parent</a>
-                                    </li>
-                                    
-                                    <li class="nav-item">
-                                        <a class="nav-link menu-link" href="{{ url('admin/messageAllStudent') }}" data-key="t-profile">Message All Student</a>
-                                    </li> 
-
-                                    <li class="nav-item">
-                                        <a class="nav-link menu-link" href="{{ url('admin/messageAllParent') }}" data-key="t-profile">Message All Parent</a>
-                                    </li> 
-                                </ul>
-        
-                            </div>
-                        </li>
-                       
+                        </li> 
                         <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-portal">Portal Settings</span></li>
 
                         <li class="nav-item">
@@ -281,25 +256,10 @@
                                         <a href="{{url('/admin/setting')}}" class="nav-link" data-key="t-calendar">App Settings </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{url('/admin/sessionSetup')}}" class="nav-link" data-key="t-calendar">Academic Session Setup </a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a href="{{ url('/admin/courseRegMgt') }}" class="nav-link">Course Reg. Mgt</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('/admin/examDocketMgt') }}" class="nav-link">Exam Docket Mgt</a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a href="{{url('/admin/programmeCategory')}}" class="nav-link" data-key="t-chat">Programme Category </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{url('/admin/academicLevel')}}" class="nav-link" data-key="t-chat">Academic Levels </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{url('/admin/approvalLevel')}}" class="nav-link" data-key="t-chat">Memo Approval Levels </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{url('/admin/resultApprovalStatus')}}" class="nav-link" data-key="t-chat">Result Approval Status </a>
                                     </li>
                                 </ul>
                             </div>
@@ -321,39 +281,306 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/students') }}" class="nav-link">Students</a>
                                     </li>
-
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/matriculants') }}" class="nav-link">Matriculating List</a>
-                                    </li>
                                 </ul>
                             </div>
                         </li> <!-- end Bursary Menu -->
 
-
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-academics">Academics</span></li>
-
+<!------------------------------------------------------------------------------------------------------>
+<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="about">About</span></li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#academicSettings" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="academicSettings">
-                                <i class="mdi mdi-view-carousel-outline"></i> <span data-key="t-academics">Academics</span>
+                            <a class="nav-link menu-link" href="#aboutMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="aboutMgt">
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-about">About</span>
                             </a>
-                            <div class="collapse menu-dropdown" id="academicSettings">
+                            <div class="collapse menu-dropdown" id="aboutMgt">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ url('/admin/faculties') }}" class="nav-link">Faculties</a>
+                                        <a href="{{ url('/admin/about') }}" class="nav-link">About</a>
                                     </li>
+                                    
+                                   <!-- {{-- <li class="nav-item">
+                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
+                                    </li> --}}
                                     @if(env('POPULATE_DATA'))
                                     <li class="nav-item">
-                                        <a href="{{ url('/admin/populateFaculty') }}" class="nav-link">Populate Faculty</a>
+                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
                                     </li>
-                                    @endif
+                                    @endif -->
                                 </ul>
                             </div>
-                        </li> <!-- end Dashboard Menu -->
+                        </li> 
 
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-courses">Course Management</span></li>
+
+<!-------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------>
+<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="home">Home</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#homeMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="homeMgt">
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-home">Home</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="homeMgt">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/home') }}" class="nav-link">Home</a>
+                                    </li>
+                                   <!-- {{-- <li class="nav-item">
+                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
+                                    </li> --}}
+                                    @if(env('POPULATE_DATA'))
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
+                                    </li>
+                                    @endif -->
+                                </ul>
+                            </div>
+                        </li> 
+
+
+<!-------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------>
+<li class="menu-title"> <i class="ri-more-fill"></i> <span data-key="history">History</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#historyMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="historyMgt">
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-history">History</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="historyMgt">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/history') }}" class="nav-link">History</a>
+                                    </li>
+                                    
+                                   <!-- {{-- <li class="nav-item">
+                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
+                                    </li> --}}
+                                    @if(env('POPULATE_DATA'))
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
+                                    </li>
+                                    @endif -->
+                                </ul>
+                            </div>
+                        </li> 
+
+
+<!-------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------>
+<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="mission">Mission</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#missionMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="missionMgt">
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-mission">Mission</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="missionMgt">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/mission') }}" class="nav-link">Mission</a>
+                                    </li>
+                                   
+                                   <!-- {{-- <li class="nav-item">
+                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
+                                    </li> --}}
+                                    @if(env('POPULATE_DATA'))
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
+                                    </li>
+                                    @endif -->
+                                </ul>
+                            </div>
+                        </li> 
+
+
+<!-------------------------------------------------------------------------------------------------------->
+
+<!------------------------------------------------------------------------------------------------------>
+<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="value">Vision</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#valueMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="valueMgt">
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-value">Vision</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="valueMgt">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/value') }}" class="nav-link">Vision</a>
+                                    </li>
+                                   
+                                   <!-- {{-- <li class="nav-item">
+                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
+                                    </li> --}}
+                                    @if(env('POPULATE_DATA'))
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
+                                    </li>
+                                    @endif -->
+                                </ul>
+                            </div>
+                        </li> 
+
+
+<!-------------------------------------------------------------------------------------------------------->
+
+<!------------------------------------------------------------------------------------------------------>
+<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="campus">Campus Tour</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#campusMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="campusMgt">
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-campus">Campus</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="campusMgt">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/campus') }}" class="nav-link">Campus</a>
+                                    </li>
+                                    
+                                   <!-- {{-- <li class="nav-item">
+                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
+                                    </li> --}}
+                                    @if(env('POPULATE_DATA'))
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
+                                    </li>
+                                    @endif -->
+                                </ul>
+                            </div>
+                        </li> 
+
+
+<!-------------------------------------------------------------------------------------------------------->
+
+<!------------------------------------------------------------------------------------------------------>
+<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="project">Project</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#projectMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="projectMgt">
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-project">Project</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="projectMgt">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/project') }}" class="nav-link">Projects</a>
+                                    </li>
+
+                                   <!-- {{-- <li class="nav-item">
+                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
+                                    </li> --}}
+                                    @if(env('POPULATE_DATA'))
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
+                                    </li>
+                                    @endif -->
+                                </ul>
+                            </div>
+                        </li> 
+
+
+<!-------------------------------------------------------------------------------------------------------->
+
+<!------------------------------------------------------------------------------------------------------>
+<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="gallery">Gallery</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#galleryMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="galleryMgt">
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-project">Gallery</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="galleryMgt">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/gallery') }}" class="nav-link">Gallery</a>
+                                    </li>
+                                    
+                                   <!-- {{-- <li class="nav-item">
+                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
+                                    </li> --}}
+                                    @if(env('POPULATE_DATA'))
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
+                                    </li>
+                                    @endif -->
+                                </ul>
+                            </div>
+                        </li> 
+
+
+<!-------------------------------------------------------------------------------------------------------->
+
+<!------------------------------------------------------------------------------------------------------>
+<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="contact">Contact</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#contactMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="contactMgt">
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-project">Contact</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="contactMgt">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/contact') }}" class="nav-link">Contact</a>
+                                    </li>
+                                    
+                                   <!-- {{-- <li class="nav-item">
+                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
+                                    </li> --}}
+                                    @if(env('POPULATE_DATA'))
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
+                                    </li>
+                                    @endif -->
+                                </ul>
+                            </div>
+                        </li> 
+
+
+<!-------------------------------------------------------------------------------------------------------->
+
+<!------------------------------------------------------------------------------------------------------>
+<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="feedback">Student Feedbacks</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#feedbackMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="feedbackMgt">
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-about">Feedback</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="feedbackMgt">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/feedback') }}" class="nav-link">Feedback</a>
+                                    </li>
+
+                                   <!-- {{-- <li class="nav-item">
+                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
+                                    </li> --}}
+                                    @if(env('POPULATE_DATA'))
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
+                                    </li>
+                                    @endif -->
+                                </ul>
+                            </div>
+                        </li> 
+
+
+<!-------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------>
+<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="apply">Application</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#applyMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="applyMgt">
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-apply">Apply</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="applyMgt">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/applicant') }}" class="nav-link">Applicant</a>
+                                    </li>
+                                   <!-- {{-- <li class="nav-item">
+                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
+                                    </li> --}}
+                                    @if(env('POPULATE_DATA'))
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
+                                    </li>
+                                    @endif -->
+                                </ul>
+                            </div>
+                        </li> 
+
+
+<!-------------------------------------------------------------------------------------------------------->
+
+
+                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-courses">Program Management</span></li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#courseMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="courseMgt">
-                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-courses">Course Management</span>
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-courses">Program Management</span>
                             </a>
                             <div class="collapse menu-dropdown" id="courseMgt">
                                 <ul class="nav nav-sm flex-column">
@@ -362,6 +589,15 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/studentCourses') }}" class="nav-link">Student Courses</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/studentCouresOverview') }}" class="nav-link">Courses Overview</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/studentCouresCirrculum') }}" class="nav-link">Courses Cirrculum</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/studentCouresImage') }}" class="nav-link">Courses Image</a>
                                     </li>
                                     {{-- <li class="nav-item">
                                         <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
@@ -375,16 +611,16 @@
                             </div>
                         </li> <!-- end Dashboard Menu -->
 
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-result">Result Management</span></li>
+                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-result">Certificate Management</span></li>
 
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#resultMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="resultMgt">
-                                <i class="mdi mdi-credit-card-search-outline"></i> <span data-key="t-result">Result Management</span>
+                                <i class="mdi mdi-credit-card-search-outline"></i> <span data-key="t-result">Certificate Management</span>
                             </a>
                             <div class="collapse menu-dropdown" id="resultMgt">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ url('/admin/getStudentResults') }}" class="nav-link">Students Results</a>
+                                        <a href="{{ url('/admin/getStudentCertificate') }}" class="nav-link">Students Certificate</a>
                                     </li>
                                 </ul>
                             </div>
@@ -399,88 +635,61 @@
                             <div class="collapse menu-dropdown" id="studentMgt">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ url('/admin/campusCapacity') }}" class="nav-link">Campus Capacity</a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a href="{{ url('/admin/allStudents') }}" class="nav-link">All Student</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/massPromotion') }}" class="nav-link">Promote Student</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/changeProgramme') }}" class="nav-link">Change Programme</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/studentResult') }}" class="nav-link">Student Result</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/demoteStudent') }}" class="nav-link">Demote Student</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/demoteStudentRecord') }}" class="nav-link">Demoted Student Record</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/courseRegistrations') }}" class="nav-link">Course Registrations</a>
-                                    </li>
                                 </ul>
                             </div>
                         </li> <!-- end Dashboard Menu -->
 
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-student">Student Care</span></li>
 
+<!------------------------------------------------------------------------------------------------------>
+<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="instructor">Instructor Management</span></li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#studentCare" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="studentCare">
-                                <i class="mdi mdi-account-heart"></i> <span data-key="t-student">Student Care</span> <span class="badge badge-pill bg-danger" data-key="t-hot">{{ !empty($pageGlobalData->exitApplicationCount) ? $pageGlobalData->exitApplicationCount : 0 }}</span>
+                            <a class="nav-link menu-link" href="#instructorMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="instructorMgt">
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-apply">Instructor Management</span>
                             </a>
-                            <div class="collapse menu-dropdown" id="studentCare">
+                            <div class="collapse menu-dropdown" id="instructorMgt">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ url('/admin/studentExits') }}" class="nav-link">Student Exit <span class="badge badge-pill bg-danger" data-key="t-hot">{{ !empty($pageGlobalData->exitApplicationCount) ? $pageGlobalData->exitApplicationCount : 0 }}</span></a>
+                                        <a href="{{ url('/admin/instructor') }}" class="nav-link">Instructor</a>
                                     </li>
+                                   <!-- {{-- <li class="nav-item">
+                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
+                                    </li> --}}
+                                    @if(env('POPULATE_DATA'))
                                     <li class="nav-item">
-                                        <a href="{{ url('/admin/studentHostelMgt') }}" class="nav-link">Student Hostel Mgt</a>
+                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
                                     </li>
+                                    @endif -->
                                 </ul>
                             </div>
-                        </li> <!-- end Dashboard Menu -->
+                        </li> 
 
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-staff">Staff Management</span></li>
+
+<!-------------------------------------------------------------------------------------------------------->
+<!-----
+                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-instructor">Instructor Management</span></li>
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#staffMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="staffMgt">
-                                <i class="mdi mdi-account-supervisor-circle-outline"></i> <span data-key="t-staff">Staff Management</span>
+                            <a class="nav-link menu-link" href="#instructorMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="instructorMgt">
+                                <i class="mdi mdi-account-supervisor-circle-outline"></i> <span data-key="t-instructor">Instructor Management</span>
                             </a>
-                            <div class="collapse menu-dropdown" id="staffMgt">
+
+
+                            <div class="collapse menu-dropdown" id="instructorMgt">
                                 <ul class="nav nav-sm flex-column">
                                     @if(env('POPULATE_DATA'))
                                     <li class="nav-item">
-                                        <a href="{{ url('/admin/populateStaff') }}" class="nav-link">Populate Staff</a>
+                                        <a href="{{ url('/admin/populateInstructor') }}" class="nav-link">Populate Instructor</a>
                                     </li>
                                     @endif
                                     <li class="nav-item">
-                                        <a href="#staffApplicants" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSignIn" data-key="t-signin"> Staff Applicants (Coming Soon)
+                                        <a href="#Instructors" class="nav-link" role="button" aria-expanded="false" aria-controls="Instructors" data-key="t-instructors">Instuctor
                                         </a>
-                                        <div class="collapse menu-dropdown" id="staffApplicants">
+                                        <div class="collapse menu-dropdown" id="instructors">
                                             <ul class="nav nav-sm flex-column">
                                                 <li class="nav-item">
-                                                    <a href="#l" class="nav-link" data-key="t-basic"> Staff Applications(coming soon) </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#" class="nav-link" data-key="t-cover"> Role Applications(coming soon) </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#staffs" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="staffs" data-key="t-staffs"> Staff
-                                        </a>
-                                        <div class="collapse menu-dropdown" id="staffs">
-                                            <ul class="nav nav-sm flex-column">
-                                                <li class="nav-item">
-                                                    <a href="{{ url('/admin/staff') }}" class="nav-link" data-key="t-basic"> All Staff </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="{{('/admin/staffRoles')}}" class="nav-link" data-key="t-cover"> Staff Roles </a>
+                                                    <a href="{{ url('/admin/instructors') }}" class="nav-link" data-key="t-basic"> All Instuctors</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -488,53 +697,8 @@
                                 </ul>
                             </div>
                         </li>
+                                   --->
 
-
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-Partner">Partners(Marketers)</span></li>
-
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#Partner" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="Partner">
-                                <i class="mdi mdi-account-network"></i> <span data-key="t-Partner">Partner Management</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="Partner">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/partners') }}" class="nav-link"> Partners </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{('/admin/partnerApproval')}}" class="nav-link"> Partner Approval </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{('/admin/partnerWithdrawal')}}" class="nav-link">Partner Profit Withdrawal </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> <!-- end Partner Menu -->
-
-
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-bursary">Bursary</span></li>
-
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#bursary" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="bursary">
-                                <i class="mdi mdi-bank-transfer"></i> <span data-key="t-bursary">Bursary</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="bursary">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/payments') }}" class="nav-link"> Bills </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{('/admin/transactions')}}" class="nav-link"> Transactions </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{('/admin/chargeStudent')}}" class="nav-link">Payment/Charge </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{('/admin/transactionReport')}}" class="nav-link"> Transaction Report </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> <!-- end Bursary Menu -->
 
 
                         <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages"></span></li>
