@@ -590,15 +590,6 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/studentCourses') }}" class="nav-link">Student Courses</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/studentCouresOverview') }}" class="nav-link">Courses Overview</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/studentCouresCirrculum') }}" class="nav-link">Courses Cirrculum</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/studentCouresImage') }}" class="nav-link">Courses Image</a>
-                                    </li>
                                     {{-- <li class="nav-item">
                                         <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
                                     </li> --}}
