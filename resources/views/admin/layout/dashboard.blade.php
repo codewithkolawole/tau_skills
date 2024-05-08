@@ -173,246 +173,43 @@
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
                                         <a class="nav-link menu-link" href="{{ url('admin/admins') }}" data-key="t-profile">Admins</a>
-                                    </li>   
-                                </ul>
-                            </div>
-                        </li> 
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-portal">Portal Settings</span></li>
-
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#appSetting" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
-                                <i class="mdi mdi-application-settings"></i> <span data-key="t-portal">General App Setting</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="appSetting">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{url('/admin/setting')}}" class="nav-link" data-key="t-calendar">App Settings </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/courseRegMgt') }}" class="nav-link">Course Reg. Mgt</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{url('/admin/programmeCategory')}}" class="nav-link" data-key="t-chat">Programme Category </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-admission">Admission</span></li>
-
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#admission" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="admission">
-                                <i class="mdi mdi-account-box-multiple"></i> <span data-key="t-admission">Admission</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="admission">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/applicants') }}" class="nav-link">Applicants</a>
-                                    </li>
-            
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/students') }}" class="nav-link">Students</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> <!-- end Bursary Menu -->
-
-<!------------------------------------------------------------------------------------------------------>
-<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="about">About</span></li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#aboutMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="aboutMgt">
-                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-about">About</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="aboutMgt">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/about') }}" class="nav-link">About</a>
                                     </li>
                                 </ul>
                             </div>
                         </li> 
 
-
-<!-------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------>
-<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="home">Home</span></li>
+                        <!------------------------------------------------------------------------------------------------------>
+                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="pages">Pages</span></li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#homeMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="homeMgt">
-                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-home">Home</span>
+                            <a class="nav-link menu-link" href="#pages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="pages">
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-pages">Pages</span>
                             </a>
-                            <div class="collapse menu-dropdown" id="homeMgt">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/home') }}" class="nav-link">Home</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> 
-
-
-<!-------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------>
-<li class="menu-title"> <i class="ri-more-fill"></i> <span data-key="history">History</span></li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#historyMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="historyMgt">
-                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-history">History</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="historyMgt">
+                            <div class="collapse menu-dropdown" id="pages">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/history') }}" class="nav-link">History</a>
                                     </li>
-                                </ul>
-                            </div>
-                        </li> 
-
-
-<!-------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------>
-<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="mission">Mission</span></li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#missionMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="missionMgt">
-                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-mission">Mission</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="missionMgt">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/mission') }}" class="nav-link">Mission</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> 
-
-
-<!-------------------------------------------------------------------------------------------------------->
-
-<!------------------------------------------------------------------------------------------------------>
-<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="value">Vision</span></li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#valueMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="valueMgt">
-                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-value">Vision</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="valueMgt">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/value') }}" class="nav-link">Vision</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> 
-
-
-<!-------------------------------------------------------------------------------------------------------->
-
-<!------------------------------------------------------------------------------------------------------>
-<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="campus">Campus Tour</span></li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#campusMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="campusMgt">
-                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-campus">Campus</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="campusMgt">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/campus') }}" class="nav-link">Campus</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> 
-
-
-<!-------------------------------------------------------------------------------------------------------->
-
-<!------------------------------------------------------------------------------------------------------>
-<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="project">Project</span></li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#projectMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="projectMgt">
-                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-project">Project</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="projectMgt">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/project') }}" class="nav-link">Projects</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> 
-
-
-<!-------------------------------------------------------------------------------------------------------->
-
-<!------------------------------------------------------------------------------------------------------>
-<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="gallery">Gallery</span></li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#galleryMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="galleryMgt">
-                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-project">Gallery</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="galleryMgt">
-                                <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/gallery') }}" class="nav-link">Gallery</a>
                                     </li>
-                                </ul>
-                            </div>
-                        </li> 
-
-
-<!-------------------------------------------------------------------------------------------------------->
-
-<!------------------------------------------------------------------------------------------------------>
-<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="contact">Contact</span></li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#contactMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="contactMgt">
-                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-project">Contact</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="contactMgt">
-                                <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ url('/admin/contact') }}" class="nav-link">Contact</a>
+                                        <a href="{{ url('/admin/value') }}" class="nav-link">Value</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/mission') }}" class="nav-link">Mission</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/vision') }}" class="nav-link">Vision</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/studentFeedbacks') }}" class="nav-link">Student Feedbacks</a>
                                     </li>
                                 </ul>
                             </div>
                         </li> 
 
 
-<!-------------------------------------------------------------------------------------------------------->
-
-<!------------------------------------------------------------------------------------------------------>
-<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="feedback">Student Feedbacks</span></li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#feedbackMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="feedbackMgt">
-                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-about">Feedback</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="feedbackMgt">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/feedback') }}" class="nav-link">Feedback</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> 
-
-
-<!-------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------>
-<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="apply">Application</span></li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#applyMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="applyMgt">
-                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-apply">Apply</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="applyMgt">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/applicant') }}" class="nav-link">Applicant</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> 
-
-
-<!-------------------------------------------------------------------------------------------------------->
-
-
+                        <!-------------------------------------------------------------------------------------------------------->
                         <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-courses">Program Management</span></li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#courseMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="courseMgt">
@@ -427,8 +224,8 @@
                             </div>
                         </li> <!-- end Dashboard Menu -->
 
-<!------------------------------------------------------------------------------------------------------>
-<li class="menu-title"><i class="ri-more-fill"></i> <span data-key="instructor">Instructor Management</span></li>
+                        <!------------------------------------------------------------------------------------------------------>
+                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="instructor">Instructor Management</span></li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#instructorMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="instructorMgt">
                                 <i class="mdi mdi-bookshelf"></i> <span data-key="t-apply">Instructor Management</span>
@@ -436,7 +233,10 @@
                             <div class="collapse menu-dropdown" id="instructorMgt">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ url('/admin/instructor') }}" class="nav-link">Instructor</a>
+                                        <a href="{{ url('/admin/instructor') }}" class="nav-link">Add Instructor</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/instructor') }}" class="nav-link">All Instructors</a>
                                     </li>
                                 </ul>
                             </div>
@@ -466,7 +266,8 @@
             <div class="page-content">
                 <div class="container-fluid">
                     <h4 class="fs-16 mb-1"><span id="greeting">Hello</span>, {{ $name }}!</h4>
-                   @yield('content')
+                   
+                    @yield('content')
 
                 </div>
                 <!-- container-fluid -->
@@ -544,60 +345,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
-    function handleFacultyChange(event) {
-        const selectedFaculty = event.target.value;
-        const departmentSelect = $('#department');
-
-        if(selectedFaculty != ''){
-            axios.get("{{ url('/admin/getDepartments') }}/"+selectedFaculty)
-            .then(function (response) {
-                departmentSelect.empty().append($('<option>', {
-                    value: '',
-                    text: '--Select--'
-                }));
-                $.each(response.data, function (index, department) {
-                    departmentSelect.append($('<option>', {
-                        value: department.id,
-                        text: department.name
-                    }));
-                });
-            })
-            .catch(function (error) {
-                console.error("Error fetching departments:", error);
-            });
-        }else{
-            
-        }
-    }
-
-    function handleDepartmentChange(event) {
-        const selectedDepartment = event.target.value;
-        const programmeSelect = $('#programme');
-
-        if(selectedDepartment != ''){
-            axios.get("{{ url('/admin/getProgrammes') }}/"+selectedDepartment)
-            .then(function (response) {
-
-                programmeSelect.empty().append($('<option>', {
-                    value: '',
-                    text: '--Select--'
-                }));
-                $.each(response.data, function (index, programme) {
-                    programmeSelect.append($('<option>', {
-                        value: programme.id,
-                        text: programme.name
-                    }));
-                });
-            })
-            .catch(function (error) {
-                console.error("Error fetching departments:", error);
-            });
-        }else{
-            
-        }
-    }
-</script>
 <script>
     // Get the current time
     var currentTime = new Date();
