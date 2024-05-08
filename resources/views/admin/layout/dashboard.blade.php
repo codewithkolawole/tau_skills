@@ -95,73 +95,6 @@
                             </button>
                         </div>
 
-                        <div class="dropdown topbar-head-dropdown ms-1 header-item" id="notificationDropdown">
-                            <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle shadow-none" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
-                                <i class='bx bx-bell fs-22'></i>
-                                <span class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger">3<span class="visually-hidden">unread messages</span></span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">
-
-                                <div class="dropdown-head bg-primary bg-pattern rounded-top">
-                                    <div class="p-3">
-                                        <div class="row align-items-center">
-                                            <div class="col">
-                                                <h6 class="m-0 fs-16 fw-semibold text-white"> Notifications </h6>
-                                            </div>
-                                            <div class="col-auto dropdown-tabs">
-                                                <span class="badge badge-soft-light fs-13"> 4 New</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="px-2 pt-2">
-                                        <ul class="nav nav-tabs dropdown-tabs nav-tabs-custom" data-dropdown-tabs="true" id="notificationItemsTab" role="tablist">
-                                            <li class="nav-item waves-effect waves-light">
-                                                <a class="nav-link" data-bs-toggle="tab" href="#messages-tab" role="tab" aria-selected="false">
-                                                    Messages
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                                <div class="tab-content position-relative" id="notificationItemsTabContent">
-                                    <div class="tab-pane fade show active py-2 ps-2" id="all-noti-tab" role="tabpanel">
-                                        <div data-simplebar style="max-height: 300px;" class="pe-2">
-
-                                            <a href="#"> 
-                                                <div class="text-reset notification-item d-block dropdown-item position-relative">
-                                                    <div class="d-flex">
-                                                        <img src="{{asset('assets/images/users/avatar-2.jpg')}}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
-                                                        <div class="flex-1">
-                                                            <a href="#!" class="stretched-link">
-                                                                <h6 class="mt-0 mb-1 fs-13 fw-semibold">Kolawole</h6>
-                                                            </a>
-                                                            <div class="fs-13 text-muted">
-                                                                <p class="mb-1">Answered to your comment on the cash flow forecast's
-                                                                    graph 🔔.</p>
-                                                            </div>
-                                                            <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                                                                <span><i class="mdi mdi-clock-outline"></i> 48 min ago</span>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-
-                                            <div class="my-3 text-center view-all">
-                                                <button type="button" class="btn btn-soft-success waves-effect waves-light">View
-                                                    All Notifications <i class="ri-arrow-right-line align-middle"></i></button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="dropdown ms-sm-3 header-item topbar-user">
                             <button type="button" class="btn shadow-none" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="d-flex align-items-center">
@@ -296,15 +229,6 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/about') }}" class="nav-link">About</a>
                                     </li>
-                                    
-                                   <!-- {{-- <li class="nav-item">
-                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
-                                    </li> --}}
-                                    @if(env('POPULATE_DATA'))
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
-                                    </li>
-                                    @endif -->
                                 </ul>
                             </div>
                         </li> 
@@ -322,14 +246,6 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/home') }}" class="nav-link">Home</a>
                                     </li>
-                                   <!-- {{-- <li class="nav-item">
-                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
-                                    </li> --}}
-                                    @if(env('POPULATE_DATA'))
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
-                                    </li>
-                                    @endif -->
                                 </ul>
                             </div>
                         </li> 
@@ -347,15 +263,6 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/history') }}" class="nav-link">History</a>
                                     </li>
-                                    
-                                   <!-- {{-- <li class="nav-item">
-                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
-                                    </li> --}}
-                                    @if(env('POPULATE_DATA'))
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
-                                    </li>
-                                    @endif -->
                                 </ul>
                             </div>
                         </li> 
@@ -373,15 +280,6 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/mission') }}" class="nav-link">Mission</a>
                                     </li>
-                                   
-                                   <!-- {{-- <li class="nav-item">
-                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
-                                    </li> --}}
-                                    @if(env('POPULATE_DATA'))
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
-                                    </li>
-                                    @endif -->
                                 </ul>
                             </div>
                         </li> 
@@ -400,15 +298,6 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/value') }}" class="nav-link">Vision</a>
                                     </li>
-                                   
-                                   <!-- {{-- <li class="nav-item">
-                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
-                                    </li> --}}
-                                    @if(env('POPULATE_DATA'))
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
-                                    </li>
-                                    @endif -->
                                 </ul>
                             </div>
                         </li> 
@@ -427,15 +316,6 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/campus') }}" class="nav-link">Campus</a>
                                     </li>
-                                    
-                                   <!-- {{-- <li class="nav-item">
-                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
-                                    </li> --}}
-                                    @if(env('POPULATE_DATA'))
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
-                                    </li>
-                                    @endif -->
                                 </ul>
                             </div>
                         </li> 
@@ -454,15 +334,6 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/project') }}" class="nav-link">Projects</a>
                                     </li>
-
-                                   <!-- {{-- <li class="nav-item">
-                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
-                                    </li> --}}
-                                    @if(env('POPULATE_DATA'))
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
-                                    </li>
-                                    @endif -->
                                 </ul>
                             </div>
                         </li> 
@@ -481,15 +352,6 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/gallery') }}" class="nav-link">Gallery</a>
                                     </li>
-                                    
-                                   <!-- {{-- <li class="nav-item">
-                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
-                                    </li> --}}
-                                    @if(env('POPULATE_DATA'))
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
-                                    </li>
-                                    @endif -->
                                 </ul>
                             </div>
                         </li> 
@@ -508,15 +370,6 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/contact') }}" class="nav-link">Contact</a>
                                     </li>
-                                    
-                                   <!-- {{-- <li class="nav-item">
-                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
-                                    </li> --}}
-                                    @if(env('POPULATE_DATA'))
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
-                                    </li>
-                                    @endif -->
                                 </ul>
                             </div>
                         </li> 
@@ -535,15 +388,6 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/feedback') }}" class="nav-link">Feedback</a>
                                     </li>
-
-                                   <!-- {{-- <li class="nav-item">
-                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
-                                    </li> --}}
-                                    @if(env('POPULATE_DATA'))
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
-                                    </li>
-                                    @endif -->
                                 </ul>
                             </div>
                         </li> 
@@ -561,14 +405,6 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/applicant') }}" class="nav-link">Applicant</a>
                                     </li>
-                                   <!-- {{-- <li class="nav-item">
-                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
-                                    </li> --}}
-                                    @if(env('POPULATE_DATA'))
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
-                                    </li>
-                                    @endif -->
                                 </ul>
                             </div>
                         </li> 
@@ -587,51 +423,9 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/departmentForCourses') }}" class="nav-link">All Courses</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/studentCourses') }}" class="nav-link">Student Courses</a>
-                                    </li>
-                                    {{-- <li class="nav-item">
-                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
-                                    </li> --}}
-                                    @if(env('POPULATE_DATA'))
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
-                                    </li>
-                                    @endif
                                 </ul>
                             </div>
                         </li> <!-- end Dashboard Menu -->
-
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-result">Certificate Management</span></li>
-
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#resultMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="resultMgt">
-                                <i class="mdi mdi-credit-card-search-outline"></i> <span data-key="t-result">Certificate Management</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="resultMgt">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/getStudentCertificate') }}" class="nav-link">Students Certificate</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> <!-- end Dashboard Menu -->
-
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-student">Student Management</span></li>
-
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#studentMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="studentMgt">
-                                <i class="mdi mdi-account-tie"></i> <span data-key="t-student">Students</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="studentMgt">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/allStudents') }}" class="nav-link">All Student</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> <!-- end Dashboard Menu -->
-
 
 <!------------------------------------------------------------------------------------------------------>
 <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="instructor">Instructor Management</span></li>
@@ -644,54 +438,9 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/instructor') }}" class="nav-link">Instructor</a>
                                     </li>
-                                   <!-- {{-- <li class="nav-item">
-                                        <a href="{{ url('/admin/courseAllocation') }}" class="nav-link">Course-to-Staff Allocation</a>
-                                    </li> --}}
-                                    @if(env('POPULATE_DATA'))
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/populateCourse') }}" class="nav-link">Populate Course</a>
-                                    </li>
-                                    @endif -->
                                 </ul>
                             </div>
                         </li> 
-
-
-<!-------------------------------------------------------------------------------------------------------->
-<!-----
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-instructor">Instructor Management</span></li>
-
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#instructorMgt" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="instructorMgt">
-                                <i class="mdi mdi-account-supervisor-circle-outline"></i> <span data-key="t-instructor">Instructor Management</span>
-                            </a>
-
-
-                            <div class="collapse menu-dropdown" id="instructorMgt">
-                                <ul class="nav nav-sm flex-column">
-                                    @if(env('POPULATE_DATA'))
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/populateInstructor') }}" class="nav-link">Populate Instructor</a>
-                                    </li>
-                                    @endif
-                                    <li class="nav-item">
-                                        <a href="#Instructors" class="nav-link" role="button" aria-expanded="false" aria-controls="Instructors" data-key="t-instructors">Instuctor
-                                        </a>
-                                        <div class="collapse menu-dropdown" id="instructors">
-                                            <ul class="nav nav-sm flex-column">
-                                                <li class="nav-item">
-                                                    <a href="{{ url('/admin/instructors') }}" class="nav-link" data-key="t-basic"> All Instuctors</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                                   --->
-
-
-
                         <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages"></span></li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="{{ url('admin/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -744,30 +493,6 @@
     </div>
     <!-- END layout-wrapper -->
 
-<!-- removeNotificationModal -->
-<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="NotificationModalbtn-close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mt-2 text-center">
-                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
-                    <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                        <h4>Are you sure ?</h4>
-                        <p class="text-muted mx-4 mb-0">Are you sure you want to remove this Notification ?</p>
-                    </div>
-                </div>
-                <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                    <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn w-sm btn-danger" id="delete-notification">Yes, Delete It!</button>
-                </div>
-            </div>
-
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
 
 
