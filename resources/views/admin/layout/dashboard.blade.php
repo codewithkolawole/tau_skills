@@ -190,16 +190,16 @@
                                         <a href="{{ url('/admin/history') }}" class="nav-link">History</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('/admin/gallery') }}" class="nav-link">Gallery</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/value') }}" class="nav-link">Value</a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a href="{{ url('/admin/mission') }}" class="nav-link">Mission</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/vision') }}" class="nav-link">Vision</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/about') }}" class="nav-link">About</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/gallery') }}" class="nav-link">Gallery</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/studentFeedbacks') }}" class="nav-link">Student Feedbacks</a>

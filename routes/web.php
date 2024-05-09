@@ -38,23 +38,14 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/updateAdmin', [App\Http\Controllers\Admin\AdminController::class, 'updateAdmin'])->name('updateAdmin')->middleware(['auth:admin']);
   Route::post('/deleteAdmin', [App\Http\Controllers\Admin\AdminController::class, 'deleteAdmin'])->name('deleteAdmin')->middleware(['auth:admin']);
 
-  //-------------------------------------------------------------------------------
-
-  Route::get('/about', [App\Http\Controllers\Admin\AdminController::class, 'about'])->name('admin.about');
-  Route::get('/history', [App\Http\Controllers\Admin\AdminController::class, 'history'])->name('admin.history');
-  Route::get('/mission', [App\Http\Controllers\Admin\AdminController::class, 'mission'])->name('admin.mission');
-  Route::get('/vision', [App\Http\Controllers\Admin\AdminController::class, 'vision'])->name('admin.vision');
-  Route::get('/campus', [App\Http\Controllers\Admin\AdminController::class, 'campus'])->name('admin.campus');
-  Route::get('/project', [App\Http\Controllers\Admin\AdminController::class, 'project'])->name('admin.project');
-  Route::get('/gallery', [App\Http\Controllers\Admin\AdminController::class, 'gallery'])->name('admin.gallery');
-  Route::get('/contact', [App\Http\Controllers\Admin\AAdminController::class, 'contact'])->name('admin.contact');
-  Route::get('/feedback', [App\Http\Controllers\Admin\AdminController::class, 'feedback'])->name('admin.feedback');
-  Route::get('/apply', [App\Http\Controllers\Admin\AdminController::class, 'apply'])->name('admin.apply');
-  Route::get('/program-management', [App\Http\Controllers\Admin\AdminController::class, 'programManagement'])->name('admin.programManagement');
-  Route::get('/certificate-management', [App\Http\Controllers\Admin\AdminController::class, 'certificateManagement'])->name('admin.certificateManagement');
-  Route::get('/students', [App\Http\Controllers\Admin\AdminController::class, 'students'])->name('admin.students');
-  Route::get('/instructor', [App\Http\Controllers\Admin\AdminController::class, 'instructor'])->name('admin.instructor');
-  Route::get('/admission', [App\Http\Controllers\Admin\AdminController::class, 'admission'])->name('admin.admission');
+  Route::get('/history', [App\Http\Controllers\Admin\AdminController::class, 'history'])->name('history')->middleware(['auth:admin']);
+  Route::get('/gallery', [App\Http\Controllers\Admin\AdminController::class, 'gallery'])->name('gallery')->middleware(['auth:admin']);
+  Route::get('/value', [App\Http\Controllers\Admin\AdminController::class, 'value'])->name('value')->middleware(['auth:admin']);
+  Route::get('/mission', [App\Http\Controllers\Admin\AdminController::class, 'mission'])->name('mission')->middleware(['auth:admin']);
+  Route::get('/vision', [App\Http\Controllers\Admin\AdminController::class, 'vision'])->name('vision')->middleware(['auth:admin']);
+  Route::get('/about', [App\Http\Controllers\Admin\AdminController::class, 'about'])->name('about')->middleware(['auth:admin']);
+  Route::get('/studentFeedbacks', [App\Http\Controllers\Admin\AdminController::class, 'studentFeedbacks'])->name('studentFeedbacks')->middleware(['auth:admin']);
+  
 
 
 

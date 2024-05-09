@@ -71,7 +71,7 @@ class AdminController extends Controller
     }
 
 
-    //ADMIN CREATE LOGIC
+    //ADMIN UPDATE LOGIC
     public function updateAdmin(Request $request){
         $validator = Validator::make($request->all(), [
             'admin_id' => 'required|min:1',
@@ -140,6 +140,7 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    
     public function history(){
 
         return view('admin.history');
