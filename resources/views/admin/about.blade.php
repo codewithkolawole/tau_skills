@@ -2,6 +2,34 @@
 
 @section('content')
 
+<script src="https://cdn.tiny.cloud/1/b9d45cy4rlld8ypwkzb6yfzdza63fznxtcoc3iyit61r4rv9/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+<!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+<script>
+  tinymce.init({
+    selector: 'textarea',
+    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+  });
+
+  // Function to set the value of the textarea when edit button is clicked
+  function setAboutContent(content) {
+        tinymce.get('about').setContent(content);
+    }
+
+    // Ensure the document is ready before attaching the click event
+    document.addEventListener('DOMContentLoaded', function () {
+        // Attach the click event to the edit button
+        document.querySelector('.edit').addEventListener('click', function () {
+            // Get the about content from the button's data attribute
+            var aboutContent = this.getAttribute('data-about-content');
+
+            // Set the about content in the textarea
+            setAboutContent(aboutContent);
+        });
+    });
+</script>
+
 <!-- start page title -->
 <div class="row">
     <div class="col-12">
@@ -19,6 +47,75 @@
     </div>
 </div>
 <!-- end page title -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4"> Type About Statement</h4>
+                <form action="{{ url('/admin/updateAbout') }}" method="POST"> 
+                    @csrf
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            <div class="card-body">
+                                <p class="text-muted">FilePond is a JavaScript library with profile picture-shaped file upload variation.</p>
+                                <div class="avatar-xl mx-auto">
+                                    <input type="file" class="filepond filepond-input-circle" name="filepond" accept="image/png, image/jpeg, image/gif" />
+                                </div>
+
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label for="body">About Statement</label>
+                                <textarea name="about" class="form-control" id="about" cols="30" rows="10">   </textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+        </div>
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+    {{-- <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-4">Current About Statement</h5>
+                <div class="text-end">
+                    <a class="btn btn-outline-secondary btn-sm edit" title="Edit" data-bs-toggle="modal" data-bs-target="#editAbout" data-about-content="{!! !empty($about) ? htmlspecialchars($about->about) : '' !!}">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>                   
+                </div>
+                <hr>
+                <div class="table-responsive">
+                    @if($about)
+                        <table class="table table-nowrap align-middle mb-0">
+                            <tr>                            
+                                <td>
+                                    <div>
+                                        {!! $about->about !!}
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    @else
+                        <p>No About information available.</p>
+                    @endif
+                </div>
+            </div>
+            <!-- end card body -->
+        </div>
+        <!-- end card -->
+    </div> --}}
+    <!-- end col -->
+    
+</div>
+<!-- end row -->
 
 
 @endsection

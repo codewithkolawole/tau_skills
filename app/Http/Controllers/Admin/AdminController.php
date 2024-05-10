@@ -12,6 +12,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\Admin;
+use App\Models\About;
 
 class AdminController extends Controller
 {
@@ -22,10 +23,50 @@ class AdminController extends Controller
 
     }
 
-    public function about(){
+    
 
-        return view('admin.about');
+    public function about(){
+        $about = About::first();
+        return view('admin.about', [
+            'about' => $about
+        ]);
     }
+
+    //ABOUT UPDATE LOGIC
+    public function updateAbout(Request $request){
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'image' => 'required',
+            'about' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            alert()->error('Error', $validator->messages()->first())->persistent('Close');
+            return redirect()->back();
+        }
+
+        // Find the existing about record or create a new one
+        $about = About::first();
+
+        if (!$about) {
+            $about = new About();
+        }
+
+        // Update the about statement
+        $about->title = $request->title;
+        $about->about = $request->about;
+        $about->about = $request->about;
+
+
+        if ($about->save()) {
+            alert()->success('Changes Saved', 'About Us updated successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
 
     //ADMIN VIEW LOGIC
     public function admins(){
@@ -140,7 +181,7 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    
+
     public function history(){
 
         return view('admin.history');
@@ -156,16 +197,6 @@ class AdminController extends Controller
         return view('admin.vision');
     }
 
-    public function campus(){
-
-        return view('admin.campus');
-    }
-
-    public function project(){
-
-        return view('admin.project');
-    }
-
     public function gallery(){
 
         return view('admin.gallery');
@@ -176,9 +207,9 @@ class AdminController extends Controller
         return view('admin.contact');
     }
 
-    public function feedback(){
+    public function studentFeedbacks(){
 
-        return view('admin.feedback');
+        return view('admin.studentFeedbacks');
     }
 
     public function apply(){
@@ -191,25 +222,11 @@ class AdminController extends Controller
         return view('admin.programManagement');
     }
 
-    public function certificateManagement(){
-
-        return view('admin.certificateManagement');
-    }
-
-    public function students(){
-
-        return view('admin.students');
-    }
-
     public function instructor(){
 
         return view('admin.instructor');
     }
 
-    public function admission(){
-
-        return view('admin.admission');
-    }
 
 
 }
