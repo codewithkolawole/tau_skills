@@ -38,11 +38,19 @@ class AdminController extends Controller
             'title' => 'required',
             'image' => 'required',
             'about' => 'required',
+            'slug' => 'required',
         ]);
 
         if ($validator->fails()) {
             alert()->error('Error', $validator->messages()->first())->persistent('Close');
             return redirect()->back();
+        }
+
+        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->lastname.'-'.$request->othernames)));
+        $imageUrl = null;
+        if($request->has('image')) {
+            $imageUrl = 'uploads/about/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
+            $image = $request->file('image')->move('uploads/about', $imageUrl);
         }
 
         // Find the existing about record or create a new one
@@ -54,8 +62,10 @@ class AdminController extends Controller
 
         // Update the about statement
         $about->title = $request->title;
+        $about->image = $request->imageUrl;
         $about->about = $request->about;
-        $about->about = $request->about;
+        $about->slug = $request->slug;
+
 
 
         if ($about->save()) {
