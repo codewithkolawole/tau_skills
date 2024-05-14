@@ -19,6 +19,7 @@ class CreateProjectsTable extends Migration
             $table->string('title')->nullable();
             $table->text('text')->nullable();
             $table->string('facilitator')->nullable();
+            $table->string('slug')->nullable();
             $table->timestamps();
             $table->softdeletes();
         });

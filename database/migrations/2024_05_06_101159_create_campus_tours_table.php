@@ -18,6 +18,7 @@ class CreateCampusToursTable extends Migration
             $table->string('video_link')->nullable();
             $table->string('image')->nullable();
             $table->text('description')->nullable();
+            $table->string('slug')->nullable();
             $table->timestamps();
             $table->softdeletes();
         });

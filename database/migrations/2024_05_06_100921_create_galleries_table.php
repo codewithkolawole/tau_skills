@@ -17,6 +17,7 @@ class CreateGalleriesTable extends Migration
             $table->id();
             $table->string('image')->nullable();
             $table->string('title')->nullable();
+            $table->string('slug')->nullable();
             $table->timestamps();
             $table->softdeletes();
         });

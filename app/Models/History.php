@@ -14,5 +14,6 @@ class History extends Model
         'image',
         'history_text',
         'title',
+        'slug',
     ];
 }

@@ -26,6 +26,7 @@ class CreateApplicationsTable extends Migration
             $table->string('faculty')->nullable();
             $table->string('dept')->nullable();
             $table->decimal('gpa', 4, 2)->nullable();
+            $table->string('slug')->nullable();
             $table->timestamps();
             $table->softdeletes();
         });

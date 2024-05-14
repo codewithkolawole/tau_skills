@@ -15,5 +15,6 @@ class Project extends Model
         'title',
         'text',
         'facilitator',
+        'slug',
     ];
 }

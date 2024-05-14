@@ -15,5 +15,6 @@ class StudentFeedback extends Model
         'title',
         'feedback',
         'name',
+        'slug',
     ];
 }

@@ -22,6 +22,7 @@ class Application extends Model
         'faculty',
         'dept',
         'gpa',
+        'slug',
 
     ];
 }

@@ -20,6 +20,7 @@ class Admin extends Authenticatable
         'email', 
         'password',
         'role',
+        'slug',
     ];
 
     /**

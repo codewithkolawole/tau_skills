@@ -43,7 +43,10 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('/value', [App\Http\Controllers\Admin\AdminController::class, 'value'])->name('value')->middleware(['auth:admin']);
   Route::get('/mission', [App\Http\Controllers\Admin\AdminController::class, 'mission'])->name('mission')->middleware(['auth:admin']);
   Route::get('/vision', [App\Http\Controllers\Admin\AdminController::class, 'vision'])->name('vision')->middleware(['auth:admin']);
+  
   Route::get('/about', [App\Http\Controllers\Admin\AdminController::class, 'about'])->name('about')->middleware(['auth:admin']);
+  Route::post('/updateAbout', [App\Http\Controllers\Admin\AdminController::class, 'updateAbout'])->name('updateAbout')->middleware(['auth:admin']);
+
   Route::get('/studentFeedbacks', [App\Http\Controllers\Admin\AdminController::class, 'studentFeedbacks'])->name('studentFeedbacks')->middleware(['auth:admin']);
   
 

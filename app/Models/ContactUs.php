@@ -15,5 +15,6 @@ class ContactUs extends Model
         'address',
         'phone',
         'email',
+        'slug',
     ];
 }

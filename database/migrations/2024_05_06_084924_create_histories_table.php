@@ -18,6 +18,7 @@ class CreateHistoriesTable extends Migration
             $table->string('image')->nullable();
             $table->string('history_text')->nullable();
             $table->string('title')->nullable();
+            $table->string('slug')->nullable();
             $table->timestamps();
             $table->softdeletes();
         });

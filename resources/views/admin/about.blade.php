@@ -52,29 +52,27 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-4"> Type About Statement</h4>
-                <form action="{{ url('/admin/updateAbout') }}" method="POST"> 
+                <h4 class="card-title mb-4"> Insert About Image</h4>
+                <form action="{{ url('/admin/updateAbout') }}" method="POST" enctype="multipart/form-data"> 
                     @csrf
                     <div class="row">
                         <div class="col-lg-12">
 
-                            <div class="card-body">
-                                <p class="text-muted">FilePond is a JavaScript library with profile picture-shaped file upload variation.</p>
-                                <div class="avatar-xl mx-auto">
-                                    <input type="file" class="filepond filepond-input-circle" name="filepond" accept="image/png, image/jpeg, image/gif" />
-                                </div>
-
+                            <div class="mb-3">
+                                <input id="profile-img-file-input" type="file" class="profile-img-file-input" accept="image/png, image/jpeg" name="image" required>
                             </div>
 
+                            <br>
+                            <hr>
 
                             <div class="mb-3">
-                                <label for="body">About Statement</label>
+                                <h4 class="card-title mb-4"> Type About Statement</h4>
                                 <textarea name="about" class="form-control" id="about" cols="30" rows="10">   </textarea>
                             </div>
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary float-end">Submit</button>
                 </form>
 
             </div>
@@ -82,13 +80,13 @@
         <!-- end card -->
     </div>
     <!-- end col -->
-    {{-- <div class="col-lg-12">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title mb-4">Current About Statement</h5>
                 <div class="text-end">
                     <a class="btn btn-outline-secondary btn-sm edit" title="Edit" data-bs-toggle="modal" data-bs-target="#editAbout" data-about-content="{!! !empty($about) ? htmlspecialchars($about->about) : '' !!}">
-                        <i class="fas fa-pencil-alt"></i>
+                        <i class="ri-pencil-fill text-success"></i>
                     </a>                   
                 </div>
                 <hr>
@@ -111,7 +109,7 @@
             <!-- end card body -->
         </div>
         <!-- end card -->
-    </div> --}}
+    </div>
     <!-- end col -->
     
 </div>

@@ -17,6 +17,7 @@ class Instructor extends Model
         'email',
         'phone',
         'program_id',
+        'slug',
     ];
 
 }

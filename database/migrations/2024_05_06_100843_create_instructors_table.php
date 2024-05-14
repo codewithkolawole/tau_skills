@@ -21,6 +21,7 @@ class CreateInstructorsTable extends Migration
             $table->string('portfolio')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->string('slug')->nullable();
             $table->timestamps();
             $table->softdeletes();
         });

@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Validator;
 
+use SweetAlert;
+use Alert;
+use Carbon\Carbon;
+
+
 use App\Models\Admin;
 use App\Models\About;
 
@@ -35,10 +40,8 @@ class AdminController extends Controller
     //ABOUT UPDATE LOGIC
     public function updateAbout(Request $request){
         $validator = Validator::make($request->all(), [
-            'title' => 'required',
             'image' => 'required',
             'about' => 'required',
-            'slug' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -46,7 +49,9 @@ class AdminController extends Controller
             return redirect()->back();
         }
 
-        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->lastname.'-'.$request->othernames)));
+        $uuid = 'about' . Carbon::now();
+
+        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
         $imageUrl = null;
         if($request->has('image')) {
             $imageUrl = 'uploads/about/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
@@ -61,10 +66,9 @@ class AdminController extends Controller
         }
 
         // Update the about statement
-        $about->title = $request->title;
-        $about->image = $request->imageUrl;
+        $about->image = $imageUrl;
         $about->about = $request->about;
-        $about->slug = $request->slug;
+        $about->slug = $slug;
 
 
 
@@ -87,6 +91,18 @@ class AdminController extends Controller
             'admins' => $admins
         ]);
     }
+
+//infomation 
+    #We have a function called addAdmin that takes some information about a new admin from a form (name, email, role, password). Here's what the function does:
+
+//1. First, it checks if all the required fields are filled in the form.
+//2. If any field is missing, it shows an error message and asks the user to fill in all the fields.
+//3. If all fields are filled, it takes the information and tries to create a new admin with it.
+//4. It encrypts the password for security.
+//5. If the new admin is created successfully, it shows a success message saying the admin was added successfully.
+//6. If there is any problem creating the new admin, it shows an error message saying something went wrong.
+//7. Finally, it redirects the user back to the previous page.
+
 
     //ADMIN CREATE LOGIC
     public function addAdmin(Request $request){

@@ -14,5 +14,6 @@ class Value extends Model
         'image',
         'title',
         'value_text',
+        'slug',
     ];
 }

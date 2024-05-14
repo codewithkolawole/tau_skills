@@ -13,8 +13,9 @@ class Program extends Model
     protected $fillable = [
         'overview',
         'curriculum',
-        'instructor_id',
+        'programcode',
         'program_image',
+        'slug',
     ];
 }
 

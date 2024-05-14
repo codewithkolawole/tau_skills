@@ -18,6 +18,7 @@ class CreateValuesTable extends Migration
             $table->string('image')->nullable();
             $table->string('title')->nullable();
             $table->text('value_text')->nullable();
+            $table->string('slug')->nullable();
             $table->timestamps();
             $table->softdeletes();
         });
