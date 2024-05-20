@@ -1,145 +1,327 @@
 @extends('admin.layout.dashboard')
 
 @section('content')
-
-<script src="https://cdn.tiny.cloud/1/b9d45cy4rlld8ypwkzb6yfzdza63fznxtcoc3iyit61r4rv9/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
-<script>
-  tinymce.init({
-    selector: 'textarea',
-    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-  });
-
-  function setMissionContent(content) {
-        tinymce.get('mission').setContent(content);
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelector('.edit').addEventListener('click', function () {
-            var missionContent = this.getAttribute('data-mission-content');
-            setMissionContent(missionContent);
-        });
-    });
-</script>
-
-<style>
-    .profile-img-file-input {
-        display: none;
-    }
-
-    .custom-file-upload {
-        border: 1px solid #ccc;
-        display: inline-block;
-        padding: 6px 12px;
-        cursor: pointer;
-        background-color: #f8f9fa;
-        border-radius: 5px;
-        text-align: center; 
-    }
-
-    .custom-file-upload:hover {
-        background-color: #e9ecef;
-    }
-
-    #image-preview {
-        margin-top: 10px;
-        text-align: center; 
-    }
-
-    #image-preview img {
-        max-width: 100%;
-        max-height: 200px;
-        border: 1px solid #ccc; 
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-</style>
-
 <div class="row">
-    <div class="col-12">
-        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0">{{ Auth::guard('admin')->user()->name }}'s Dashboard</h4>
-            <div class="page-title-right">
-                <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
-                    <li class="breadcrumb-item active">Mission</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title mb-4">Insert Program Details</h4>
-                <form action="{{ url('/admin/updateProgram') }}" method="POST" enctype="multipart/form-data"> 
-                    @csrf
-                    <div class="row">
                         <div class="col-lg-12">
-                            <div class="mb-3 text-center">
-                                <label for="program-img-file-input" class="custom-file-upload">
-                                    Choose Image
-                                </label>
-                                <input id="program-img-file-input" type="file" class="profile-img-file-input" accept="image/png, image/jpeg" name="program_image" required onchange="previewImage('program')">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Scroll - Vertical</h5>
+                                </div>
+                                <div class="card-body">
+                                    <table id="scroll-vertical" class="table table-bordered dt-responsive nowrap align-middle mdl-data-table" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Project</th>
+                                                <th>Task</th>
+                                                <th>Client Name</th>
+                                                <th>Assigned To</th>
+                                                <th>Due Date</th>
+                                                <th>Status</th>
+                                                <th>Priority</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>VLZ-452</td>
+                                                <td>Symox v1.0.0</td>
+                                                <td><a href="#!">Add Dynamic Contact List</a></td>
+                                                <td>RH Nichols</td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-3.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>03 Oct, 2021</td>
+                                                <td><span class="badge bg-info-subtle text-info">Re-open</span></td>
+                                                <td><span class="badge bg-danger">High</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>VLZ-453</td>
+                                                <td>Doot - Chat App Template</td>
+                                                <td><a href="#!">Additional Calendar</a></td>
+                                                <td>Diana Kohler</td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-4.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-4.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-5.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-5.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>05 Oct, 2021</td>
+                                                <td><span class="badge bg-secondary-subtle text-secondary">On-Hold</span></td>
+                                                <td><span class="badge bg-info">Medium</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>VLZ-454</td>
+                                                <td>Qexal - Landing Page</td>
+                                                <td><a href="#!">Make a creating an account profile</a></td>
+                                                <td>David Nichols</td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-6.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-6.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-7.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-7.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-8.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-8.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>27 April, 2022</td>
+                                                <td><span class="badge bg-danger-subtle text-danger">Closed</span></td>
+                                                <td><span class="badge bg-success">Low</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>VLZ-455</td>
+                                                <td>Dorsin - Landing Page</td>
+                                                <td><a href="#!">Apologize for shopping Error!</a></td>
+                                                <td>Tonya Noble</td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-6.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-6.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-7.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-7.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>14 June, 2021</td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Inprogress</span></td>
+                                                <td><span class="badge bg-info">Medium</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>VLZ-456</td>
+                                                <td>Minimal - v2.1.0</td>
+                                                <td><a href="#!">Support for theme</a></td>
+                                                <td>Donald Palmer</td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-2.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-2.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>25 June, 2021</td>
+                                                <td><span class="badge bg-danger-subtle text-danger">Closed</span></td>
+                                                <td><span class="badge bg-success">Low</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>VLZ-457</td>
+                                                <td>Dason - v1.0.0</td>
+                                                <td><a href="#!">Benner design for FB & Twitter</a></td>
+                                                <td>Jennifer Carter</td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-5.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-5.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-6.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-6.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-7.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-7.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-8.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-8.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>14 Aug, 2021</td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Inprogress</span></td>
+                                                <td><span class="badge bg-info">Medium</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>VLZ-458</td>
+                                                <td>Velzon v1.6.0</td>
+                                                <td><a href="#!">Add datatables</a></td>
+                                                <td>James Morris</td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-4.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-4.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-5.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-5.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>12 March, 2022</td>
+                                                <td><span class="badge bg-primary-subtle text-primary">Open</span></td>
+                                                <td><span class="badge bg-danger">High</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>VLZ-460</td>
+                                                <td>Skote v2.0.0</td>
+                                                <td><a href="#!">Support for theme</a></td>
+                                                <td>Nancy Martino</td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-3.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-10.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-10.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-9.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-9.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>28 Feb, 2022</td>
+                                                <td><span class="badge bg-secondary-subtle text-secondary">On-Hold</span></td>
+                                                <td><span class="badge bg-success">Low</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>VLZ-461</td>
+                                                <td>Velzon v1.0.0</td>
+                                                <td><a href="#!">Form submit issue</a></td>
+                                                <td>Grace Coles</td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-5.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-5.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-9.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-9.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-10.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-10.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>07 Jan, 2022</td>
+                                                <td><span class="badge bg-success-subtle text-success">New</span></td>
+                                                <td><span class="badge bg-danger">High</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>VLZ-462</td>
+                                                <td>Minimal - v2.2.0</td>
+                                                <td><a href="#!">Edit customer testimonial</a></td>
+                                                <td>Freda</td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-2.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-2.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>16 Aug, 2021</td>
+                                                <td><span class="badge bg-danger-subtle text-danger">Closed</span></td>
+                                                <td><span class="badge bg-info">Medium</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>VLZ-454</td>
+                                                <td>Qexal - Landing Page</td>
+                                                <td><a href="#!">Make a creating an account profile</a></td>
+                                                <td>David Nichols</td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-6.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-6.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                            
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-7.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-7.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                            
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-8.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-8.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>27 April, 2022</td>
+                                                <td><span class="badge bg-danger-subtle text-danger">Closed</span></td>
+                                                <td><span class="badge bg-success">Low</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>VLZ-455</td>
+                                                <td>Dorsin - Landing Page</td>
+                                                <td><a href="#!">Apologize for shopping Error!</a></td>
+                                                <td>Tonya Noble</td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-6.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-6.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                            
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-7.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-7.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>14 June, 2021</td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Inprogress</span></td>
+                                                <td><span class="badge bg-info">Medium</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>VLZ-456</td>
+                                                <td>Minimal - v2.1.0</td>
+                                                <td><a href="#!">Support for theme</a></td>
+                                                <td>Donald Palmer</td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-2.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-2.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>25 June, 2021</td>
+                                                <td><span class="badge bg-danger-subtle text-danger">Closed</span></td>
+                                                <td><span class="badge bg-success">Low</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>VLZ-457</td>
+                                                <td>Dason - v1.0.0</td>
+                                                <td><a href="#!">Benner design for FB & Twitter</a></td>
+                                                <td>Jennifer Carter</td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-5.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-5.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                            
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-6.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-6.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                            
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-7.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-7.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                            
+                                                        <a href="javascript: void(0);" class="avatar-group-item" data-img="avatar-8.jpg" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Username">
+                                                            <img src="assets/images/users/avatar-8.jpg" alt="" class="rounded-circle avatar-xxs">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>14 Aug, 2021</td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Inprogress</span></td>
+                                                <td><span class="badge bg-info">Medium</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div id="program-image-preview"></div>
-                            <br>
-                            <hr>
-                            <div class="mb-3">
-                                <label for="title">Title</label>
-                                <input type="text" name="title" class="form-control" id="title">
-                            </div>
-                            <div class="mb-3">
-                                <label for="overview">Overview</label>
-                                <textarea name="overview" class="form-control" id="overview" cols="30" rows="10"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="curriculum">Curriculum</label>
-                                <textarea name="curriculum" class="form-control" id="curriculum" cols="30" rows="10"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="programcode">Program Code</label>
-                                <input type="text" name="programcode" class="form-control" id="programcode">
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary float-end">Submit</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    function previewImage(id) {
-        var fileInput = document.getElementById(id + '-img-file-input');
-        var file = fileInput.files[0];
-        var reader = new FileReader();
-        
-        reader.onload = function() {
-            var output = document.getElementById(id + '-image-preview');
-            output.innerHTML = '<img src="' + reader.result + '" alt="Preview Image">';
-            toggleCurrentImageHeading(id);
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        }
-    }
-
-    function toggleCurrentImageHeading(id) {
-        var imagePreview = document.getElementById(id + '-image-preview');
-        var currentImageHeading = document.querySelector('.' + id + '-current-image-heading');
-        
-        if (imagePreview.querySelector('img')) {
-            currentImageHeading.style.display = 'block';
-        } else {
-            currentImageHeading.style.display = 'none';
-        }
-    }
-</script>
-
-@endsection
+                        </div><!--end col-->
+                    </div><!--end row-->
+                    @endsection

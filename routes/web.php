@@ -55,6 +55,10 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('/mission', [App\Http\Controllers\Admin\AdminController::class, 'mission'])->name('mission')->middleware(['auth:admin']);
   Route::get('/updateMission', [App\Http\Controllers\Admin\AdminController::class, 'updateMission'])->name('updateMission')->middleware(['auth:admin']);
 
+  Route::get('/instructor', [App\Http\Controllers\Admin\AdminController::class, 'instructor'])->name('instructor')->middleware(['auth:admin']);
+  Route::get('/updateinstructor', [App\Http\Controllers\Admin\AdminController::class, 'updateinstructor'])->name('updateinstructor')->middleware(['auth:admin']);
+
+
   
 
 
