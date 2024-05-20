@@ -18,6 +18,8 @@ use Carbon\Carbon;
 
 use App\Models\Admin;
 use App\Models\About;
+use App\Models\Program;
+use App\Models\Mission;
 
 class AdminController extends Controller
 {
@@ -33,9 +35,100 @@ class AdminController extends Controller
     public function about(){
         $about = About::first();
         return view('admin.about', [
-            'about' => $about
+            'about' => $about,
         ]);
     }
+
+//----------------------------------------------------
+    public function programManagement() {
+
+        return view('admin.programManagement', [
+        ]);
+    }
+    //----------------------------------------------------------
+
+
+    public function addProgram(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:255',
+            'overview' => 'required|string',
+            'curriculum' => 'required|string',
+            'programcode' => 'required|string|max:255',
+            'program_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+        
+        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', '$program_code')));
+        $imageUrl = null;
+        if($request->has('program_image')) {
+            $imageUrl = 'uploads/programs/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
+            $image = $request->file('image')->move('uploads/programs', $imageUrl);
+        }
+
+        // if ($request->hasFile('program_image')) {
+        //     $image = $request->file('program_image');
+        //     $name = time() . '.' . $image->getClientOriginalExtension();
+        //     $destinationPath = public_path('/images/programs');
+        //     $image->move($destinationPath, $name);
+        //     $program->program_image = $name;
+        // }
+    
+        $program->save();
+    
+        return redirect()->back()->with('success', 'Program details updated successfully.');
+    }
+
+//-------------------------------------------------------------------------------------------------
+public function updateMission(Request $request){
+    $validator = Validator::make($request->all(), [
+        'image' => 'required',
+        'mission_text' => 'required',
+        'title' => 'required',
+
+    ]);
+
+    if ($validator->fails()) {
+        alert()->error('Error', $validator->messages()->first())->persistent('Close');
+        return redirect()->back();
+    }
+
+    $uuid = 'mission' . Carbon::now();
+
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+    $imageUrl = null;
+    if($request->has('image')) {
+        $imageUrl = 'uploads/mission/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
+        $image = $request->file('image')->move('uploads/mission', $imageUrl);
+    }
+
+    // Find the existing about record or create a new one
+    $mission = Mission::first();
+
+    if (!$mission) {
+        $mission = new Mission();
+    }
+
+    // Update the about statement
+    $mission->image = $imageUrl;
+    $mission->title = $request->title;
+    $mission->mission_text = $request->mission_text;
+    $mission->slug = $slug;
+
+
+
+    if ($mission->save()) {
+        alert()->success('Changes Saved', 'About Us updated successfully')->persistent('Close');
+        return redirect()->back();
+    }
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+}
+
+
+
+
+
+//--------------------------------------------------------------------------------------------
 
     //ABOUT UPDATE LOGIC
     public function updateAbout(Request $request){
@@ -215,7 +308,11 @@ class AdminController extends Controller
 
     public function mission(){
 
-        return view('admin.mission');
+        $mission = Mission::get();
+
+        return view('admin.mission', [
+            'mission' => $mission
+        ]);
     }
     
     public function vision(){
@@ -243,10 +340,6 @@ class AdminController extends Controller
         return view('admin.apply');
     }
 
-    public function programManagement(){
-
-        return view('admin.programManagement');
-    }
 
     public function instructor(){
 

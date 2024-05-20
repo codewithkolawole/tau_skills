@@ -218,7 +218,7 @@
                             <div class="collapse menu-dropdown" id="courseMgt">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ url('/admin/departmentForCourses') }}" class="nav-link">All Courses</a>
+                                        <a href="{{ url('/admin/programManagement') }}" class="nav-link">All Courses</a>
                                     </li>
                                 </ul>
                             </div>

@@ -48,6 +48,13 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/updateAbout', [App\Http\Controllers\Admin\AdminController::class, 'updateAbout'])->name('updateAbout')->middleware(['auth:admin']);
 
   Route::get('/studentFeedbacks', [App\Http\Controllers\Admin\AdminController::class, 'studentFeedbacks'])->name('studentFeedbacks')->middleware(['auth:admin']);
+  Route::get('/programManagement', [App\Http\Controllers\Admin\AdminController::class, 'programManagement'])->name('programManagement')->middleware(['auth:admin']);
+  Route::get('/updateProgram', [App\Http\Controllers\Admin\AdminController::class, 'updateProgram'])->name('updateProgram')->middleware(['auth:admin']);
+
+
+  Route::get('/mission', [App\Http\Controllers\Admin\AdminController::class, 'mission'])->name('mission')->middleware(['auth:admin']);
+  Route::get('/updateMission', [App\Http\Controllers\Admin\AdminController::class, 'updateMission'])->name('updateMission')->middleware(['auth:admin']);
+
   
 
 
