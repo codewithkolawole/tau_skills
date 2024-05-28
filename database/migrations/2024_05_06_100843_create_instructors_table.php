@@ -18,7 +18,7 @@ class CreateInstructorsTable extends Migration
             $table->unsignedBigInteger('program_id')->nullable();
             $table->string('image')->nullable();
             $table->string('name')->nullable();
-            $table->string('portfolio')->nullable();
+            $table->text('portfolio')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('slug')->nullable();

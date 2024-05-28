@@ -20,6 +20,13 @@ use App\Models\Admin;
 use App\Models\About;
 use App\Models\Program;
 use App\Models\Mission;
+use App\Models\History;
+use App\Models\StudentFeedback;
+use App\Models\Value;
+use App\Models\Gallery;
+use App\Models\Instructor;
+
+
 
 class AdminController extends Controller
 {
@@ -42,45 +49,15 @@ class AdminController extends Controller
 //----------------------------------------------------
     public function programManagement() {
 
+        $programs = Program::get();
         return view('admin.programManagement', [
+            'programs' => $programs
         ]);
     }
-    //----------------------------------------------------------
-
-
-    public function addProgram(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:255',
-            'overview' => 'required|string',
-            'curriculum' => 'required|string',
-            'programcode' => 'required|string|max:255',
-            'program_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
-        
-        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', '$program_code')));
-        $imageUrl = null;
-        if($request->has('program_image')) {
-            $imageUrl = 'uploads/programs/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
-            $image = $request->file('image')->move('uploads/programs', $imageUrl);
-        }
-
-        // if ($request->hasFile('program_image')) {
-        //     $image = $request->file('program_image');
-        //     $name = time() . '.' . $image->getClientOriginalExtension();
-        //     $destinationPath = public_path('/images/programs');
-        //     $image->move($destinationPath, $name);
-        //     $program->program_image = $name;
-        // }
-    
-        $program->save();
-    
-        return redirect()->back()->with('success', 'Program details updated successfully.');
-    }
-
-//-------------------------------------------------------------------------------------------------
-public function updateMission(Request $request){
+//------------------------------add mission-------------------------------------------------------------------
+public function addMission(Request $request){
     $validator = Validator::make($request->all(), [
-        'image' => 'required',
+        'image' => 'sometimes',
         'mission_text' => 'required',
         'title' => 'required',
 
@@ -100,25 +77,19 @@ public function updateMission(Request $request){
         $image = $request->file('image')->move('uploads/mission', $imageUrl);
     }
 
-    // Find the existing about record or create a new one
-    $mission = Mission::first();
-
-    if (!$mission) {
-        $mission = new Mission();
-    }
-
-    // Update the about statement
-    $mission->image = $imageUrl;
-    $mission->title = $request->title;
-    $mission->mission_text = $request->mission_text;
-    $mission->slug = $slug;
+    $newMission = ([
+        'image' => $imageUrl,
+        'mission_text' => $request->mission_text,
+        'title' => $request->title,
+        'slug' =>$slug,
+    ]);
 
 
-
-    if ($mission->save()) {
-        alert()->success('Changes Saved', 'About Us updated successfully')->persistent('Close');
+    if(Mission::create($newMission)){
+        alert()->success('Mission Added successfully', '')->persistent('Close');
         return redirect()->back();
     }
+
 
     alert()->error('Oops!', 'Something went wrong')->persistent('Close');
     return redirect()->back();
@@ -135,6 +106,8 @@ public function updateMission(Request $request){
         $validator = Validator::make($request->all(), [
             'image' => 'required',
             'about' => 'required',
+            'title' => 'required',
+            'slug' => 'slug'
         ]);
 
         if ($validator->fails()) {
@@ -160,6 +133,7 @@ public function updateMission(Request $request){
 
         // Update the about statement
         $about->image = $imageUrl;
+        $about -> title =$request ->title;
         $about->about = $request->about;
         $about->slug = $slug;
 
@@ -274,6 +248,752 @@ public function updateMission(Request $request){
     }
 
 
+//----------------------------------------add -mission --------
+
+
+//----------------------------------------edit mission --------
+
+public function editMission(Request $request){
+    $validator = Validator::make($request->all(), [
+        'mission_id' => 'required',
+    ]);
+    
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+
+    if(!$mission = Mission::find($request->mission_id)){
+        alert()->error('Oops', 'Invalid Mission')->persistent('Close');
+        return redirect()->back();
+    }
+
+
+    if(!empty($request->mission_text) &&  $request->mission_text != $mission->mission_text){
+        $mission->mission_text = $request->mission_text;
+    }
+
+    if(!empty($request->title) &&  $request->title != $mission->title){
+        $mission->title = $request->title;
+    }
+
+    if(!empty($request->image) &&  $request->image != $mission->image){
+        $mission->image = $request->image;
+    }
+
+    if($mission->save()){
+        alert()->success('Changes Saved', 'Mission changes saved successfully')->persistent('Close');
+        return redirect()->back();
+    }
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+}
+//-------------------------------delete mission--------------------------------
+
+public function deleteMission(Request $request){
+    $validator = Validator::make($request->all(), [
+        'mission_id' => 'required',
+    ]);
+
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+
+    if(!$mission = Mission::find($request->mission_id)){
+        alert()->error('Oops', 'Invalid mission')->persistent('Close');
+        return redirect()->back();
+    }
+
+
+    if(!empty($request->mission_text) &&  $request->mission_text != $mission->mission_text){
+        $mission->mission_text = $request->mission_text;
+    }
+
+    if(!empty($request->title) &&  $request->title != $mission->title){
+        $mission->title = $request->title;
+    }
+
+    if(!empty($request->image) &&  $request->image != $mission->image){
+        $mission->image = $request->image;
+    }
+
+    if($mission->delete()){
+        alert()->success('Changes Saved', 'Mission changes saved successfully')->persistent('Close');
+        return redirect()->back();
+    }
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+}
+ //----------------edit  feedback--------------------------------
+    public function editFeedback(Request $request){
+        $validator = Validator::make($request->all(), [
+            'feedback_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$feedback = StudentFeedback::find($request->feedback_id)){
+            alert()->error('Oops', 'Invalid Admin')->persistent('Close');
+            return redirect()->back();
+        }
+
+
+        if(!empty($request->name) &&  $request->name != $feedback->name){
+            $feedback->name = $request->name;
+        }
+    
+        if(!empty($request->image) &&  $request->image != $feedback->image){
+            $feedback->image = $request->image;
+        }
+
+        
+        if(!empty($request->title) &&  $request->title != $feedback->title){
+            $feedback->title = $request->title;
+        }
+    
+        if(!empty($request->feedback) &&  $request->feedback != $feedback->feedback){
+            $feedback->feedback = $request->feedback;
+        }
+
+        if($feedback->save()){
+            alert()->success('Changes Saved', 'Feedback changes saved successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    //--------------------------------------------------delete
+    //---------------history--------------
+    public function updateHistory(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'image' => 'required|min:1',
+            'history_text'=> 'required',
+            'title'=> 'required',
+            'slug' => 'slug'
+        ]);
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        $uuid = 'history' . Carbon::now();
+
+        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+        $imageUrl = null;
+        if($request->has('image')) {
+            $imageUrl = 'uploads/history/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
+            $image = $request->file('image')->move('uploads/history', $imageUrl);
+        }
+        
+        $history =History::first();
+
+        if (!$history) {
+            $history = new History();
+        }
+
+        // Update the about statement
+        $history->image = $imageUrl;
+        $history -> title =$request ->title;
+        $history->history_text = $request->history_text;
+        $history->slug = $slug;
+
+
+
+        if ($history->save()) {
+            alert()->success('Changes Saved', 'Hstory Us updated successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+        }
+
+
+
+//--------------------------------------------
+
+//---------------feedback--------------
+public function addFeedback(Request $request){
+
+    $validator = Validator::make($request->all(), [
+        'image' => 'required',
+        'feedback'=> 'required',
+        'name'=> 'required',
+        'title'=> 'required',
+    ]);
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+
+    $uuid = 'student_feedback' . Carbon::now();
+
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+    $imageUrl = null;
+    if($request->has('image')) {
+        $imageUrl = 'uploads/feedback/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
+        $image = $request->file('image')->move('uploads/feedback', $imageUrl);
+    }
+    
+    $newFeedback = ([
+        'image' => $imageUrl,
+        'feedback' => $request->feedback,
+        'title' => $request->title,
+        'name'=>$request-> name,
+        'slug' =>$slug,
+    ]);
+
+
+    if(StudentFeedback::create($newFeedback)){
+        alert()->success('Feedback Added successfully', '')->persistent('Close');
+        return redirect()->back();
+    }
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+
+    }
+
+    //---------------------------------------------------------------------------------------
+    public function deleteFeedback(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'feedback_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$feedback = StudentFeedback::find($request->feedback_id)){
+            alert()->error('Oops', 'Invalid Admin')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if($feedback->delete()){
+            alert()->success('Record Deleted', '')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+
+    }
+
+    
+
+
+
+    //------------------------------add Vision-------------------------------------------------------------------
+public function addVision(Request $request){
+    $validator = Validator::make($request->all(), [
+        'image' => 'sometimes',
+        'value_text' => 'required',
+        'title' => 'required',
+
+    ]);
+
+    if ($validator->fails()) {
+        alert()->error('Error', $validator->messages()->first())->persistent('Close');
+        return redirect()->back();
+    }
+
+    $uuid = 'value' . Carbon::now();
+
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+    $imageUrl = null;
+    if($request->has('image')) {
+        $imageUrl = 'uploads/value/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
+        $image = $request->file('image')->move('uploads/value', $imageUrl);
+    }
+    
+    $newVision = ([
+        'image' => $imageUrl,
+        'title' => $request->title,
+        'value_text'=>$request-> value_text,
+        'slug' =>$slug,
+    ]);
+    // Find the existing about record or create a new one
+    if(Value::create($newVision)){
+        alert()->success('Vision Added successfully', '')->persistent('Close');
+        return redirect()->back();
+    }
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+}
+
+  //------------------------------edit Vision-------------------------------------------------------------------
+  public function editVision(Request $request){
+    $validator = Validator::make($request->all(), [
+        'value_id' => 'required',
+    ]);
+
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+
+    if(!$value = Value::find($request->value_id)){
+        alert()->error('Oops', 'Invalid value')->persistent('Close');
+        return redirect()->back();
+    }
+
+    if(!empty($request->image) &&  $request->image != $value->image){
+        $value->image = $request->image;
+    }
+
+    
+    if(!empty($request->title) &&  $request->title != $value->title){
+        $value->title = $request->title;
+    }
+
+    if(!empty($request->value_text) &&  $request->value != $value->value_text){
+        $value->value_text = $request->value_text;
+    }
+
+    if($value->save()){
+        alert()->success('Changes Saved', 'value changes saved successfully')->persistent('Close');
+        return redirect()->back();
+    }
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+}
+//--------------------------------------------------------------------
+
+
+
+//---------------feedback--------------
+public function addGallery(Request $request){
+
+    $validator = Validator::make($request->all(), [
+        'image' => 'required',
+        'title'=> 'required',
+        'slug' => 'slug',
+    ]);
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+
+    $uuid = 'gallery' . Carbon::now();
+
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+    $imageUrl = null;
+    if($request->has('image')) {
+        $imageUrl = 'uploads/gallery/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
+        $image = $request->file('image')->move('uploads/gallery', $imageUrl);
+    }
+    
+    $newGallery = ([
+        'image' => $imageUrl,
+        'title' => $request->title,
+        'slug' =>$slug,
+    ]);
+
+
+    if(Gallery::create($newGallery)){
+        alert()->success('Gallery Added successfully', '')->persistent('Close');
+        return redirect()->back();
+    }
+   
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+
+    }
+
+    //---------------------------------------------------------------------------------------
+    public function deleteGallery(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'gallery_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$gallery = Gallery::find($request->gallery_id)){
+            alert()->error('Oops', 'Invalid Admin')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if($gallery->delete()){
+            alert()->success('Record Deleted', '')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+
+    }
+
+
+    public function editGallery(Request $request){
+        $validator = Validator::make($request->all(), [
+            'gallery_id' => 'required',
+        ]);
+    
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+    
+        if(!$gallery = Gallery::find($request->gallery_id)){
+            alert()->error('Oops', 'Invalid value')->persistent('Close');
+            return redirect()->back();
+        }
+    
+        if(!empty($request->image) &&  $request->image != $gallery->image){
+            $gallery->image = $request->image;
+        }
+    
+        
+        if(!empty($request->title) &&  $request->title != $gallery->title){
+            $gallery->title = $request->title;
+        }
+
+        if($gallery->save()){
+            alert()->success('Changes Saved', 'value changes saved successfully')->persistent('Close');
+            return redirect()->back();
+        }
+    
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+
+
+//--------------------------------------delete visison    
+public function deleteVision(Request $request) {
+    $validator = Validator::make($request->all(), [
+        'value_id' => 'required',
+    ]);
+
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+
+    if(!$value = Value::find($request->value_id)){
+        alert()->error('Oops', 'Invalid  Value')->persistent('Close');
+        return redirect()->back();
+    }
+
+    
+    if(!empty($request->image) &&  $request->image != $value->image){
+        $value->image = $request->image;
+    }
+
+    
+    if(!empty($request->title) &&  $request->title != $value->title){
+        $value->title = $request->title;
+    }
+
+    if(!empty($request->value) &&  $request->value != $value->value_text){
+        $value->value_text = $request->value_text;
+    }
+
+
+    if($value->delete()){
+        alert()->success('Record Deleted', '')->persistent('Close');
+        return redirect()->back();
+    }
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+
+}
+
+//-----------------------------------------------------------------------------------------------------
+
+
+//-------------------program--------------------------------------------------------------------
+public function deleteProgram(Request $request) {
+    $validator = Validator::make($request->all(), [
+        'program_id' => 'required',
+    ]);
+
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+
+    if(!$program = Program::find($request->program_id)){
+        alert()->error('Oops', 'Invalid Admin')->persistent('Close');
+        return redirect()->back();
+    }
+
+    if(!empty($request->programcode) &&  $request->programcode != $program->programcode){
+        $program->programcode = $request->programcode;
+    }
+
+    if(!empty($request->title) &&  $request->title != $program->title){
+        $program->title = $request->title;
+    }
+
+    if(!empty($request->program_image) &&  $request->program_image != $program->program_image){
+        $program->program_image = $request->program_image;
+    }
+
+    if(!empty($request->overview) &&  $request->title != $program->overview){
+        $program->overview = $request->overview;
+    }
+
+    if(!empty($request->curriculum) &&  $request->curriculum != $program->curriculum){
+        $program->curriculum = $request->curriculum;
+    }
+
+    if($program->delete()){
+        alert()->success('Record Deleted', '')->persistent('Close');
+        return redirect()->back();
+    }
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+
+}
+
+
+public function editProgram(Request $request){
+    $validator = Validator::make($request->all(), [
+        'program_id' => 'required',
+    ]);
+
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+
+    if(!$program = Program::find($request->program_id)){
+        alert()->error('Oops', 'Invalid value')->persistent('Close');
+        return redirect()->back();
+    }
+
+    if(!empty($request->program_image) &&  $request->program_image != $program->program_image){
+        $program->program_image = $request->program_image;
+    }
+    if(!empty($request->overview) &&  $request->overview != $program->overview){
+        $program->overview = $request->overview;
+    }
+    if(!empty($request->programcode) &&  $request->programcode != $program->programcode){
+        $program->programcode = $request->programcode;
+    }
+
+    if(!empty($request->curriculum) &&  $request->curriculum != $program->curriculum){
+        $program->curriculum = $request->curriculum;
+    }
+    
+    if(!empty($request->title) &&  $request->title != $program->title){
+        $program->title = $request->title;
+    }
+
+    if($program->save()){
+        alert()->success('Changes Saved', 'program changes saved successfully')->persistent('Close');
+        return redirect()->back();
+    }
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+}
+
+ 
+public function addProgram(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'program_image' => 'required|image',
+        'title'=> 'required|string',
+        'overview'=> 'required|string',
+        'curriculum'=> 'required|string',
+        'programcode'=> 'required|string',
+    ]);
+
+    if ($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+
+    $uuid = 'program' . Carbon::now()->format('YmdHis');
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+
+    $imageUrl = null;
+    if ($request->hasFile('program_image')) {
+        $image = $request->file('program_image');
+        $imageUrl = 'uploads/program/' . $slug . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('uploads/program'), $imageUrl);
+    }
+
+    $newProgram = [
+        'program_image' => $imageUrl,
+        'overview' => $request->overview,
+        'curriculum' => $request->curriculum,
+        'title' => $request->title,
+        'programcode' => $request->programcode,
+        'slug' => $slug,
+    ];
+
+    if (Program::create($newProgram)) {
+        alert()->success('Program Added successfully', '')->persistent('Close');
+        return redirect()->back();
+    }
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+}
+
+
+
+//----------------------------------------------------------------------------------------------------------
+
+public function deleteInstructor(Request $request) {
+    $validator = Validator::make($request->all(), [
+        'instructor_id' => 'required',
+    ]);
+
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+
+    if(!$instructor = Instructor::find($request->instructor_id)){
+        alert()->error('Oops', 'Invalid Admin')->persistent('Close');
+        return redirect()->back();
+    }
+
+    if(!empty($request->image) &&  $request->image != $instructor->image){
+        $instructor->image = $request->image;
+    }
+
+    if(!empty($request->name) &&  $request->name != $instructor->name){
+        $instructor->name = $request->name;
+    }
+
+    if(!empty($request->portfolio) &&  $request->portfolio != $instructor->portfolio){
+        $instructor->portfolio = $request->portfolio;
+    }
+
+    if(!empty($request->email) &&  $request->email != $instructor->email){
+        $instructor->email = $request->email;
+    }
+
+    if(!empty($request->phone) &&  $request->phone != $instructor->phone){
+        $instructor->phone = $request->phone;
+    }
+
+    if($instructor->delete()){
+        alert()->success('Record Deleted', '')->persistent('Close');
+        return redirect()->back();
+    }
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+
+}
+
+
+public function editInstructor(Request $request){
+    $validator = Validator::make($request->all(), [
+        'instructor_id' => 'required',
+    ]);
+
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+
+    if(!$instructor = Instructor::find($request->instructor_id)){
+        alert()->error('Oops', 'Invalid value')->persistent('Close');
+        return redirect()->back();
+    }
+
+    if(!empty($request->image) &&  $request->image != $instructor->image){
+        $instructor->image = $request->image;
+    }
+
+    if(!empty($request->name) &&  $request->name != $instructor->name){
+        $instructor->name = $request->name;
+    }
+
+    if(!empty($request->portfolio) &&  $request->portfolio != $instructor->portfolio){
+        $instructor->portfolio = $request->portfolio;
+    }
+
+    if(!empty($request->email) &&  $request->email != $instructor->email){
+        $instructor->email = $request->email;
+    }
+
+    if(!empty($request->phone) &&  $request->phone != $instructor->phone){
+        $instructor->phone = $request->phone;
+    }
+
+    if($instructor->save()){
+        alert()->success('Changes Saved', 'instructor changes saved successfully')->persistent('Close');
+        return redirect()->back();
+    }
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+}
+
+ 
+public function addInstructor(Request $request){
+
+    $validator = Validator::make($request->all(), [
+        'image' => 'required',
+        'name'=> 'required',
+        'portfolio'=> 'required',
+        'email'=> 'required',
+        'phone'=> 'required',
+        'slug' => 'slug',
+    ]);
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+
+    $uuid = 'program' . Carbon::now();
+
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+    $imageUrl = null;
+    if($request->has('image')) {
+        $imageUrl = 'uploads/instructor/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
+        $image = $request->file('image')->move('uploads/instructor', $imageUrl);
+    }
+    
+    $newInstructor= ([
+        'image' => $imageUrl,
+        'name' => $request->name,
+        'portfolio' => $request->portfolio,
+        'email' => $request -> email,
+        'phone' => $request -> phone,
+        'slug' =>$slug,
+    ]);
+
+
+    if(Instructor::create($newInstructor)){
+        alert()->success('Instructor Added successfully', '')->persistent('Close');
+        return redirect()->back();
+    }
+   
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+
+    }
+
+
+
     //ADMIN DELETION LOGIC
     public function deleteAdmin(Request $request){
 
@@ -303,26 +1023,23 @@ public function updateMission(Request $request){
 
     public function history(){
 
-        return view('admin.history');
-    }
-
-    public function mission(){
-
-        $mission = Mission::get();
-
-        return view('admin.mission', [
-            'mission' => $mission
+        $history = History::first();
+        return view('admin.history', [
+            'history' => $history,
         ]);
     }
-    
+
     public function vision(){
 
         return view('admin.vision');
     }
 
     public function gallery(){
-
-        return view('admin.gallery');
+        
+        $gallerys =Gallery::get();
+        return view('admin.gallery',[
+            'gallerys'=>$gallerys
+        ]);
     }
 
     public function contact(){
@@ -331,8 +1048,11 @@ public function updateMission(Request $request){
     }
 
     public function studentFeedbacks(){
+        $feedbacks = StudentFeedback::get();
 
-        return view('admin.studentFeedbacks');
+        return view('admin.studentFeedbacks',[
+            'feedbacks'=>$feedbacks
+        ]);
     }
 
     public function apply(){
@@ -342,11 +1062,24 @@ public function updateMission(Request $request){
 
 
     public function instructor(){
-
-        return view('admin.instructor');
+        $instructors = Instructor::get();
+        return view('admin.instructor',[
+            'instructors'=> $instructors,
+        ]);
+    }
+    public function mission()
+    
+    {
+        $missions = Mission::get();
+        $values = Value::get(); 
+        return view('admin.mission',[
+            'missions' => $missions,
+            'values' => $values,
+        ]);
     }
 
 
-
 }
+
+
 

@@ -190,11 +190,9 @@
                                         <a href="{{ url('/admin/history') }}" class="nav-link">History</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('/admin/mission') }}" class="nav-link">Mission</a>
+                                        <a href="{{ url('/admin/mission') }}" class="nav-link">Mission and Vision</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/vision') }}" class="nav-link">Vision</a>
-                                    </li>
+                                   
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/about') }}" class="nav-link">About</a>
                                     </li>
@@ -217,9 +215,6 @@
                             </a>
                             <div class="collapse menu-dropdown" id="courseMgt">
                                 <ul class="nav nav-sm flex-column">
-                                <li class="nav-item">
-                                        <a href="{{ url('/admin/programManagement') }}" class="nav-link">Add Courses</a>
-                                    </li>
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/programManagement') }}" class="nav-link">All Courses</a>
                                     </li>
@@ -235,9 +230,6 @@
                             </a>
                             <div class="collapse menu-dropdown" id="instructorMgt">
                                 <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/instructor') }}" class="nav-link">Add Instructor</a>
-                                    </li>
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/instructor') }}" class="nav-link">All Instructors</a>
                                     </li>

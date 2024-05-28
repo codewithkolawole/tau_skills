@@ -2,8 +2,8 @@
 
 @section('content')
 
-<script src="https://cdn.tiny.cloud/1/b9d45cy4rlld8ypwkzb6yfzdza63fznxtcoc3iyit61r4rv9/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
+<!-- Include TinyMCE for rich text editing if needed -->
+<script src="https://cdn.tiny.cloud/1/i76ab8u665a2vmi4zpvqdl15kpi4a73ypf56qkl7sysbfsvs/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
   tinymce.init({
     selector: 'textarea',
@@ -11,135 +11,270 @@
     toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
   });
 
-  function setMissionContent(content) {
-        tinymce.get('mission').setContent(content);
+  // Function to set the value of the textarea when edit button is clicked
+  function setProgramContent(content) {
+        tinymce.get('program').setContent(content);
     }
 
+    // Ensure the document is ready before attaching the click event
     document.addEventListener('DOMContentLoaded', function () {
-        document.querySelector('.edit').addEventListener('click', function () {
-            var missionContent = this.getAttribute('data-mission-content');
-            setMissionContent(missionContent);
+        // Attach the click event to the edit button
+        document.querySelectorAll('.edit-btn').forEach(function(button) {
+            button.addEventListener('click', function () {
+                // Get the about content from the button's data attribute
+                var programContent = this.getAttribute('data-program-content');
+
+                // Set the about content in the textarea
+                setProgramContent(programContent);
+            });
         });
     });
 </script>
-
-<style>
-    .profile-img-file-input {
-        display: none;
-    }
-
-    .custom-file-upload {
-        border: 1px solid #ccc;
-        display: inline-block;
-        padding: 6px 12px;
-        cursor: pointer;
-        background-color: #f8f9fa;
-        border-radius: 5px;
-        text-align: center; 
-    }
-
-    .custom-file-upload:hover {
-        background-color: #e9ecef;
-    }
-
-    #image-preview {
-        margin-top: 10px;
-        text-align: center; 
-    }
-
-    #image-preview img {
-        max-width: 100%;
-        max-height: 200px;
-        border: 1px solid #ccc; 
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-</style>
-
+<!-- Page Title -->
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
             <h4 class="mb-sm-0">{{ Auth::guard('admin')->user()->name }}'s Dashboard</h4>
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Program Management</a></li>
-                    <li class="breadcrumb-item active">Manage Program</li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
+                    <li class="breadcrumb-item active">Program</li>
                 </ol>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Add Program Button -->
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Add Program</h4>
+            </div>
+
             <div class="card-body">
-                <h4 class="card-title mb-4">Insert Program Details</h4>
-                <form action="{{ url('/admin/updateProgram') }}" method="POST" enctype="multipart/form-data"> 
-                    @csrf
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="mb-3 text-center">
-                                <label for="program-img-file-input" class="custom-file-upload">
-                                    Choose Image
-                                </label>
-                                <input id="program-img-file-input" type="file" class="profile-img-file-input" accept="image/png, image/jpeg" name="program_image" required onchange="previewImage('program')">
-                            </div>
-                            <div id="program-image-preview"></div>
-                            <br>
-                            <hr>
-                            <div class="mb-3">
-                                <label for="title">Title</label>
-                                <input type="text" name="title" class="form-control" id="title">
-                            </div>
-                            <div class="mb-3">
-                                <label for="overview">Overview</label>
-                                <textarea name="overview" class="form-control" id="overview" cols="30" rows="10"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="curriculum">Curriculum</label>
-                                <textarea name="curriculum" class="form-control" id="curriculum" cols="30" rows="10"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="programcode">Program Code</label>
-                                <input type="text" name="programcode" class="form-control" id="programcode">
+                <div class="listjs-table" id="programList">
+                    <div class="row g-4 mb-3">
+                        <div class="col-sm-auto">
+                            <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#programModal">
+                                <i class="ri-add-line align-bottom me-1"></i> Add
+                            </button>
+                            <button class="btn btn-soft-danger" onClick="deleteMultiple()">
+                                <i class="ri-delete-bin-2-line"></i>
+                            </button>
+                        </div>
+                        <div class="col-sm">
+                            <div class="d-flex justify-content-sm-end">
+                                <div class="search-box ms-2">
+                                    <input type="text" class="form-control search" placeholder="Search...">
+                                    <i class="ri-search-line search-icon"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary float-end">Submit</button>
-                </form>
+
+                    <!-- Program Table -->
+                    <div class="table-responsive table-card mt-3 mb-1">
+                        <table class="table align-middle table-nowrap" id="programTable">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col" style="width: 50px;">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="checkAll" value="option">
+                                        </div>
+                                    </th>
+                                    <th>Image</th>
+                                    <th class="sort" data-sort="programcode">Code</th>
+                                    <th class="sort" data-sort="title">Title</th>
+                                   <!-- <th class="sort" data-sort="overview">Overview</th>
+                                    <th class="sort" data-sort="curriculum">Curriculum</th> -->
+                                    <th class="sort" data-sort="action">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list form-check-all">
+                                @foreach($programs as $program)
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="{{ $program->id }}">
+                                        </div>
+                                    </td>
+                                    <td><img src="{{ asset($program->program_image) }}" alt="Image" width="50"></td>
+                                    <td>{{ $program->programcode }}</td>
+                                    <td>{{ $program->title }}</td>
+                                    <!--<td>{!! $program->overview !!}</td>
+                                    <td>{!! $program->curriculum !!}</td> -->
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-sm btn-primary edit-btn" data-bs-toggle="modal" data-bs-target="#editProgramModal{{$program->id}}">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-sm btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal{{$program->id}}">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Modal for Editing Program -->
+                                <div class="modal fade" id="editProgramModal{{$program->id}}" tabindex="-1" aria-labelledby="programModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form id="editProgramForm{{$program->id}}" enctype="multipart/form-data" method="POST" action="{{ url('/admin/editProgram') }}">
+                                                @csrf
+
+                                                <input type="hidden" id="program_id" name="program_id" value="{{ $program->id }}">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="programModalLabel">Update Program</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <label for="title" class="form-label">Title</label>
+                                                        <input type="text" name="title" class="form-control" id="title" required value="{{ $program->title }}">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="programcode" class="form-label">Code</label>
+                                                        <input type="text" name="programcode" class="form-control" id="programcode" required value="{{ $program->programcode }}">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="overview" class="form-label">Overview</label>
+                                                        <textarea class="form-control" id="overview" name="overview" rows="2" >{{ $program->overview }}</textarea>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="curriculum" class="form-label">Curriculum</label>
+                                                        <textarea class="form-control" id="curriculum" name="curriculum" rows="2">{{ $program->curriculum }}</textarea>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="program_image" class="form-label">Image</label>
+                                                        <input type="file" class="form-control" id="program_image" name="image" accept="image/*" onchange="previewImage()">
+                                                        <div id="image-preview{{$program->id}}">
+                                                            <img src="{{ asset($program->program_image) }}" alt="Program Image" class="img-fluid">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal for Delete Confirmation -->
+                                <div class="modal fade" id="deleteRecordModal{{$program->id}}" tabindex="-1" aria-labelledby="deleteRecordModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form id="deleteForm{{$program->id}}" method="POST" action="{{ url('/admin/deleteProgram') }}">
+                                                @csrf
+
+                                                <input type="hidden" id="program_id" name="program_id" value="{{ $program->id }}">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteRecordModalLabel">Delete Program</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete this program?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <div class="noresult" style="display: none">
+                            <div class="text-center">
+                                <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px"></lord-icon>
+                                <h5 class="mt-2">Sorry! No Result Found</h5>
+                                <p class="text-muted mb-0">We've searched more than 150+ orders. We did not find any orders for your search.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <div class="pagination-wrap hstack gap-2">
+                            <a class="page-item pagination-prev disabled" href="javascript:void(0);">
+                                Previous
+                            </a>
+                            <ul class="pagination listjs-pagination mb-0"></ul>
+                            <a class="page-item pagination-next" href="javascript:void(0);">
+                                Next
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+</div>
+<!-- end row -->
+
+<!-- Modal for Adding Program -->
+<div class="modal fade" id="programModal" tabindex="-1" aria-labelledby="programModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form id="programForm" enctype="multipart/form-data" method="POST" action="{{ url('/admin/addProgram') }}">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="programModalLabel">Add Program</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" name="title" class="form-control" id="title" required> 
+                    </div>
+                    <div class="mb-3">
+                        <label for="programcode" class="form-label">Code</label>
+                        <input type="text" name="programcode" class="form-control" id="programcode" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="overview" class="form-label">Overview</label>
+                        <textarea class="form-control" id="overview" name="overview" rows="2" ></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="curriculum" class="form-label">Curriculum</label>
+                        <textarea class="form-control" id="curriculum" name="curriculum" rows="2" ></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="program_image" class="form-label">Image</label>
+                        <input type="file" class="form-control" id="program_image" name="program_image" accept="image/*" required>
+                    </div>
+                    <div id="image-preview"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
+
 <script>
-    function previewImage(id) {
-        var fileInput = document.getElementById(id + '-img-file-input');
+    function previewImage() {
+        var fileInput = document.getElementById('image');
         var file = fileInput.files[0];
         var reader = new FileReader();
-        
+
         reader.onload = function() {
-            var output = document.getElementById(id + '-image-preview');
-            output.innerHTML = '<img src="' + reader.result + '" alt="Preview Image">';
-            toggleCurrentImageHeading(id);
+            var output = document.getElementById('image-preview');
+            output.innerHTML = '<img src="' + reader.result + '" alt="Preview Image" class="img-fluid">';
         };
 
         if (file) {
             reader.readAsDataURL(file);
         }
     }
-
-    function toggleCurrentImageHeading(id) {
-        var imagePreview = document.getElementById(id + '-image-preview');
-        var currentImageHeading = document.querySelector('.' + id + '-current-image-heading');
-        
-        if (imagePreview.querySelector('img')) {
-            currentImageHeading.style.display = 'block';
-        } else {
-            currentImageHeading.style.display = 'none';
-        }
-    }
 </script>
-
 @endsection
