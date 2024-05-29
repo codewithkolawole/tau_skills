@@ -25,6 +25,7 @@ use App\Models\StudentFeedback;
 use App\Models\Value;
 use App\Models\Gallery;
 use App\Models\Instructor;
+use App\Models\ContactUs;
 
 class PageController extends Controller
 {
@@ -52,11 +53,22 @@ class PageController extends Controller
     }
 
     public function program(){
-        
         $program = Program::all();
         return view('program', [
             'program' => $program
         ]);
     }
+
+    public function viewProgram($slug){
+        $program = Program::where('slug', $slug)->firstOrFail();
+        $feedback = StudentFeedback::all();
+        $contact = ContactUs::first();
+        return view('viewProgram', [
+            'program' => $program,
+            'feedback' => $feedback,
+            'contact' => $contact
+        ]);
+    }
+
 
 }

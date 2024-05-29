@@ -18,6 +18,8 @@ Route::get('/contact', [App\Http\Controllers\PageController::class, 'contact'])-
 Route::get('/about', [App\Http\Controllers\PageController::class, 'about'])->name('about');
 Route::get('/gallery', [App\Http\Controllers\PageController::class, 'gallery'])->name('gallery');
 Route::get('/program', [App\Http\Controllers\PageController::class, 'program'])->name('program');
+Route::get('/viewProgram/{slug}', [App\Http\Controllers\PageController::class, 'viewProgram'])->name('viewProgram');
+
 
 
 Route::group(['prefix' => 'admin'], function () {

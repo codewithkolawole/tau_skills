@@ -119,7 +119,7 @@
 
                                 <!-- Modal for Editing Program -->
                                 <div class="modal fade" id="editProgramModal{{$program->id}}" tabindex="-1" aria-labelledby="programModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <form id="editProgramForm{{$program->id}}" enctype="multipart/form-data" method="POST" action="{{ url('/admin/editProgram') }}">
                                                 @csrf
