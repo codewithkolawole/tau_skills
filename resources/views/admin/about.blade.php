@@ -29,38 +29,6 @@
     });
 </script>
 
-<style>
-    .profile-img-file-input {
-        display: none;
-    }
-
-    .custom-file-upload {
-        border: 1px solid #ccc;
-        display: inline-block;
-        padding: 6px 12px;
-        cursor: pointer;
-        background-color: #f8f9fa;
-        border-radius: 5px;
-        text-align: center; 
-    }
-
-    .custom-file-upload:hover {
-        background-color: #e9ecef;
-    }
-
-    #image-preview {
-        margin-top: 10px;
-        text-align: center; 
-    }
-
-    #image-preview img {
-        max-width: 100%;
-        max-height: 200px;
-        border: 1px solid #ccc; 
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-</style>
 
 
 <!-- start page title -->
