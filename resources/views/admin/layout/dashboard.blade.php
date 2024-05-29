@@ -202,6 +202,9 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/studentFeedbacks') }}" class="nav-link">Student Feedbacks</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/contact') }}" class="nav-link">Contact</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li> 

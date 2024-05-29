@@ -13,9 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () {return view('welcome');});
+Route::get('/contact', [App\Http\Controllers\PageController::class, 'contact'])->name('contact');
+Route::get('/about', [App\Http\Controllers\PageController::class, 'about'])->name('about');
+Route::get('/gallery', [App\Http\Controllers\PageController::class, 'gallery'])->name('gallery');
+Route::get('/program', [App\Http\Controllers\PageController::class, 'program'])->name('program');
+
 
 Route::group(['prefix' => 'admin'], function () {
   Route::get('/', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
@@ -90,8 +93,9 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/addProgram', [App\Http\Controllers\Admin\AdminController::class, 'addProgram'])->name('addProgram')->middleware(['auth:admin']);
   Route::post('/deleteProgram', [App\Http\Controllers\Admin\AdminController::class, 'deleteProgram'])->name('deleteProgram')->middleware(['auth:admin']);
   Route::post('/editProgram', [App\Http\Controllers\Admin\AdminController::class, 'editProgram'])->name('editProgram')->middleware(['auth:admin']);
-
   
+  Route::get('/contact', [App\Http\Controllers\Admin\AdminController::class, 'contact'])->name('contact')->middleware(['auth:admin']);
+  Route::post('/updateContact', [App\Http\Controllers\Admin\AdminController::class, 'updateContact'])->name('updateContact')->middleware(['auth:admin']);
 
 
 

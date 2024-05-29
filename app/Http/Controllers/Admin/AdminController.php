@@ -25,6 +25,7 @@ use App\Models\StudentFeedback;
 use App\Models\Value;
 use App\Models\Gallery;
 use App\Models\Instructor;
+use App\Models\ContactUs;
 
 
 
@@ -420,6 +421,53 @@ public function deleteMission(Request $request){
 
 
 //--------------------------------------------
+public function updateContact(Request $request){
+
+    $validator = Validator::make($request->all(), [
+        'image' => 'required|min:1',
+        'address'=> 'required',
+        'email'=> 'required',
+        'phone'=> 'required',
+        'slug' => 'slug'
+    ]);
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+
+    $uuid = 'contact' . Carbon::now();
+
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+    $imageUrl = null;
+    if($request->has('image')) {
+        $imageUrl = 'uploads/contact/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
+        $image = $request->file('image')->move('uploads/contact', $imageUrl);
+    }
+    
+    $contact =ContactUs::first();
+
+    if (!$contact) {
+        $contact = new ContactUs();
+    }
+
+    // Update the about statement
+    $contact->image = $imageUrl;
+    $contact -> address =$request ->address;
+    $contact->email = $request->email;
+    $contact -> phone =$request ->phone;
+    $contact->slug = $slug;
+
+
+
+    if ($contact->save()) {
+        alert()->success('Changes Saved', 'Contact Us updated successfully')->persistent('Close');
+        return redirect()->back();
+    }
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+    }
+
 
 //---------------feedback--------------
 public function addFeedback(Request $request){
@@ -1043,8 +1091,10 @@ public function addInstructor(Request $request){
     }
 
     public function contact(){
-
-        return view('admin.contact');
+        $contact = ContactUs::first();
+        return view('admin.contact',[
+            'contact' => $contact,
+        ]);
     }
 
     public function studentFeedbacks(){
