@@ -1,8 +1,7 @@
 @extends('admin.layout.dashboard')
 
 @section('content')
-
-<script src="https://cdn.tiny.cloud/1/b9d45cy4rlld8ypwkzb6yfzdza63fznxtcoc3iyit61r4rv9/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/i76ab8u665a2vmi4zpvqdl15kpi4a73ypf56qkl7sysbfsvs/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
 <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
 <script>
@@ -89,29 +88,31 @@
                 <h4 class="card-title mb-4"> Insert About Image</h4>
                 <form action="{{ url('/admin/updateAbout') }}" method="POST" enctype="multipart/form-data"> 
                     @csrf
+
+                    <input type="hidden" name="about_id" value="{{ $about->id }}">
                     <div class="row">
                         <div class="col-lg-12">
 
-                            <div class="mb-3 text-center">
-                                <label for="profile-img-file-input" class="custom-file-upload">
-                                    Choose Image
-                                </label>
-                                <input id="profile-img-file-input" type="file" class="profile-img-file-input" accept="image/png, image/jpeg" name="image" required onchange="previewImage()">
-                            </div>
-
-                            <div id="image-preview">
-
+                            <div class="mb-2">
+                                <label for="image" class="form-label">Image</label>
+                                <input type="file" class="form-control" id="image" name="image" accept="image/*" onchange="previewImage()">
                             </div>
 
                             
 
                             <br>
-                            <hr>
+                            <hr></hr>
+                            <div class="mb-3">
+                                <h4 class="card-title mb-4"> Title</h4>
+                            
+                                <input type="text" name="title" class="form-control" id="title" required value= "{{ $about->title }}">
+                            </div>
 
                             <div class="mb-3">
                                 <h4 class="card-title mb-4"> Type About Statement</h4>
-                                <textarea name="about" class="form-control" id="about" cols="30" rows="10">   </textarea>
+                                <textarea name="about" class="form-control" id="about" cols="30" rows="10" required> {{ $about->about}}  </textarea>
                             </div>
+                           
                         </div>
                     </div>
 
