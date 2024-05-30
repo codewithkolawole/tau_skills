@@ -29,6 +29,8 @@
     });
 </script>
 
+
+
 <!-- start page title -->
 <div class="row">
     <div class="col-12">
@@ -63,6 +65,8 @@
                                 <label for="image" class="form-label">Image</label>
                                 <input type="file" class="form-control" id="image" name="image" accept="image/*" onchange="previewImage()">
                             </div>
+
+                            
 
                             <br>
                             <hr></hr>
@@ -122,6 +126,39 @@
     
 </div>
 <!-- end row -->
+
+
+<script>
+   // Function to preview image
+    function previewImage() {
+        var fileInput = document.getElementById('profile-img-file-input');
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+        
+        reader.onload = function() {
+            var output = document.getElementById('image-preview');
+            output.innerHTML = '<img src="' + reader.result + '" alt="Preview Image">';
+            toggleCurrentImageHeading(); // Call the function to toggle visibility
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+
+    // Function to toggle visibility of "Current About Image" heading
+    function toggleCurrentImageHeading() {
+        var imagePreview = document.getElementById('image-preview');
+        var currentImageHeading = document.querySelector('.current-image-heading');
+        
+        // If image preview is present, show the heading; otherwise, hide it
+        if (imagePreview.querySelector('img')) {
+            currentImageHeading.style.display = 'block';
+        } else {
+            currentImageHeading.style.display = 'none';
+        }
+    }
+</script>
 
 
 @endsection
