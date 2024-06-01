@@ -690,7 +690,9 @@ public function addGallery(Request $request){
 
     public function editGallery(Request $request){
         $validator = Validator::make($request->all(), [
-            'gallery_id' => 'required',
+            'gallery_id' => 'required|exists:galleries,id',
+            'image' => 'nullable|image',
+            'title' => 'required|string|max:255',
         ]);
     
         if($validator->fails()) {
