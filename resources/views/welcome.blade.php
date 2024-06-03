@@ -31,7 +31,7 @@
                                                     Unleashing Potential
                                                     Fostering Excellence
                                                 </h1>
-                                                <a href="program-single.html" class="rts-theme-btn btn-arrow">View Our Program
+                                                <a href="{{ url('/program') }}" class="rts-theme-btn btn-arrow">View Our Program
                                                     <span><i class="fa-regular fa-arrow-right"></i></span>
                                                 </a>
                                             </div>
@@ -58,7 +58,7 @@
                                                     Unleashing Potential
                                                     Fostering Excellence
                                                 </h1>
-                                                <a href="program-single.html" class="rts-theme-btn btn-arrow">View Our Program
+                                                <a href="{{ url('/program') }}" class="rts-theme-btn btn-arrow">View Our Program
                                                     <span><i class="fa-regular fa-arrow-right"></i></span>
                                                 </a>
                                             </div>
@@ -73,13 +73,8 @@
             </div>
             <div class="banner__slides--navigation">
                 <div class="banner__slides--navigation--single">
-                    <h5 class="nav__title">Undergraduate</h5>
-                    <a href="academic.html" class="nav__description">Browse the undergraduate
-                        degrees</a>
-                </div>
-                <div class="banner__slides--navigation--single">
-                    <h5 class="nav__title">Graduate</h5>
-                    <a href="academic.html" class="nav__description">Browse the graduate degrees</a>
+                    <h5 class="nav__title">Our Programs</h5>
+                    <a href="{{ url('/program') }}" class="nav__description">Browse our acquirable skills</a>
                 </div>
             </div>
         </div>
@@ -101,7 +96,7 @@
                                         <path id="circle" d="M50,50 m-37,0a37,37 0 1,1 74,0a37,37 0 1,1 -74,0"></path>
                                     </defs>
                                     <text>
-                                        <textPath xlink:href="#circle">Unipix University * Estd. 1971 * Explore Future *
+                                        <textPath xlink:href="#circle">*Thomas Adewumi University * Estd. 2019 *Explore *
                                         </textPath>
                                     </text>
                                 </svg>
@@ -158,32 +153,7 @@
         </div>
     </section>
     <!-- about us end -->
-    <!-- fun fact -->
-
-    <div class="rts-funfact v__2">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 ">
-                    <div class="rts-funfact-wrapper">
-                        <div class="single-cta-item">
-                            <h2 class="single-cta-item__title">90%</h2>
-                            <p>post-graduation success rate</p>
-                        </div>
-                        <div class="single-cta-item">
-                            <h2 class="single-cta-item__title">Top 10</h2>
-                            <p>Colleges that Create Futures</p>
-                        </div>
-                        <div class="single-cta-item">
-                            <h2 class="single-cta-item__title">No. 1</h2>
-                            <p>in the nation for materials R&D</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- fun fact end -->
+   
     <!-- academic program -->
     <section class="program rts-section-padding">
         <div class="container">
@@ -292,7 +262,7 @@
         </div>
     </section>
     <!-- academic program end -->
-    <!-- campus life -->
+    {{-- <!-- campus life -->
     <section class="campus rts__primary__bg-2 rts-section-padding">
         <div class="container">
             <div class="row">
@@ -346,9 +316,9 @@
             <img src="{{asset('frontAssets/images/icon/compas_scale.svg')}}" class="rts__shape--3" alt="">
         </div>
     </section>
-    <!-- campus life end -->
+    <!-- campus life end --> --}}
     <!-- tution fee -->
-    <section class="tution rts-section-padding">
+    {{-- <section class="tution rts-section-padding">
         <div class="container">
             <div class="row align-items-center g-5">
                 <div class="col-lg-4">
@@ -395,9 +365,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- tution fee end -->
-    <!-- scholarship appication -->
+    {{-- <!-- scholarship appication -->
     <section class="rts-scholarship rts-scholarship-bg rts-section-height">
         <div class="container">
             <div class="row justify-content-center">
@@ -411,7 +381,7 @@
             </div>
         </div>
     </section>
-    <!-- scholarship appication end -->
+    <!-- scholarship appication end --> --}}
 
     <!-- notice board start -->
     <section class="rts-notice rts-section-padding">
@@ -654,85 +624,7 @@
     </section>
     <!-- student feedback end -->
 
-    <!-- blog -->
-    <section class="blog pt--120">
-        <div class="container">
-            <div class="row">
-                <div class="rts__section--wrapper v__8">
-                    <div class="rts__section--wrapper--left">
-                        <h2 class="rts__section--title mb--15">Read Our Latest News</h2>
-                        <p class="rts__section--description">Our mission is to provide you with valuable insights</p>
-                    </div>
-                    <div class="rts__section--link">
-                        <a href="blog.html" class="rts-nbg-btn btn-arrow">View All
-                            <span><i class="fa-sharp fa-regular fa-arrow-right"></i>
-                        </span></a>
-                    </div>
-                </div>
-            </div>
-            <!-- blog area -->
-            <div class="row g-5">
-                <div class="col-lg-6 col-md-6">
-                    <div class="blog__single--item">
-                        <a href="blog-details.html" class="blog__single--item--link">
-                            <div class="blog__single--item--thumb">
-                                <img src="frontAssets/images/blog/blog__1.jpg" alt="">
-                            </div>
-                        </a>
-                        <div class="blog__single--item--meta">
-                            <a href="#" class="blog__cat">Campus</a>
-                            <h5 class="blog__single--item--title">
-                                <a href="blog-details.html">10 from Harvard named Rhodes Scholars</a>
-                            </h5>
-                            <p class="blog__single--item--excerpt">You'll find something to spark your
-                                curiosity and enhance</p>
-
-                            <div class="blog__single--item--info">
-                                <div class="author">
-                                    <span><i class="fa-thin fa-user"></i></span>
-                                    <a href="#">Jon Adam</a>
-                                </div>
-                                <div class="date">
-                                    <span><i class="fa-sharp fa-thin fa-calendar"></i></span>
-                                    <p>Oct 29, 2023</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="blog__single--item">
-                        <a href="blog-details.html" class="blog__single--item--link">
-                            <div class="blog__single--item--thumb">
-                                <img src="frontAssets/images/blog/blog__2.jpg" alt="">
-                            </div>
-                        </a>
-                        <div class="blog__single--item--meta">
-                            <a href="#" class="blog__cat">Marketing</a>
-                            <h5 class="blog__single--item--title">
-                                <a href="blog-details.html">Announcing the winners the 2023 Education </a>
-                            </h5>
-                            <p class="blog__single--item--excerpt">You'll find something to spark your
-                                curiosity and enhance</p>
-
-                            <div class="blog__single--item--info">
-                                <div class="author">
-                                    <span><i class="fa-thin fa-user"></i></span>
-                                    <a href="#">Jon Adam</a>
-                                </div>
-                                <div class="date">
-                                    <span><i class="fa-sharp fa-thin fa-calendar"></i></span>
-                                    <p>Oct 29, 2023</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- blog end -->
-    <!-- brand slider -->
+    {{-- <!-- brand slider -->
     <div class="rts-brand v_1 pb--85 pt--85">
         <div class="container">
             <div class="row justify-content-md-center">
@@ -814,7 +706,7 @@
             </div>
         </div>
     </div>
-    <!-- brand slider end -->
+    <!-- brand slider end --> --}}
 
 
 @endsection

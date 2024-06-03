@@ -1,9 +1,10 @@
+
 @extends('admin.layout.dashboard')
 
 @section('content')
+
 <script src="https://cdn.tiny.cloud/1/i76ab8u665a2vmi4zpvqdl15kpi4a73ypf56qkl7sysbfsvs/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
-<!-- Place the following <script> and <textarea> tags your HTML's <body> -->
 <script>
   tinymce.init({
     selector: 'textarea',
@@ -11,154 +12,126 @@
     toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
   });
 
-  // Function to set the value of the textarea when edit button is clicked
-  function setAboutContent(content) {
-        tinymce.get('about').setContent(content);
-    }
+  function setContactContent(content) {
+      tinymce.get('contact').setContent(content);
+  }
 
-    // Ensure the document is ready before attaching the click event
-    document.addEventListener('DOMContentLoaded', function () {
-        // Attach the click event to the edit button
-        document.querySelector('.edit').addEventListener('click', function () {
-            // Get the about content from the button's data attribute
-            var aboutContent = this.getAttribute('data-about-content');
-
-            // Set the about content in the textarea
-            setAboutContent(aboutContent);
-        });
-    });
+  document.addEventListener('DOMContentLoaded', function () {
+      document.querySelector('.edit').addEventListener('click', function () {
+          var contactContent = this.getAttribute('data-contact-content');
+          setContactContent(contactContent);
+      });
+  });
 </script>
 
-
-
-<!-- start page title -->
-<div class="row">
-    <div class="col-12">
-        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0">{{ Auth::guard('admin')->user()->name }}'s Dashboard</h4>
-
-            <div class="page-title-right">
-                <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
-                    <li class="breadcrumb-item active">About</li>
-                </ol>
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- end page title -->
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title mb-4"> Insert About Image</h4>
-                <form action="{{ url('/admin/updateAbout') }}" method="POST" enctype="multipart/form-data"> 
-                    @csrf
-
-                    <input type="hidden" name="about_id" value="{{ $about->id }}">
-                    <div class="row">
-                        <div class="col-lg-12">
-
-                            <div class="mb-2">
-                                <label for="image" class="form-label">Image</label>
-                                <input type="file" class="form-control" id="image" name="image" accept="image/*" onchange="previewImage()">
-                            </div>
-
-                            
-
-                            <br>
-                            <hr></hr>
-                            <div class="mb-3">
-                                <h4 class="card-title mb-4"> Title</h4>
-                            
-                                <input type="text" name="title" class="form-control" id="title" required value= "{{ $about->title }}">
-                            </div>
-
-                            <div class="mb-3">
-                                <h4 class="card-title mb-4"> Type About Statement</h4>
-                                <textarea name="about" class="form-control" id="about" cols="30" rows="10" required> {{ $about->about}}  </textarea>
-                            </div>
-                           
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary float-end">Submit</button>
-                </form>
-
-            </div>
-        </div>
-        <!-- end card -->
-    </div>
-    <!-- end col -->
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title mb-4">Current About Statement</h5>
-                <div class="text-end">
-                    <a class="btn btn-outline-secondary btn-sm edit" title="Edit" data-bs-toggle="modal" data-bs-target="#editAbout" data-about-content="{!! !empty($about) ? htmlspecialchars($about->about) : '' !!}">
-                        <i class="ri-pencil-fill text-success"></i>
-                    </a>                   
-                </div>
-                <hr>
-                <div class="table-responsive">
-                    @if($about)
-                        <table class="table table-nowrap align-middle mb-0">
-                            <tr>                            
-                                <td>
-                                    <div>
-                                        {!! $about->about !!}
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    @else
-                        <p>No About information available.</p>
-                    @endif
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0">{{ Auth::guard('admin')->user()->name }}'s Dashboard</h4>
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
+                        <li class="breadcrumb-item active">About</li>
+                    </ol>
                 </div>
             </div>
-            <!-- end card body -->
         </div>
-        <!-- end card -->
     </div>
-    <!-- end col -->
+
+    <div class="row">
+        <div class="col-xl-5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">About</h5>
+                    <p class="card-title-desc">Manage About Details</p>
+                    <hr>
     
-</div>
-<!-- end row -->
+                    <form action="{{ url('/admin/updateAbout') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="about_id" value="{{ !empty($about) ? $about->id : null }}">
+                        
+                        <fieldset class="mb-3">
+                            <p>Banner</p>
+                            <div class="form-floating mb-3">
+                                <input type="file" class="form-control" id="floatingBannerInput" name="banner">
+                            </div>
+                        </fieldset>
 
-
-<script>
-   // Function to preview image
-    function previewImage() {
-        var fileInput = document.getElementById('profile-img-file-input');
-        var file = fileInput.files[0];
-        var reader = new FileReader();
-        
-        reader.onload = function() {
-            var output = document.getElementById('image-preview');
-            output.innerHTML = '<img src="' + reader.result + '" alt="Preview Image">';
-            toggleCurrentImageHeading(); // Call the function to toggle visibility
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        }
-    }
-
-    // Function to toggle visibility of "Current About Image" heading
-    function toggleCurrentImageHeading() {
-        var imagePreview = document.getElementById('image-preview');
-        var currentImageHeading = document.querySelector('.current-image-heading');
-        
-        // If image preview is present, show the heading; otherwise, hide it
-        if (imagePreview.querySelector('img')) {
-            currentImageHeading.style.display = 'block';
-        } else {
-            currentImageHeading.style.display = 'none';
-        }
-    }
-</script>
-
-
+                        <fieldset class="mb-3">
+                            <p>Image</p>
+                            <div class="form-floating mb-3">
+                                <input type="file" class="form-control" id="floatingImageInput" name="image">
+                            </div>
+                        </fieldset>
+    
+                        <fieldset class="mb-3">
+                            <p>Text</p>
+                            <div class="form-floating mb-3">
+                                <textarea name="about" class="form-control" id="floatingAboutInput" cols="30" rows="10"></textarea>
+                            </div>
+                        </fieldset>
+                        <div>
+                            <button type="submit" class="btn btn-primary w-md float-end">Save</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- end card body -->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col -->
+    
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">About Details</h5>
+                    <div class="table-responsive">
+                        <table class="table table-nowrap align-middle mb-0">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h5 class="text-truncate font-size-14 m-0">
+                                            <a href="javascript: void(0);" class="text-dark">Banner</a>
+                                        </h5>
+                                    </td>
+                                    <td>
+                                        <div class="text-end">
+                                            <img src="{{ !empty($about) ? asset($about->banner) : '' }}" alt="Banner Image" class="avatar-xl">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h5 class="text-truncate font-size-14 m-0">
+                                            <a href="javascript: void(0);" class="text-dark">Image</a>
+                                        </h5>
+                                    </td>
+                                    <td>
+                                        <div class="text-end">
+                                            <img src="{{ !empty($about) ? asset($about->image) : '' }}" alt="About Image" class="avatar-xl">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h5 class="text-truncate font-size-14 m-0">
+                                            <a href="javascript: void(0);" class="text-dark">About Text</a>
+                                        </h5>
+                                    </td>
+                                    <td>
+                                        <div class="text-end">
+                                            <span>{{ !empty($about) ? strip_tags($about->about) : '' }}</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- end card body -->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col -->
+    </div>
 @endsection

@@ -3,7 +3,7 @@
 @section('content')
 
  <!-- BREADCRUMB AREA -->
- <section class="rts-breadcrumb breadcrumb-height breadcumb-bg" style="background-image: url(assets/images/banner/breadcrumb.jpg);">
+ <section class="rts-breadcrumb breadcrumb-height breadcumb-bg" style="background-image: url('{{ !empty($about->banner) ? asset($about->banner) : '' }}')">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-lg-8 col-md-7">
                         <p class="rts-section-description">
-                            Welcome to Unipix University, where knowledge meets inspiration, and every individual's educational journey is valued. Established in 1971 Establishment, our university has been a bastion of learning, innovation, and community for 51 years years.
+                            {{ ($about->about) }}
                         </p>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
             <div class="row g-5 justify-content-md-center justify-content-start">
                 <div class="col-lg-7 col-xl-8 col-md-11">
                     <div class="rts-about-section">
-                        <img src="{{asset('frontAssets/images/about/about-01.jpg')}}" alt="">
+                        <img src="{{ !empty($about->image) ? asset($about->image) : asset('frontAssets/images/about/about-01.jpg') }}" alt="About Image">
                     </div>
                 </div>
                 <div class="col-lg-5 col-xl-4 col-md-11">
@@ -78,29 +78,27 @@
     </section>
     <!-- about university end -->
 
+
     <!-- history -->
     <div class="rts-history">
         <div class="container">
             <div class="row g-5 justify-content-md-center justify-content-start align-items-center">
                 <div class="col-lg-6 col-md-11">
                     <div class="rts-history-image">
-                        <img src="{{asset('frontAssets/images/about/history.jpg')}}" alt="history">
+                        <img src="{{ !empty($history->image) ? asset($history->image) : '' }}" alt="history">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-11">
                     <div class="rts-history-section">
-                        <h4 class="rts-section-title mb--40">The history of Unipix</h4>
-                        <p>
-                            On September 8, 1971, Unipix, the first college in the American colonies, was founded in Cambridge, Massachusetts. Unipix University was officially founded by a vote by the Great and General Court of the Massachusetts Bay Colony.
-                            <span class="d-block mb--30"></span>
-                            Unipix endowment started with John Unipix initial donation of 400 books and half his estate, but in 1721, Thomas Hollis began the now standard practice of requiring that a donation be used for a specific purpose when he donated money for “a Divinity Professor, to read lectures in the Halls to the students.”
-                        </p>
+                        <h4 class="rts-section-title mb--40">{{ $history->title ?? '' }}</h4>
+                        <p>{{ $history->history_text ?? '' }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- history end-->
+  
 
 
     <div class="rts-funfact rts-section-padding">

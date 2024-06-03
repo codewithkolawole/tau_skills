@@ -38,9 +38,11 @@ class PageController extends Controller
     }
 
     public function about(){
-        
+        $about = About::first();
+        $history = History::first();
         return view('about', [
-
+            'about' => $about,
+            'history' => $history
         ]);
     }
 

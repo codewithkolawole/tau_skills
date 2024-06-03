@@ -103,51 +103,57 @@ public function addMission(Request $request){
 //--------------------------------------------------------------------------------------------
 
     //ABOUT UPDATE LOGIC
-    public function updateAbout(Request $request){
+    public function updateAbout(Request $request) {
         $validator = Validator::make($request->all(), [
             'image' => 'required',
             'about' => 'required',
-            'title' => 'required',
-            'slug' => 'slug'
+            'banner' => 'required',
         ]);
-
+    
         if ($validator->fails()) {
             alert()->error('Error', $validator->messages()->first())->persistent('Close');
             return redirect()->back();
         }
-
+    
         $uuid = 'about' . Carbon::now();
-
         $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+    
         $imageUrl = null;
-        if($request->has('image')) {
-            $imageUrl = 'uploads/about/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
-            $image = $request->file('image')->move('uploads/about', $imageUrl);
+        if ($request->has('image')) {
+            $imageUrl = 'uploads/about/' . $slug . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move('uploads/about', $imageUrl);
         }
-
+    
+        $bannerUrl = null;
+        if ($request->has('banner')) {
+            $bannerUrl = 'uploads/about/banner_' . $slug . '.' . $request->file('banner')->getClientOriginalExtension();
+            $request->file('banner')->move('uploads/about', $bannerUrl);
+        }
+    
         // Find the existing about record or create a new one
         $about = About::first();
-
+    
         if (!$about) {
             $about = new About();
         }
-
+    
         // Update the about statement
         $about->image = $imageUrl;
-        $about -> title =$request ->title;
         $about->about = $request->about;
         $about->slug = $slug;
-
-
-
+        if ($bannerUrl) {
+            $about->banner = $bannerUrl;
+        }
+    
         if ($about->save()) {
             alert()->success('Changes Saved', 'About Us updated successfully')->persistent('Close');
             return redirect()->back();
         }
-
+    
         alert()->error('Oops!', 'Something went wrong')->persistent('Close');
         return redirect()->back();
     }
+    
 
 
     //ADMIN VIEW LOGIC
@@ -410,7 +416,7 @@ public function deleteMission(Request $request){
 
 
         if ($history->save()) {
-            alert()->success('Changes Saved', 'Hstory Us updated successfully')->persistent('Close');
+            alert()->success('Changes Saved', 'History updated successfully')->persistent('Close');
             return redirect()->back();
         }
 
