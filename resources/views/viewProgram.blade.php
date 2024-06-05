@@ -212,7 +212,7 @@
                         </div>
                         <div class="program-curriculum">
                             <h4 class="title">Curriculum</h4>
-                            @php
+                            {{-- @php
                                 // Remove HTML tags and split the curriculum into individual weeks
                                 $curriculumText = strip_tags($program->curriculum);
                                 $weeks = explode("\n\n", trim($curriculumText));
@@ -236,7 +236,7 @@
                                 @endforeach
                             @else
                                 <p>No curriculum data available.</p>
-                            @endif
+                            @endif --}}
                         </div>
                     </div>
                 </div>
