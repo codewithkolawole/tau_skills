@@ -31,18 +31,22 @@ class PageController extends Controller
 {
     //
     public function contact(){
-
+        $contact = ContactUs::first();
         return view('contact', [
-
+          'contact' => $contact,
         ]);
     }
 
     public function about(){
         $about = About::first();
         $history = History::first();
+        $missions = Mission::first();
+        $values = Value::first();
         return view('about', [
             'about' => $about,
-            'history' => $history
+            'history' => $history,
+            'missions' =>$missions,
+            'values' =>$values,
         ]);
     }
 

@@ -223,10 +223,10 @@
             </div>
 
             <div class="card-body">
-                <div class="listjs-table" id="visionList">
+                <div class="listjs-table" id="valueList">
                     <div class="row g-4 mb-3">
                         <div class="col-sm-auto">
-                            <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#visionModal">
+                            <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#valueModal">
                                 <i class="ri-add-line align-bottom me-1"></i> Add
                             </button>
                             <button class="btn btn-soft-danger" onClick="deleteMultiple()">
@@ -245,7 +245,7 @@
 
                     <!-- Mission Table -->
                     <div class="table-responsive table-card mt-3 mb-1">
-                        <table class="table align-middle table-nowrap" id="missionTable">
+                        <table class="table align-middle table-nowrap" id="valueTable">
                             <thead class="table-light">
                                 <tr>
                                     <th scope="col" style="width: 50px;">
@@ -264,15 +264,15 @@
                                 <tr>
                                     <td>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="{{ $mission->id }}">
+                                            <input class="form-check-input" type="checkbox" value="{{ $value->id }}">
                                         </div>
                                     </td>
-                                    <td><img src="{{ asset($mission->image) }}" alt="Image" width="50"></td>
+                                    <td><img src="{{ asset($value->image) }}" alt="Image" width="50"></td>
                                     <td>{{ $value->title }}</td>
                                     <td>{{ $value->value_text }}</td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <button class="btn btn-sm btn-primary edit-btn" data-bs-toggle="modal" data-bs-target="#editVisionModal{{ $value->id }}">
+                                            <button class="btn btn-sm btn-primary edit-btn" data-bs-toggle="modal" data-bs-target="#editValueModal{{ $value->id }}">
                                                 Edit
                                             </button>
                                             <button class="btn btn-sm btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal{{ $value->id }}">
@@ -283,15 +283,15 @@
                                 </tr>
 
                                 <!-- Modal for Edit Mission -->
-                                <div class="modal fade" id="editVisionModal{{ $value->id }}" tabindex="-1" aria-labelledby="editVisionModalLabel{{ $value->id }}" aria-hidden="true">
+                                <div class="modal fade" id="editValueModal{{ $value->id }}" tabindex="-1" aria-labelledby="editValueModalLabel{{ $value->id }}" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <form id="visionForm" enctype="multipart/form-data" method="POST" action="{{ url('/admin/editVision') }}">
+                                            <form id="valueForm" enctype="multipart/form-data" method="POST" action="{{ url('/admin/editVision') }}">
                                                 @csrf
 
                                                 <input type="hidden" name="value_id" value="{{ $value->id }}">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="editVisionModalLabel{{ $value->id }}">Update Vision</h5>
+                                                    <h5 class="modal-title" id="editValueModalLabel{{ $value->id }}">Update Vision</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
@@ -375,13 +375,13 @@
 <!-- end row -->
 
 <!-- Modal for Add Mission -->
-<div class="modal fade" id="visionModal" tabindex="-1" aria-labelledby="visionModalLabel" aria-hidden="true">
+<div class="modal fade" id="valueModal" tabindex="-1" aria-labelledby="valueModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="missionForm" enctype="multipart/form-data" method="POST" action="{{ url('/admin/addVision') }}">
+            <form id="valueForm" enctype="multipart/form-data" method="POST" action="{{ url('/admin/addVision') }}">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="visionModalLabel">Add Vision</h5>
+                    <h5 class="modal-title" id="valueModalLabel">Add Vision</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

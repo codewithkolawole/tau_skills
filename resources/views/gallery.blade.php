@@ -4,7 +4,7 @@
 
 
  <!-- BREADCRUMB AREA -->
- <section class="rts-breadcrumb breadcrumb-height breadcumb-bg" style="background-image: url(assets/images/banner/breadcrumb.jpg);">
+ <section class="rts-breadcrumb breadcrumb-height breadcumb-bg" style="background-image: url('{{ !empty($gallery->image) ? asset($gallery->image): '' }}')">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -13,7 +13,7 @@
                             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Events</li>
                         </ul>
-                        <h2 class="section-title">University Event</h2>
+                        <h2 class="section-title">University Gallery</h2>
                     </div>
                 </div>
             </div>

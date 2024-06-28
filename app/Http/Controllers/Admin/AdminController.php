@@ -1085,9 +1085,12 @@ public function addInstructor(Request $request){
         ]);
     }
 
-    public function vision(){
-
-        return view('admin.vision');
+    public function values(){
+        $values = Value::get();
+        return view('admin.vision',[
+            'values' => $values,
+        ]);
+        
     }
 
     public function gallery(){
