@@ -434,6 +434,7 @@ public function updateContact(Request $request){
         'address'=> 'required',
         'email'=> 'required',
         'phone'=> 'required',
+        'banner' => 'required',
         'slug' => 'slug'
     ]);
     if($validator->fails()) {
@@ -449,6 +450,11 @@ public function updateContact(Request $request){
         $imageUrl = 'uploads/contact/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
         $image = $request->file('image')->move('uploads/contact', $imageUrl);
     }
+
+    $bannerUrl = null;
+    if ($request->has('banner')) {
+    $bannerUrl = 'uploads/contact/banner_' . $slug . '.' . $request->file('banner')->getClientOriginalExtension();
+    $request->file('banner')->move('uploads/contact', $bannerUrl);}
     
     $contact =ContactUs::first();
 
@@ -462,6 +468,9 @@ public function updateContact(Request $request){
     $contact->email = $request->email;
     $contact -> phone =$request ->phone;
     $contact->slug = $slug;
+    if ($bannerUrl) {
+        $contact->banner = $bannerUrl;
+    }
 
 
 
@@ -633,6 +642,7 @@ public function addGallery(Request $request){
     $validator = Validator::make($request->all(), [
         'image' => 'required',
         'title'=> 'required',
+        'banner' => 'required',
         'slug' => 'slug',
     ]);
     if($validator->fails()) {
@@ -649,10 +659,17 @@ public function addGallery(Request $request){
         $image = $request->file('image')->move('uploads/gallery', $imageUrl);
     }
     
+    $bannerUrl = null;
+    if ($request->has('banner')) {
+        $bannerUrl = 'uploads/gallery/banner_' . $slug . '.' . $request->file('banner')->getClientOriginalExtension();
+        $request->file('banner')->move('uploads/gallery', $bannerUrl);
+    }
+
     $newGallery = ([
         'image' => $imageUrl,
         'title' => $request->title,
         'slug' =>$slug,
+        "banner" =>$bannerUrl,
     ]);
 
 
@@ -870,6 +887,7 @@ public function addProgram(Request $request)
     $validator = Validator::make($request->all(), [
         'program_image' => 'required|image',
         'title'=> 'required|string',
+        'banner' => 'required',
         'overview'=> 'required|string',
         'curriculum'=> 'required|string',
         'programcode'=> 'required|string',
@@ -890,11 +908,18 @@ public function addProgram(Request $request)
         $image->move(public_path('uploads/program'), $imageUrl);
     }
 
+    $bannerUrl = null;
+    if ($request->has('banner')) {
+    $bannerUrl = 'uploads/program/banner_' . $slug . '.' . $request->file('banner')->getClientOriginalExtension();
+    $request->file('banner')->move('uploads/program', $bannerUrl);
+    }
+
     $newProgram = [
         'program_image' => $imageUrl,
         'overview' => $request->overview,
         'curriculum' => $request->curriculum,
         'title' => $request->title,
+        "banner" =>$bannerUrl,
         'programcode' => $request->programcode,
         'slug' => $slug,
     ];

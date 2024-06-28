@@ -45,6 +45,7 @@
                     @csrf
                     <div class="row">
                         <div class="col-lg-12">
+                            
                             <div class="mb-2">
                                 <label for="image" class="form-label">Image</label>
                                 <input type="file" class="form-control" id="image" name="image" accept="image/*" onchange="previewImage()">
@@ -53,7 +54,7 @@
                             <hr></hr>
                             <div class="mb-3">
                                 <h4 class="card-title mb-4">banner</h4>
-                                <input type="file" class="form-control" id="floatingBannerInput" name="banner">
+                                <input type="file" class="form-control" id="floatingBannerInput" name="banner" accept="image/*" onchange="previewImage()">
                             </div>
 
                             <div class="mb-3">

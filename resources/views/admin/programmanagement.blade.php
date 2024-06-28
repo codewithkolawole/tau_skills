@@ -85,6 +85,7 @@
                                         </div>
                                     </th>
                                     <th>Image</th>
+                                    <th>Banner</th>
                                     <th class="sort" data-sort="programcode">Code</th>
                                     <th class="sort" data-sort="title">Title</th>
                                    <!-- <th class="sort" data-sort="overview">Overview</th>
@@ -100,6 +101,7 @@
                                             <input class="form-check-input" type="checkbox" value="{{ $program->id }}">
                                         </div>
                                     </td>
+                                    <td><img src="{{ asset($program->banner) }}" alt="banner" width="50"></td>
                                     <td><img src="{{ asset($program->program_image) }}" alt="Image" width="50"></td>
                                     <td>{{ $program->programcode }}</td>
                                     <td>{{ $program->title }}</td>
@@ -145,6 +147,13 @@
                                                     <div class="mb-3">
                                                         <label for="curriculum" class="form-label">Curriculum</label>
                                                         <textarea class="form-control" id="curriculum" name="curriculum" rows="2">{{ $program->curriculum }}</textarea>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="banner" class="form-label">Banner</label>
+                                                        <input type="file" class="form-control" id="banner" name="banner" accept="image/*" onchange="previewImage()">
+                                                        <div id="image-preview{{$program->id}}">
+                                                            <img src="{{ asset($program->banner) }}" alt="Program Banner" class="img-fluid">
+                                                        </div>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="program_image" class="form-label">Image</label>
@@ -244,6 +253,10 @@
                     <div class="mb-3">
                         <label for="curriculum" class="form-label">Curriculum</label>
                         <textarea class="form-control" id="curriculum" name="curriculum" rows="2" ></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="banner" class="form-label">banner</label>
+                        <input type="file" class="form-control" id="banner" name="banner" accept="image/*" required>
                     </div>
                     <div class="mb-3">
                         <label for="program_image" class="form-label">Image</label>
