@@ -17,6 +17,7 @@ class Program extends Model
         'programcode',
         'program_image',
         'slug',
+        'banner',
     ];
 }
 

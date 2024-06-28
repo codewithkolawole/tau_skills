@@ -15,5 +15,6 @@ class Mission extends Model
         'title',
         'mission_text',
         'slug',
+        'banner',
     ];
 }

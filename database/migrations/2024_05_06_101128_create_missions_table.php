@@ -17,6 +17,7 @@ class CreateMissionsTable extends Migration
             $table->id();
             $table->string('image')->nullable();
             $table->string('title')->nullable();
+            $table->string('banner')->nullable();
             $table->text('mission_text')->nullable();
             $table->string('slug')->nullable();
             $table->timestamps();

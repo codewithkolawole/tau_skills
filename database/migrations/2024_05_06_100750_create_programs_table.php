@@ -18,6 +18,7 @@ class CreateProgramsTable extends Migration
             $table->string('title')->nullable();
             $table->text('overview')->nullable();
             $table->text('curriculum')->nullable();
+            $table->string('banner')->nullable();
             $table->text('programcode')->nullable();
             $table->string('program_image')->nullable();
             $table->string('slug')->nullable();

@@ -611,7 +611,7 @@ public function addVision(Request $request){
         $value->title = $request->title;
     }
 
-    if(!empty($request->value_text) &&  $request->value != $value->value_text){
+    if(!empty($request->value_text) &&  $request->value_text != $value->value_text){
         $value->value_text = $request->value_text;
     }
 

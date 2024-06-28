@@ -130,24 +130,32 @@
                     <div class="rts-timeline-section">
                         <div class="rts-timeline-content">
                             <div class="left-side">
-                                @foreach($missions as $mission)
-                                <div class="single-timeline-item">
-                                    <h5 class="timeline-title">{{ ($mission->title) }}</h5>
-                                    <p>{{ ($mission->mission_text) }}</p>
-                                    <img src="{{ asset($mission->image) }}" alt="mission">
-                                </div>
-                                @endforeach
+                                @if(!empty($missions))
+                                    @foreach($missions as $mission)
+                                        @if($mission)
+                                            <div class="single-timeline-item">
+                                                <h5 class="timeline-title">{{ ($mission->title) }}</h5>
+                                                <p>{{ ($mission->mission_text) }}</p>
+                                                <img src="{{ asset($mission->image) }}" alt="mission">
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
                             </div>
                             <div class="separator">
                             </div>
                             <div class="right-side">
-                                @foreach($values as $value)
-                                <div class="single-timeline-item">
-                                    <h5 class="timeline-title">{{( $value->title) }}</h5>
-                                    <p>{{( $value->value_text) }}</p>
-                                    <img src="{{ asset($value->image) }}" alt="value">
-                                </div>
-                                @endforeach
+                                @if(!empty($values))
+                                    @foreach($values as $value)
+                                        @if($value)
+                                            <div class="single-timeline-item">
+                                                <h5 class="timeline-title">{{( $value->title) }}</h5>
+                                                <p>{{( $value->value_text) }}</p>
+                                                <img src="{{ asset($value->image) }}" alt="value">
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
