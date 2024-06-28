@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- BREADCRUMB AREA -->
-<section class="rts-breadcrumb breadcrumb-height breadcumb-bg" style="background-image: url({{ asset('assets/images/banner/breadcrumb.jpg') }});">
+<section class="rts-breadcrumb breadcrumb-height breadcumb-bg" style="background-image: url('{{ !empty($program->banner) ? asset($program->banner): '' }}')">
     <div class="container">
         <div class="row">
             <div class="col-12">
