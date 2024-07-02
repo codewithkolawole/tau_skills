@@ -50,12 +50,12 @@
                         @csrf
                         <input type="hidden" name="about_id" value="{{ !empty($about) ? $about->id : null }}">
                         
-                        <fieldset class="mb-3">
+                        <!--<fieldset class="mb-3">
                             <p>Banner</p>
                             <div class="form-floating mb-3">
                                 <input type="file" class="form-control" id="floatingBannerInput" name="banner">
                             </div>
-                        </fieldset>
+                        </fieldset> -->
 
                         <fieldset class="mb-3">
                             <p>Image</p>
@@ -88,9 +88,9 @@
                     <div class="table-responsive">
                         <table class="table table-nowrap align-middle mb-0">
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <h5 class="text-truncate font-size-14 m-0">
+                                <!--<tr> -->
+                                    <!--<td> -->
+                                      <!--  <h5 class="text-truncate font-size-14 m-0">
                                             <a href="javascript: void(0);" class="text-dark">Banner</a>
                                         </h5>
                                     </td>
@@ -99,7 +99,7 @@
                                             <img src="{{ !empty($about) ? asset($about->banner) : '' }}" alt="Banner Image" class="avatar-xl">
                                         </div>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <td>
                                         <h5 class="text-truncate font-size-14 m-0">

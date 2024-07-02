@@ -52,10 +52,6 @@
                             </div>
                             <br>
                             <hr></hr>
-                            <div class="mb-3">
-                                <h4 class="card-title mb-4">banner</h4>
-                                <input type="file" class="form-control" id="floatingBannerInput" name="banner" accept="image/*" onchange="previewImage()">
-                            </div>
 
                             <div class="mb-3">
                                 <h4 class="card-title mb-4">Address</h4>
