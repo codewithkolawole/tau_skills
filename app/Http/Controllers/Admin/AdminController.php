@@ -26,6 +26,12 @@ use App\Models\Value;
 use App\Models\Gallery;
 use App\Models\Instructor;
 use App\Models\ContactUs;
+use App\Models\AboutBanner;
+use App\Models\ContactBanner;
+use App\Models\GalleryBanner;
+use App\Models\ProgramBanner;
+use App\Models\HomeSlider;
+
 
 
 
@@ -95,11 +101,7 @@ public function addMission(Request $request){
     alert()->error('Oops!', 'Something went wrong')->persistent('Close');
     return redirect()->back();
 }
-
-
-
-
-
+ 
 //--------------------------------------------------------------------------------------------
 
     //ABOUT UPDATE LOGIC
@@ -422,8 +424,7 @@ public function deleteMission(Request $request){
 
         alert()->error('Oops!', 'Something went wrong')->persistent('Close');
         return redirect()->back();
-        }
-
+    }
 
 
 //--------------------------------------------
@@ -642,7 +643,7 @@ public function addGallery(Request $request){
     $validator = Validator::make($request->all(), [
         'image' => 'required',
         'title'=> 'required',
-        'banner' => 'required',
+        'banner' => 'sometimes',
         'slug' => 'slug',
     ]);
     if($validator->fails()) {
@@ -887,7 +888,6 @@ public function addProgram(Request $request)
     $validator = Validator::make($request->all(), [
         'program_image' => 'required|image',
         'title'=> 'required|string',
-        'banner' => 'required',
         'overview'=> 'required|string',
         'curriculum'=> 'required|string',
         'programcode'=> 'required|string',
@@ -907,19 +907,11 @@ public function addProgram(Request $request)
         $imageUrl = 'uploads/program/' . $slug . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('uploads/program'), $imageUrl);
     }
-
-    $bannerUrl = null;
-    if ($request->has('banner')) {
-    $bannerUrl = 'uploads/program/banner_' . $slug . '.' . $request->file('banner')->getClientOriginalExtension();
-    $request->file('banner')->move('uploads/program', $bannerUrl);
-    }
-
     $newProgram = [
         'program_image' => $imageUrl,
         'overview' => $request->overview,
         'curriculum' => $request->curriculum,
         'title' => $request->title,
-        "banner" =>$bannerUrl,
         'programcode' => $request->programcode,
         'slug' => $slug,
     ];
@@ -1122,7 +1114,8 @@ public function addInstructor(Request $request){
         
         $gallerys =Gallery::get();
         return view('admin.gallery',[
-            'gallerys'=>$gallerys
+            'gallerys'=>$gallerys,
+            
         ]);
     }
 
@@ -1153,6 +1146,8 @@ public function addInstructor(Request $request){
             'instructors'=> $instructors,
         ]);
     }
+
+
     public function mission()
     
     {
@@ -1163,8 +1158,43 @@ public function addInstructor(Request $request){
             'values' => $values,
         ]);
     }
+    
+    public function galleryBanner() {
+        $galleryBanner = GalleryBanner::get();
+        return view('admin.galleryBanner', [
+            'galleryBanner' => $galleryBanner
+        ]);
+    }
+
+    public function contactBanner() {
+        $contactBanner = ContactBanner::get();
+        return view('admin.contactBanner', [
+            'contactBanner' => $contactBanner
+        ]);
+    }
 
 
+    public function courseBanner() {
+        $programBanner = ProgramBanner::get();
+        return view('admin.courseBanner', [
+            'programBanner' => $programBanner
+        ]);
+    }
+
+    public function homeSlider() {
+        $homeslider = HomeSlider::get();
+        return view('admin.homeSlider', [
+            'homeslider' => $homeslider
+        ]);
+    }
+
+
+    public function aboutBanner() {
+        $aboutBanner = AboutBanner::get();
+        return view('admin.aboutBanner', [
+           'aboutBanner' => $aboutBanner,
+        ]);
+    }
 }
 
 

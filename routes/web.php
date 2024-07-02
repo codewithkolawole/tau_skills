@@ -99,6 +99,14 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('/contact', [App\Http\Controllers\Admin\AdminController::class, 'contact'])->name('contact')->middleware(['auth:admin']);
   Route::post('/updateContact', [App\Http\Controllers\Admin\AdminController::class, 'updateContact'])->name('updateContact')->middleware(['auth:admin']);
 
+  Route::get('/aboutBanner', [App\Http\Controllers\Admin\AdminController::class, 'aboutBanner'])->name('aboutBanner')->middleware(['auth:admin']);
+  Route::get('/galleryBanner', [App\Http\Controllers\Admin\AdminController::class, 'galleryBanner'])->name('galleryBanner')->middleware(['auth:admin']);
+  Route::get('/courseBanner', [App\Http\Controllers\Admin\AdminController::class, 'courseBanner'])->name('courseBanner')->middleware(['auth:admin']);
+  Route::get('/contactBanner', [App\Http\Controllers\Admin\AdminController::class, 'contactBanner'])->name('contactBanner')->middleware(['auth:admin']);
+  Route::get('/homeSlider', [App\Http\Controllers\Admin\AdminController::class, 'homeSlider'])->name('homeSlider')->middleware(['auth:admin']);
+  
+  
+
 
 
   //---------------------------------------------------------------------------------------

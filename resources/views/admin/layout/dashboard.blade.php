@@ -225,6 +225,41 @@
                             </div>
                         </li> <!-- end Dashboard Menu -->
 
+                        <!------------------------------------------------------------------------------>
+                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="sitesetting">SiteSetting</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sitesetting" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="banner">
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-sitesetting">Banner</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sitesetting">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/contactBanner') }}" class="nav-link">ContactUs</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/courseBanner') }}" class="nav-link">Courses</a>
+                                    </li>
+                                   
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/aboutBanner') }}" class="nav-link">About</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/galleryBanner') }}" class="nav-link">Gallery</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a class="nav-link menu-link" href="#slider" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="slider">
+                                <i class="mdi mdi-bookshelf"></i> <span data-key="t-apply">Slider</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="slider">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/admin/homeSlider') }}" class="nav-link">HomePageSlider</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li> 
+
                         <!------------------------------------------------------------------------------------------------------>
                         <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="instructor">Instructor Management</span></li>
                         <li class="nav-item">

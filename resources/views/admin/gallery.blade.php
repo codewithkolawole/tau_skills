@@ -59,7 +59,7 @@
                                             <input class="form-check-input" type="checkbox" id="checkAll" value="option">
                                         </div>
                                     </th>
-                                    <th>Banner</th>
+                                    <th>Image</th>
                                     <th class="sort" data-sort="title">Title</th>
                                     <th class="sort" data-sort="action">Action</th>
                                 </tr>
@@ -72,7 +72,6 @@
                                             <input class="form-check-input" type="checkbox" value="{{ $gallery->id }}">
                                         </div>
                                     </td>
-                                    <td><img src="{{ asset($gallery->banner) }}" alt="banner" width="50"></td>
                                     <td><img src="{{ asset($gallery->image) }}" alt="Image" width="50"></td>
                                     <td>{{ $gallery->title }}</td>
                                     <td>
@@ -101,17 +100,7 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    
-                                                    <div class="mb-3">
-                                                        <label for="banner" class="form-label">Banner</label>
-                                                        <input type="file" class="form-control" id="banner" name="banner" accept="image/*" onchange="previewImage()">
-                                                        <div id="image-preview{{$gallery->id}}">
-                                                            <img src="{{ asset($gallery->banner) }}" alt="Gallery Banner" class="img-fluid">
-                                                        </div>
-                                                    </div>
-                                                  
-                                                    
-                                                    <div class="mb-3">
+                                                   <div class="mb-3">
                                                         <label for="title" class="form-label">Title</label>
                                                         <textarea class="form-control" id="title" name="title" rows="2" required>{{ $gallery->title }}</textarea>
                                                     </div>
@@ -196,10 +185,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="banner" class="form-label">banner</label>
-                        <input type="file" class="form-control" id="banner" name="banner" accept="image/*" required>
-                    </div>
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <textarea class="form-control" id="title" name="title" rows="2" required></textarea>

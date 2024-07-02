@@ -26,6 +26,7 @@ use App\Models\Value;
 use App\Models\Gallery;
 use App\Models\Instructor;
 use App\Models\ContactUs;
+use App\Models\Banner;
 
 class PageController extends Controller
 {
@@ -51,10 +52,9 @@ class PageController extends Controller
     }
 
     public function gallery(){
-        
         $gallery = Gallery::all();
         return view('gallery', [
-            'gallery' => $gallery
+            'gallery' => $gallery,
         ]);
     }
 
