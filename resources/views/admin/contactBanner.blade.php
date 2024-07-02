@@ -16,8 +16,8 @@
 
   document.addEventListener('DOMContentLoaded', function () {
       document.querySelector('.edit').addEventListener('click', function () {
-          var contactContent = this.getAttribute('data-contact-content');
-          setContactContent(contactContent);
+          var contactBannerContent = this.getAttribute('data-contactBanner-content');
+          setContactContent(contactBannerContent);
       });
   });
 </script>
@@ -40,8 +40,8 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-4">Insert Contact Image</h4>
-                <form action="{{ url('/admin/contactBanner') }}" method="POST" enctype="multipart/form-data"> 
+                <h4 class="card-title mb-4">Insert Contact Banner</h4>
+                <form action="{{ url('/admin/updateContactBanner') }}" method="POST" enctype="multipart/form-data"> 
                     @csrf
                     <div class="row">
                         <div class="col-lg-12">

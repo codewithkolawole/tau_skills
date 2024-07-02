@@ -11,6 +11,6 @@ class ProgramBanner extends Model
     use HasFactory,SoftDeletes;
     protected $fillable = [
     'slug',
-    'slider',
+    'banner',
 ];
 }

@@ -11,13 +11,13 @@
   });
 
   function setContactContent(content) {
-      tinymce.get('course').setContent(content);
+      tinymce.get('courseBanner').setContent(content);
   }
 
   document.addEventListener('DOMContentLoaded', function () {
       document.querySelector('.edit').addEventListener('click', function () {
-          var courseContent = this.getAttribute('data-course-content');
-          setContactContent(courseContent);
+          var courseBannerContent = this.getAttribute('data-courseBanner-content');
+          setContactContent(courseBannerContent);
       });
   });
 </script>
@@ -41,7 +41,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title mb-4">Insert Course Banner</h4>
-                <form action="{{ url('/admin/courseBanner') }}" method="POST" enctype="multipart/form-data"> 
+                <form action="{{ url('/admin/updateCourseBanner') }}" method="POST" enctype="multipart/form-data"> 
                     @csrf
                     <div class="row">
                         <div class="col-lg-12">

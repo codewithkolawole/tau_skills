@@ -105,6 +105,12 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('/contactBanner', [App\Http\Controllers\Admin\AdminController::class, 'contactBanner'])->name('contactBanner')->middleware(['auth:admin']);
   Route::get('/homeSlider', [App\Http\Controllers\Admin\AdminController::class, 'homeSlider'])->name('homeSlider')->middleware(['auth:admin']);
   
+
+  Route::post('/updateCourseBanner', [App\Http\Controllers\Admin\AdminController::class, 'updateCourseBanner'])->name('updateCourseBanner')->middleware(['auth:admin']);
+  Route::post('/updateGalleryBanner', [App\Http\Controllers\Admin\AdminController::class, 'updateGalleryBanner'])->name('updateGalleryBanner')->middleware(['auth:admin']);
+  Route::post('/updateContactBanner', [App\Http\Controllers\Admin\AdminController::class, 'updateContactBanner'])->name('updateContactBanner')->middleware(['auth:admin']);
+  Route::post('/updateAboutBanner', [App\Http\Controllers\Admin\AdminController::class, 'updateAboutBanner'])->name('updateAboutBanner')->middleware(['auth:admin']);
+  Route::post('/addHomeSlider', [App\Http\Controllers\Admin\AdminController::class, 'addHomeSlider'])->name('addHomeSlider')->middleware(['auth:admin']);
   
 
 

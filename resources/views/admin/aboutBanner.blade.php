@@ -41,7 +41,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title mb-4">Insert Contact Image</h4>
-                <form action="{{ url('/admin/aboutBanner') }}" method="POST" enctype="multipart/form-data"> 
+                <form action="{{ url('/admin/updateAboutBanner') }}" method="POST" enctype="multipart/form-data"> 
                     @csrf
                     <div class="row">
                         <div class="col-lg-12">

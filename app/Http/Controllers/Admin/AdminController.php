@@ -426,6 +426,143 @@ public function deleteMission(Request $request){
         return redirect()->back();
     }
 
+//----------------------------------------------------------
+public function updateAboutBanner(Request $request){
+    $validator = Validator::make($request->all(), [
+        'banner'=> 'required',
+        'slug' => 'slug'
+    ]);
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+    $uuid = 'aboutbanner' . Carbon::now();
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+    $bannerUrl = null;
+    if($request->has('banner')) {
+        $bannerUrl = 'storage/aboutbanner/'.$slug.'.'.$request->file('banner')->getClientOriginalExtension();
+        $image = $request->file('banner')->move('uploads/aboutbanner', $bannerUrl);
+    }
+    
+    $aboutbanner =AboutBanner::first();
+    if (!$aboutbanner) {
+        $aboutbanner = new AboutBanner();
+    }
+    // Update the about statement
+    $aboutbanner->banner = $bannerUrl;
+    $aboutbanner->slug = $slug;
+    if ($aboutbanner->save()) {
+        alert()->success('Changes Saved', 'About Banner updated successfully')->persistent('Close');
+        return redirect()->back();
+    }
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+}
+
+
+public function updateCourseBanner(Request $request){
+    $validator = Validator::make($request->all(), [
+        'banner'=> 'required',
+        'slug' => 'slug'
+    ]);
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+    $uuid = 'coursebanner' . Carbon::now();
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+    $bannerUrl = null;
+    if($request->has('banner')) {
+        $bannerUrl = 'storage/coursebanner/'.$slug.'.'.$request->file('banner')->getClientOriginalExtension();
+        $image = $request->file('banner')->move('uploads/coursebanner', $bannerUrl);
+    }
+    
+    $coursebanner =ProgramBanner::first();
+    if (!$coursebanner) {
+        $coursebanner = new ProgramBanner();
+    }
+    // Update the about statement
+    $coursebanner->banner = $bannerUrl;
+    $coursebanner->slug = $slug;
+    if ($coursebanner->save()) {
+        alert()->success('Changes Saved', 'Course Banner updated successfully')->persistent('Close');
+        return redirect()->back();
+    }
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+}
+
+
+
+//------------------------------------------------------------------
+
+//----------------------------------------------------------
+public function updateContactBanner(Request $request){
+    $validator = Validator::make($request->all(), [
+        'banner'=> 'required',
+        'slug' => 'slug'
+    ]);
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+    $uuid = 'contactbanner' . Carbon::now();
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+    $bannerUrl = null;
+    if($request->has('banner')) {
+        $bannerUrl = 'storage/contactbanner/'.$slug.'.'.$request->file('banner')->getClientOriginalExtension();
+        $image = $request->file('banner')->move('uploads/contactbanner', $bannerUrl);
+    }
+    
+    $contactbanner =ContactBanner::first();
+    if (!$contactbanner) {
+        $contactbanner = new ContactBanner();
+    }
+    // Update the about statement
+    $contactbanner->banner = $bannerUrl;
+    $contactbanner->slug = $slug;
+    if ($contactbanner->save()) {
+        alert()->success('Changes Saved', 'Contact Banner updated successfully')->persistent('Close');
+        return redirect()->back();
+    }
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+}
+
+//--------------------------------------------------------------------
+public function updateGalleryBanner(Request $request){
+    $validator = Validator::make($request->all(), [
+        'banner'=> 'required',
+        'slug' => 'slug'
+    ]);
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+    $uuid = 'gallerybanner' . Carbon::now();
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+    $bannerUrl = null;
+    if($request->has('banner')) {
+        $bannerUrl = 'storage/gallerybanner/'.$slug.'.'.$request->file('banner')->getClientOriginalExtension();
+        $image = $request->file('banner')->move('uploads/gallerybanner', $bannerUrl);
+    }
+    
+    $gallerybanner =GalleryBanner::first();
+    if (!$gallerybanner) {
+        $gallerybanner = new GalleryBanner();
+    }
+    // Update the about statement
+    $gallerybanner->banner = $bannerUrl;
+    $gallerybanner->slug = $slug;
+    if ($gallerybanner->save()) {
+        alert()->success('Changes Saved', 'Gallery Banner updated successfully')->persistent('Close');
+        return redirect()->back();
+    }
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+}
+
+
 
 //--------------------------------------------
 public function updateContact(Request $request){
