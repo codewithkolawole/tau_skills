@@ -27,14 +27,21 @@ use App\Models\Gallery;
 use App\Models\Instructor;
 use App\Models\ContactUs;
 use App\Models\Banner;
+use App\Models\AboutBanner;
+use App\Models\ContactBanner;
+use App\Models\GalleryBanner;
+use App\Models\ProgramBanner;
+use App\Models\HomeSlider;
 
 class PageController extends Controller
 {
     //
     public function contact(){
         $contact = ContactUs::first();
+        $contactBanner = ContactBanner::first();
         return view('contact', [
           'contact' => $contact,
+          'contactBanner' => $contactBanner
         ]);
     }
 

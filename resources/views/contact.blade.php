@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- BREADCRUMB AREA -->
-<section class="rts-breadcrumb breadcrumb-height breadcumb-bg" style="background-image: url('{{ !empty($contact->banner) ? asset($contact->banner): '' }}')">
+<section class="rts-breadcrumb breadcrumb-height breadcumb-bg" style="background-image: url('{{ !empty($contactBanner->banner) ? asset($contactBanner->banner): '' }}')">
         <div class="container">
             <div class="row">
                 <div class="col-12">
