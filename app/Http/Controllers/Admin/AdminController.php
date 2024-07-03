@@ -26,6 +26,7 @@ use App\Models\Value;
 use App\Models\Gallery;
 use App\Models\Instructor;
 use App\Models\ContactUs;
+use App\Models\Setting;
 
 
 
@@ -38,6 +39,98 @@ class AdminController extends Controller
 
     }
 
+
+    public function siteGlobalSetting (){
+        $setting = Setting::first();
+        return view('admin.siteGlobalSetting', [
+            'setting' => $setting,
+        ]);
+    }
+
+    public function updateSiteGlobalSetting(Request $request){
+        $validator = Validator::make($request->all(), [
+            'header_logo' => 'nullable|image',
+            'footer_logo' => 'nullable|image',
+            'description' => 'nullable',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        $setting = Setting::first(); 
+        if (!$setting) {
+            $setting = new Setting; 
+        }
+
+        if ($request->hasFile('header_logo')) {
+            $imageUrl = 'uploads/setting/' . 'header_logo' .'.' . $request->file('header_logo')->getClientOriginalExtension();
+            $image = $request->file('header_logo')->move('uploads/setting', $imageUrl);
+            $setting->header_logo = $imageUrl;
+        }
+
+        if ($request->hasFile('footer_logo')) {
+            $imageUrl = 'uploads/setting/' . 'footer_logo' . '.' . $request->file('footer_logo')->getClientOriginalExtension();
+            $image = $request->file('footer_logo')->move('uploads/setting', $imageUrl);
+            $setting->footer_logo = $imageUrl;
+        }
+
+        if ($request->hasFile('banner')) {
+            $imageUrl = 'uploads/setting/' . 'banner' . '.' . $request->file('banner')->getClientOriginalExtension();
+            $image = $request->file('banner')->move('uploads/setting', $imageUrl);
+            $setting->banner = $imageUrl;
+        }
+
+
+        if(!empty($request->description)){
+            $description = $request->description;
+            $setting->description = $description;
+        }
+
+        if (!empty($request->phone_number)) {
+            $phone_number = $request->phone_number;
+            $setting->phone_number = $phone_number;
+        }
+        
+        if (!empty($request->email)) {
+            $email = $request->email;
+            $setting->email = $email;
+        }
+        
+        if (!empty($request->address)) {
+            $address = $request->address;
+            $setting->address = $address;
+        }
+        
+        if (!empty($request->facebook)) {
+            $facebook = $request->facebook;
+            $setting->facebook = $facebook;
+        }
+        
+        if (!empty($request->twitter)) {
+            $twitter = $request->twitter;
+            $setting->twitter = $twitter;
+        }
+        
+        if (!empty($request->instagram)) {
+            $instagram = $request->instagram;
+            $setting->instagram = $instagram;
+        }
+        
+        if (!empty($request->linkedin)) {
+            $linkedin = $request->linkedin;
+            $setting->linkedin = $linkedin;
+        }
+
+        if($setting->save()){
+            alert()->success('Changes Saved', 'Site Setting changes saved successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
     
 
     public function about(){
@@ -442,39 +535,39 @@ public function updateContact(Request $request){
         return redirect()->back();
     }
 
-    $uuid = 'contact' . Carbon::now();
+    $uuid = 'setting' . Carbon::now();
 
     $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
     $imageUrl = null;
     if($request->has('image')) {
-        $imageUrl = 'uploads/contact/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
-        $image = $request->file('image')->move('uploads/contact', $imageUrl);
+        $imageUrl = 'uploads/setting/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
+        $image = $request->file('image')->move('uploads/setting', $imageUrl);
     }
 
     $bannerUrl = null;
     if ($request->has('banner')) {
-    $bannerUrl = 'uploads/contact/banner_' . $slug . '.' . $request->file('banner')->getClientOriginalExtension();
-    $request->file('banner')->move('uploads/contact', $bannerUrl);}
+    $bannerUrl = 'uploads/setting/banner_' . $slug . '.' . $request->file('banner')->getClientOriginalExtension();
+    $request->file('banner')->move('uploads/setting', $bannerUrl);}
     
-    $contact =ContactUs::first();
+    $setting =ContactUs::first();
 
-    if (!$contact) {
-        $contact = new ContactUs();
+    if (!$setting) {
+        $setting = new ContactUs();
     }
 
     // Update the about statement
-    $contact->image = $imageUrl;
-    $contact -> address =$request ->address;
-    $contact->email = $request->email;
-    $contact -> phone =$request ->phone;
-    $contact->slug = $slug;
+    $setting->image = $imageUrl;
+    $setting -> address =$request ->address;
+    $setting->email = $request->email;
+    $setting -> phone =$request ->phone;
+    $setting->slug = $slug;
     if ($bannerUrl) {
-        $contact->banner = $bannerUrl;
+        $setting->banner = $bannerUrl;
     }
 
 
 
-    if ($contact->save()) {
+    if ($setting->save()) {
         alert()->success('Changes Saved', 'Contact Us updated successfully')->persistent('Close');
         return redirect()->back();
     }

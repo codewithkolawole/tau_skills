@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-lg-8 col-md-7">
                         <p class="rts-section-description">
-                            {{($about->about)}}
+                            {{$about->about}}
                         </p>
                     </div>
                 </div>

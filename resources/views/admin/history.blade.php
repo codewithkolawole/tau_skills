@@ -2,7 +2,6 @@
 
 @section('content')
 
-<script src="https://cdn.tiny.cloud/1/i76ab8u665a2vmi4zpvqdl15kpi4a73ypf56qkl7sysbfsvs/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
   tinymce.init({

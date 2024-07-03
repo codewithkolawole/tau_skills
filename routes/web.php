@@ -38,6 +38,10 @@ Route::group(['prefix' => 'admin'], function () {
   
   Route::get('/home', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('home')->middleware(['auth:admin']);
 
+  Route::get('/siteGlobalSetting', [App\Http\Controllers\Admin\AdminController::class, 'siteGlobalSetting'])->middleware(['auth:admin']);
+  Route::post('/updateSiteGlobalSetting', [App\Http\Controllers\Admin\AdminController::class, 'updateSiteGlobalSetting'])->middleware(['auth:admin']);
+
+
   Route::get('/admins', [App\Http\Controllers\Admin\AdminController::class, 'admins'])->name('admins')->middleware(['auth:admin']);
   Route::post('/addAdmin', [App\Http\Controllers\Admin\AdminController::class, 'addAdmin'])->name('addAdmin')->middleware(['auth:admin']);
   Route::post('/updateAdmin', [App\Http\Controllers\Admin\AdminController::class, 'updateAdmin'])->name('updateAdmin')->middleware(['auth:admin']);

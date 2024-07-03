@@ -14,6 +14,5 @@ class About extends Model
         'image',
         'about',
         'slug',
-        'banner',
     ];
 }

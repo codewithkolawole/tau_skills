@@ -54,19 +54,19 @@
                         <div class="navbar-brand-box horizontal-logo">
                             <a href="{{ env('WEBSITE_URL') }}" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->logo) : null }}" alt="" width="50">
+                                    <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->footer_logo) : null }}" alt="" width="50">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->logo) : null }}" alt="" width="200">
+                                    <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->footer_logo) : null }}" alt="" width="200">
                                 </span>
                             </a>
 
                             <a href="{{ env('WEBSITE_URL') }}" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->logo) : null }}" alt="" width="50">
+                                    <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->footer_logo) : null }}" alt="" width="50">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->logo) : null }}" alt="" width="200">
+                                    <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->footer_logo) : null }}" alt="" width="200">
                                 </span>
                             </a>
                         </div>
@@ -130,19 +130,19 @@
                 <!-- Dark Logo-->
                 <a href="{{url('admin/home')}}" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->logo) : null }}" alt="" width="50">
+                        <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->footer_logo) : null }}" alt="" width="50">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->logo) : null }}" alt="" width="200">
+                        <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->footer_logo) : null }}" alt="" width="200">
                     </span>
                 </a>
                 <!-- Light Logo-->
                 <a href="{{ url('admin/home') }}" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->logo) : null }}" alt="" width="50">
+                        <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->footer_logo) : null }}" alt="" width="50">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->logo) : null }}" alt="" width="200">
+                        <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->footer_logo) : null }}" alt="" width="200">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
@@ -177,6 +177,13 @@
                                 </ul>
                             </div>
                         </li> 
+
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="{{ url('/admin/siteGlobalSetting') }}">
+                                <i class="mdi mdi-spider-web"></i>
+                                <span data-key="t-site-settings">Site Global Settings</span>
+                            </a>
+                        </li>
 
                         <!------------------------------------------------------------------------------------------------------>
                         <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="pages">Pages</span></li>

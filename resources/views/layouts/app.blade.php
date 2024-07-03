@@ -35,8 +35,8 @@
                 <div class="col-xl-12">
                     <div class="header__wrapper">
                         <div class="header__logo">
-                            <a href="index.html" class="header__logo--link">
-                                <img src="{{asset('frontAssets/images/logo/logo__two.svg')}}" alt="unipix">
+                            <a href="{{ url('/') }}" class="header__logo--link">
+                                <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->header_logo) : null }}" alt="unipix">
                             </a>
                         </div>
                         <div class="header__menu">
@@ -98,8 +98,8 @@
             <div class="row gy-5 gy-lg-0">
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="rts-footer-widget w-320">
-                        <a href="index.html" class="d-block rts-footer-logo mb--40">
-                            <img src="frontAssets/images/logo/logo__white.svg" alt="Unipix">
+                        <a href="{{ url('/') }}" class="d-block rts-footer-logo mb--40">
+                            <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->footer_logo) : null }}" alt="Unipix">
                         </a>
                         <p>
                             We are passionate education dedicated to providing high-quality
@@ -205,15 +205,15 @@
                 </div>
                 <div class="offcanvase__info">
                     <div class="offcanvase__info--content">
-                        <a href="callto:+61485826710"><span><i class="fa-sharp fa-light fa-phone"></i></span>+(61) 485-826-710</a>
-                        <a href="#"><span><i class="fa-sharp fa-light fa-location-dot"></i></span>Yarra Park, Melbourne, Australia</a>
+                        <a href="callto:+61485826710"><span><i class="fa-sharp fa-light fa-phone"></i></span>{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->phone_number) : null }}</a>
+                        <a href="#"><span><i class="fa-sharp fa-light fa-location-dot"></i></span>{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->address) : null }}</a>
                         <div class="offcanvase__info--content--social">
                             <p class="title">Follow Us:</p>
                             <div class="social__links">
-                                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                                <a href="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->facebook : null }}"><i class="fa-brands fa-facebook"></i></a>
+                                <a href="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->instagram : null }}"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->linkedin : null }}"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->twitter : null }}"><i class="fa-brands fa-twitter"></i></a>
                             </div>
                         </div>
                     </div>

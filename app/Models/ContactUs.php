@@ -16,6 +16,5 @@ class ContactUs extends Model
         'phone',
         'email',
         'slug',
-        'banner',
     ];
 }
