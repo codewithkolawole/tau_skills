@@ -32,10 +32,7 @@
                             <div class="event single-event__content">
                                 <div class="event__thumb">
                                     <img src="{{ asset($item->image) }}" alt="event thumbnail" >
-                                </div>
-                                <div class="event__meta">
-                                    <h5 class="event__title">{{ ($item->title) }}</h5>
-                                </div>  
+                                </div> 
                             </div>
                         </div>
                     </div>

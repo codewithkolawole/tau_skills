@@ -748,7 +748,6 @@ public function addGallery(Request $request){
     $validator = Validator::make($request->all(), [
         'image' => 'required',
         'title'=> 'required',
-        'banner' => 'required',
         'slug' => 'slug',
     ]);
     if($validator->fails()) {
@@ -764,18 +763,11 @@ public function addGallery(Request $request){
         $imageUrl = 'uploads/gallery/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
         $image = $request->file('image')->move('uploads/gallery', $imageUrl);
     }
-    
-    $bannerUrl = null;
-    if ($request->has('banner')) {
-        $bannerUrl = 'uploads/gallery/banner_' . $slug . '.' . $request->file('banner')->getClientOriginalExtension();
-        $request->file('banner')->move('uploads/gallery', $bannerUrl);
-    }
 
     $newGallery = ([
         'image' => $imageUrl,
         'title' => $request->title,
         'slug' =>$slug,
-        "banner" =>$bannerUrl,
     ]);
 
 
