@@ -14,5 +14,10 @@ class About extends Model
         'image',
         'about',
         'slug',
+        'history',
+        'history_image',
+        'tour_link',
+        'tour_image',
+        'tour_description',
     ];
 }

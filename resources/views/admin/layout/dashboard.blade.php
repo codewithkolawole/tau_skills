@@ -38,7 +38,17 @@
     <!-- custom Css-->
     <link href="{{asset('assets/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    
+
+    <script src="{{ env('CKEDITOR_CDN') }}"></script>
+    <script>
+        document.querySelectorAll('.editor').forEach((element) => {
+            ClassicEditor
+                .create(element)
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+    </script>
 </head>
 
 <body>
@@ -194,23 +204,16 @@
                             <div class="collapse menu-dropdown" id="pages">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ url('/admin/history') }}" class="nav-link">History</a>
+                                        <a href="{{ url('/admin/about') }}" class="nav-link">About</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/mission') }}" class="nav-link">Mission and Vision</a>
-                                    </li>
-                                   
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/about') }}" class="nav-link">About</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/gallery') }}" class="nav-link">Gallery</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ url('/admin/studentFeedbacks') }}" class="nav-link">Student Feedbacks</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url('/admin/contact') }}" class="nav-link">Contact</a>
                                     </li>
                                 </ul>
                             </div>

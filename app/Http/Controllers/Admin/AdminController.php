@@ -197,16 +197,6 @@ public function addMission(Request $request){
 
     //ABOUT UPDATE LOGIC
     public function updateAbout(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'image' => 'required',
-            'about' => 'required',
-            'banner' => 'required',
-        ]);
-    
-        if ($validator->fails()) {
-            alert()->error('Error', $validator->messages()->first())->persistent('Close');
-            return redirect()->back();
-        }
     
         $uuid = 'about' . Carbon::now();
         $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
@@ -217,10 +207,16 @@ public function addMission(Request $request){
             $request->file('image')->move('uploads/about', $imageUrl);
         }
     
-        $bannerUrl = null;
-        if ($request->has('banner')) {
-            $bannerUrl = 'uploads/about/banner_' . $slug . '.' . $request->file('banner')->getClientOriginalExtension();
-            $request->file('banner')->move('uploads/about', $bannerUrl);
+        $historyImageUrl = null;
+        if ($request->has('history_image')) {
+            $historyImageUrl = 'uploads/about/history_' . $slug . '.' . $request->file('history_image')->getClientOriginalExtension();
+            $request->file('history_image')->move('uploads/about', $historyImageUrl);
+        }
+
+        $tourImageUrl = null;
+        if ($request->has('tour_image')) {
+            $tourImageUrl = 'uploads/about/tour_' . $slug . '.' . $request->file('tour_image')->getClientOriginalExtension();
+            $request->file('tour_image')->move('uploads/about', $tourImageUrl);
         }
     
         // Find the existing about record or create a new one
@@ -231,12 +227,29 @@ public function addMission(Request $request){
         }
     
         // Update the about statement
-        $about->image = $imageUrl;
-        $about->about = $request->about;
-        $about->slug = $slug;
-        if ($bannerUrl) {
-            $about->banner = $bannerUrl;
+        if(!empty($request->image)){
+            $about->image = $imageUrl;
         }
+        if(!empty($request->tour_image)){
+            $about->tour_image = $tourImageUrl;
+        }
+        if(!empty($request->history_image)){
+            $about->history_image = $historyImageUrl;
+        }
+        if(!empty($request->tour_link)){
+            $about->tour_link = $request->tour_link;
+        }
+        if(!empty($request->history)){
+            $about->history = $request->history;
+        }
+        if(!empty($request->tour_description)){
+            $about->tour_description = $request->tour_description;
+        }
+        if(!empty($request->about)){
+            $about->about = $request->about;
+        }
+
+        $about->slug = $slug;
     
         if ($about->save()) {
             alert()->success('Changes Saved', 'About Us updated successfully')->persistent('Close');

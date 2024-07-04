@@ -39,14 +39,13 @@ class PageController extends Controller
 
     public function about(){
         $about = About::first();
-        $history = History::first();
-        $missions = Mission::first();
-        $values = Value::first();
+        $missions = Mission::get();
+        $feedbacks = StudentFeedback::get();
+
         return view('about', [
-            'about' => $about,
-            'history' => $history,
-            'missions' =>$missions,
-            'values' =>$values,
+            'about'=> $about,
+            'missions'=>$missions,
+            'feedbacks'=>$feedbacks
         ]);
     }
 

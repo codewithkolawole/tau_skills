@@ -59,14 +59,14 @@
     </section>
     <!-- rts contact info end -->
 
-    {{-- <div class="rts-campus-contact pb--120">
+    <div class="rts-campus-contact pb--120">
         <div class="container">
             <div class="contact-map mt--30">
-                <iframe class="contact-map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14602.288851207937!2d90.47855065!3d23.798243149999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1663151706353!5m2!1sen!2sbd" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.3879751756174!2d5.015849214762329!3d8.133872193401687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104c94792c0f6535%3A0x7e2bfb0e9db21e93!2sThomas%20Adewumi%20University!5e0!3m2!1sen!2sng!4v1699024973764!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>
-    <!-- other contact method end --> --}}
+    <!-- other contact method end -->
 
 
 @endsection

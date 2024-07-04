@@ -20,7 +20,7 @@
     </section>
     <!-- BREADCRUMB AREA END -->
 
-
+    @if(!empty($about))
     <!-- about university -->
     <section class="rts-about-university rts-section-padding">
         <div class="container">
@@ -47,7 +47,7 @@
                         <div class="single-about-info">
                             <div class="content">
                                 <h3 class="title">1000</h3>
-                                <img src="assets/images/icon/11.svg" alt="">
+                                <img src="{{ asset('frontAssets/images/icon/11.svg"') }} alt="">
                             </div>
                             <div class="desc">
                                 <p>undergraduate and graduate students</p>
@@ -56,10 +56,10 @@
                         <div class="single-about-info">
                             <div class="content">
                                 <h3 class="title">16,214</h3>
-                                <img src="assets/images/icon/12.svg" alt="">
+                                <img src="{{ asset('frontAssets/images/icon/12.svg') }}" alt="">
                             </div>
                             <div class="desc">
-                                <p>Unipix University Faculty and Staff</p>
+                                <p>{{ env('APP_NAME') }} Faculty and Staff</p>
                             </div>
                         </div>                   
                     </div>
@@ -68,21 +68,23 @@
         </div>
     </section>
     <!-- about university end -->
+    @endif
 
+    @if(!empty($about))
     <!-- history -->
     <div class="rts-history">
         <div class="container">
             <div class="row g-5 justify-content-md-center justify-content-start align-items-center">
                 <div class="col-lg-6 col-md-11">
                     <div class="rts-history-image">
-                        <img src="{{asset($history->image)}}" alt="history">
+                        <img src="{{asset($about->history_image)}}" alt="history">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-11">
                     <div class="rts-history-section">
-                        <h4 class="rts-section-title mb--40">{{($history->title ?? '')}}</h4>
+                        <h4 class="rts-section-title mb--40">History</h4>
                         <p class="rts-section-description">
-                             {{($history->history_text ?? '')}}
+                             {!! $about->history !!}
                         </p>
                     </div>
                 </div>
@@ -90,6 +92,7 @@
         </div>
     </div>
     <!-- history end-->
+    @endif
 
 
     <div class="rts-funfact rts-section-padding">
@@ -116,6 +119,7 @@
     </div>
 
 
+    @if(!empty($missions))
     <!-- mission -->
     <section class="rts-mission">
         <div class="container">
@@ -130,32 +134,28 @@
                     <div class="rts-timeline-section">
                         <div class="rts-timeline-content">
                             <div class="left-side">
-                                @if(!empty($missions))
-                                    @foreach($missions as $mission)
-                                        @if($mission)
-                                            <div class="single-timeline-item">
-                                                <h5 class="timeline-title">{{ ($mission->title) }}</h5>
-                                                <p>{{ ($mission->mission_text) }}</p>
-                                                <img src="{{ asset($mission->image) }}" alt="mission">
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                @endif
+                                @foreach($missions as $mission)
+                                    @if($loop->iteration % 2 != 0)
+                                        <div class="single-timeline-item">
+                                            <h5 class="timeline-title">{{$mission->title }}</h5>
+                                            <p>{{ $mission->mission_text }}</p>
+                                            <img src="{{ asset($mission->image) }}" alt="mission">
+                                        </div>
+                                    @endif
+                                @endforeach
                             </div>
                             <div class="separator">
                             </div>
                             <div class="right-side">
-                                @if(!empty($values))
-                                    @foreach($values as $value)
-                                        @if($value)
-                                            <div class="single-timeline-item">
-                                                <h5 class="timeline-title">{{( $value->title) }}</h5>
-                                                <p>{{( $value->value_text) }}</p>
-                                                <img src="{{ asset($value->image) }}" alt="value">
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                @endif
+                                @foreach($missions as $mission)
+                                    @if($loop->iteration % 2 == 0)
+                                        <div class="single-timeline-item">
+                                            <h5 class="timeline-title">{{$mission->title }}</h5>
+                                            <p>{{ $mission->mission_text }}</p>
+                                            <img src="{{ asset($mission->image) }}" alt="mission">
+                                        </div>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -164,28 +164,33 @@
         </div>
     </section>
     <!-- mission end-->
+    @endif
+
+    @if(!empty($about))
     <section class="rts-campus-tour rts-section-padding">
         <div class="container">
             <div class="row justify-content-center">
                 <h2 class="section-title rt-center mb--50">Our Campus Tour</h2>
                 <div class="col-12">
                     <div class="rts-video-section height-500 mb--50">
-                        <a href="https://www.youtube.com/watch?v=Uwq1uiuM_9w" class="rts-video-section-player popup-video video-btn">
+                        <a href="{{ $about->tour_link }}" class="rts-video-section-player popup-video video-btn">
                             <i class="fa-sharp fa-solid fa-play"></i>
                         </a>
-                        <img src="assets/images/about/video-thumb.jpg" alt="video-bg">
+                        <img src="{{ asset($about->tour_image) }}" alt="video-bg">
                     </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="rts-video-section-text rt-center mx-3">
-                        <p>Embark on a journey of knowledge, discovery, and growth at Unipix University. Our admissions process is designed to identify bright, motivated individuals who are eager to contribute to our dynamic academic community. Whether you're a recent high school graduate or a transfer student seeking a new academic home, we invite you to explore the possibilities that await you.</p>
-                        <a href="campus-life.html" class="mt--15 about-btn rts-nbg-btn btn-arrow">Visit Campus <span><i class="fa-sharp fa-regular fa-arrow-right"></i></span></a>
+                       {!! $about->tour_description !!}
+                        <a href="{{ url('/gallery') }}" class="mt--15 about-btn rts-nbg-btn btn-arrow">Visit Campus <span><i class="fa-sharp fa-regular fa-arrow-right"></i></span></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @endif
 
+    @if(!empty($feedbacks))
     <!-- Testimonial Start -->
     <div class="rts-testimonial rts-section-padding">
         <div class="container">
@@ -195,7 +200,7 @@
                     <div class="rts-testimonial-box">
                         <div class="testimonial-item rt-flex">
                             <div class="testimonial-item-image">
-                                <img src="assets/images/testimonial/testimonial-big.jpg" alt="testimonial thumbnail">
+                                <img src="{{ asset('frontAssets/images/testimonial/testimonial-big.jpg') }}" alt="testimonial thumbnail">
                             </div>
                             <div class="testimonial-item-content w-570 rt-relative">
                                 <div class="swiper swiper-data" data-swiper='{
@@ -210,108 +215,32 @@
                                         }
                                 }'>
                                     <div class="swiper-wrapper">
+                                        @foreach($feedbacks as $feedback)
                                         <!-- single testimonial -->
                                         <div class="swiper-slide">
                                             <div class="single-testimonial">
                                                 <div class="rt-between mb--50">
                                                     <div class="rt-icon">
-                                                        <img src="assets/images/testimonial/quote.svg" alt="quote icon">
-                                                    </div>
-                                                    <div class="rt-review">
-                                                        <div class="rating-star mb--10">
-                                                            <i class="fa-sharp fa-solid fa-star"></i>
-                                                            <i class="fa-sharp fa-solid fa-star"></i>
-                                                            <i class="fa-sharp fa-solid fa-star"></i>
-                                                            <i class="fa-sharp fa-solid fa-star"></i>
-                                                            <i class="fa-sharp fa-light fa-star"></i>
-                                                        </div>
-                                                        <p class="rt-secondary rt-medium --p-s">4.5 ( 112 Review)</p>
+                                                        <img src="{{ asset('frontAssets/images/testimonial/quote.svg') }}" alt="quote icon">
                                                     </div>
                                                 </div>
                                                 <p class="testimonial-text">
-                                                    I would highly recommend Michael Richard to anyone interested the subject matter. It has provided me with invaluable knowledge & a newfound passion topic. My only suggestion would be to add more live.
+                                                    {{ $feedback->feedback }}
                                                 </p>
                                                 <div class="rt-testimonial-author mt--50">
                                                     <div class="rt-author-meta rt-flex rt-gap-20">
                                                         <div class="rt-author-img">
-                                                            <img src="assets/images/testimonial/author-1.png" alt="author">
+                                                            <img src="{{ asset($feedback->image) }}" alt="author">
                                                         </div>
                                                         <div class="rt-author-info">
-                                                            <h5 class="mb-1">David Jhon</h5>
-                                                            <p>Artist and Instructor</p>
+                                                            <h5 class="mb-1">{{ $feedback->name }}</h5>
+                                                            <p>{{ $feedback->title }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- single testimonial -->
-                                        <div class="swiper-slide">
-                                            <div class="single-testimonial">
-                                                <div class="rt-between mb--50">
-                                                    <div class="rt-icon">
-                                                        <img src="assets/images/testimonial/quote.svg" alt="quote icon">
-                                                    </div>
-                                                    <div class="rt-review">
-                                                        <div class="rating-star mb--10">
-                                                            <i class="fa-sharp fa-solid fa-star"></i>
-                                                            <i class="fa-sharp fa-solid fa-star"></i>
-                                                            <i class="fa-sharp fa-solid fa-star"></i>
-                                                            <i class="fa-sharp fa-solid fa-star"></i>
-                                                            <i class="fa-sharp fa-light fa-star"></i>
-                                                        </div>
-                                                        <p class="rt-secondary rt-medium --p-s">4.5 ( 112 Review)</p>
-                                                    </div>
-                                                </div>
-                                                <p class="testimonial-text">
-                                                    I would highly recommend Michael Richard to anyone interested the subject matter. It has provided me with invaluable knowledge & a newfound passion topic. My only suggestion would be to add more live.
-                                                </p>
-                                                <div class="rt-testimonial-author mt--50">
-                                                    <div class="rt-author-meta rt-flex rt-gap-20">
-                                                        <div class="rt-author-img">
-                                                            <img src="assets/images/testimonial/author-1.png" alt="author">
-                                                        </div>
-                                                        <div class="rt-author-info">
-                                                            <h5 class="mb-1">David Jhon</h5>
-                                                            <p>Artist and Instructor</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- single testimonial -->
-                                        <div class="swiper-slide">
-                                            <div class="single-testimonial">
-                                                <div class="rt-between mb--50">
-                                                    <div class="rt-icon">
-                                                        <img src="assets/images/testimonial/quote.svg" alt="quote icon">
-                                                    </div>
-                                                    <div class="rt-review">
-                                                        <div class="rating-star mb--10">
-                                                            <i class="fa-sharp fa-solid fa-star"></i>
-                                                            <i class="fa-sharp fa-solid fa-star"></i>
-                                                            <i class="fa-sharp fa-solid fa-star"></i>
-                                                            <i class="fa-sharp fa-solid fa-star"></i>
-                                                            <i class="fa-sharp fa-light fa-star"></i>
-                                                        </div>
-                                                        <p class="rt-secondary rt-medium --p-s">4.5 ( 112 Review)</p>
-                                                    </div>
-                                                </div>
-                                                <p class="testimonial-text">
-                                                    I would highly recommend Michael Richard to anyone interested the subject matter. It has provided me with invaluable knowledge & a newfound passion topic. My only suggestion would be to add more live.
-                                                </p>
-                                                <div class="rt-testimonial-author mt--50">
-                                                    <div class="rt-author-meta rt-flex rt-gap-20">
-                                                        <div class="rt-author-img">
-                                                            <img src="assets/images/testimonial/author-1.png" alt="author">
-                                                        </div>
-                                                        <div class="rt-author-info">
-                                                            <h5 class="mb-1">David Jhon</h5>
-                                                            <p>Artist and Instructor</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <!-- rts arrow -->
@@ -332,5 +261,6 @@
         </div>
     </div>
     <!-- Testimonial end -->
+    @endif
 @endsection
 
