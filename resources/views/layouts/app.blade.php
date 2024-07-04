@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unipix - LMS and University HTML5 Template</title>
+    <title>{{ env('APP_NAME') }} - {{ env('APP_DESCRIPTION') }}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('frontAssets/images/fav.png')}}">
     <!-- animate css -->
     <link rel="stylesheet" href="{{asset('frontAssets/css/plugins/animate.min.css')}}">
@@ -25,55 +25,61 @@
     <link rel="stylesheet" href="{{asset('frontAssets/css/plugins/jquery-ui.css')}}">
     <!-- custom style css -->
     <link rel="stylesheet" href="{{asset('frontAssets/css/style.css')}}">
+    
 </head>
 
 <body>
     <!-- header area start -->
-    <header class="header header__sticky v__2">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="header__wrapper">
-                        <div class="header__logo">
-                            <a href="{{ url('/') }}" class="header__logo--link">
-                                <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->header_logo) : null }}" alt="unipix">
-                            </a>
-                        </div>
-                        <div class="header__menu">
-                            <div class="navigation">
-                                <nav class="navigation__menu">
-                                    <ul>
-                                        <li class="navigation__menu--item">
-                                            <a href="{{url('/')}}" class="navigation__menu--item__link">Home</a>
-                                        </li>
+   <!-- header area start -->
+   <header class="header header__sticky v__2">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="header__wrapper">
+                    <div class="header__logo">
+                        <a href="{{ url('/') }}" class="header__logo--link">
+                            <img src="{{ !empty($pageGlobalData->setting)? asset($pageGlobalData->setting->header_logo) : null}}" alt="{{ env('APP_NAME') }}" width="180">
+                        </a>
+                    </div>
+                    <div class="header__menu">
+                        <div class="navigation">
+                            <nav class="navigation__menu">
+                                <ul>
+                                    <li class="navigation__menu--item">
+                                        <a href="{{ url('/') }}" class="navigation__menu--item__link">Home</a>
+                                    </li>
 
-                                        <li class="navigation__menu--item">
-                                            <a href="{{url('/about')}}" class="navigation__menu--item__link">About</a>
-                                        </li>
-                                        <li class="navigation__menu--item has-child has-arrow">
-                                            <a href="#" class="navigation__menu--item__link">Academics</a>
-                                            <ul class="submenu sub__style">
-                                                <li><a href="{{ url('/program') }}">Programs</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="navigation__menu--item">
-                                            <a href="{{url('/gallery')}}" class="navigation__menu--item__link">Gallery</a>
-                                        </li>
-                                        <li class="navigation__menu--item">
-                                            <a href="{{ url('/contact') }}" class="navigation__menu--item__link">Contact</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
+                                    <li class="navigation__menu--item">
+                                        <a href="{{ url('/about') }}" class="navigation__menu--item__link">About</a>
+                                    </li>
+
+                                    <li class="navigation__menu--item">
+                                        <a href="{{ url('/courses') }}" class="navigation__menu--item__link">Courses</a>
+                                    </li>
+
+                                    <li class="navigation__menu--item">
+                                        <a href="{{ url('/gallery') }}" class="navigation__menu--item__link">Gallery</a>
+                                    </li>
+
+                                    <li class="navigation__menu--item">
+                                        <a href="{{ url('/contact') }}" class="navigation__menu--item__link">Contact</a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
-                        <div class="header__right">
-                            
+                    </div>
+                    <div class="header__right">
+                        <div class="header__right--item">
+                            <div id="menu-btn" class="menu__trigger">
+                                <i class="fa fa-sharp fa-light fa-bars"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
     <!-- header area end -->
     @yield('content')
     <!-- footer start -->
@@ -99,15 +105,12 @@
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="rts-footer-widget w-320">
                         <a href="{{ url('/') }}" class="d-block rts-footer-logo mb--40">
-                            <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->footer_logo) : null }}" alt="Unipix">
+                            <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->footer_logo) : null }}" alt="{{ env('APP_NAME') }}" width="180">
                         </a>
-                        <p>
-                            We are passionate education dedicated to providing high-quality
-                            resources learners all backgrounds.
-                        </p>
+                        {{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->description : null }}
                         <div class="rts-contact-link">
-                            <a href="mailto:contact@reacthemes.com"><i class="fa-sharp fa-light fa-location-dot"></i> Park, Melbourne, Australia </a>
-                            <a href="callto:121"><i class="fa-thin fa-phone"></i> 485-826-710</a>
+                            <a href="mailto:{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->email: null }}"><i class="fa-sharp fa-light fa-location-dot"></i> {{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->address : null }} </a>
+                            <a href="callto:{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->phone_number: null }}"><i class="fa-thin fa-phone"></i> {{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->phone_number : null }}</a>
                         </div>
                     </div>
                 </div>
@@ -146,7 +149,7 @@
                             <ul class="list-unstyled">
                                 <li class="single-post">
                                     <a href="blog-details.html" class="blog-thumb">
-                                        <img src="frontAssets/images/blog/w-1.jpg" alt="latest post">
+                                        <img src="assets/images/blog/w-1.jpg" alt="latest post">
                                     </a>
                                     <div class="post-content">
                                         <span class="rt-date">October 29, 2023</span>
@@ -157,7 +160,7 @@
                                 </li>
                                 <li class="single-post">
                                     <a href="blog-details.html" class="blog-thumb">
-                                        <img src="frontAssets/images/blog/small-thumb-1.jpg" alt="latest post">
+                                        <img src="assets/images/blog/small-thumb-1.jpg" alt="latest post">
                                     </a>
                                     <div class="post-content">
                                         <span class="rt-date">October 29, 2023</span>
@@ -177,7 +180,7 @@
         <div class="container">
             <div class="row">
                 <div class="rt-center">
-                    <p class="--p-xs">Copyright &copy; 2024 All Rights Reserved by <a href="#">Unipix</a></p>
+                    <p class="--p-xs">Copyright &copy; {{ date('Y') }} All Rights Reserved by <a href="{{ url('/') }}">{{ env('APP_NAME') }}</a></p>
                 </div>
             </div>
         </div>
@@ -190,23 +193,23 @@
         <!-- inner menu area desktop start -->
         <div class="inner-main-wrapper-desk">
             <div class="thumbnail">
-                <img src="frontAssets/images/logo/logo__five.svg" alt="Unipix-university">
+                <img src="{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->header_logo) : null }}" alt="{{ env('APP_NAME') }}">
             </div>
             <div class="inner-content">
                 <p class="disc">
-                    A modern HTML template for education, offering intuitive design & essential features for seamless learning experiences.
+                    {!! $pageGlobalData->setting->description !!}
                 </p>
                 <!-- offcanvase banner -->
                 <div class="offcanvase__banner mt--50">
                     <div class="offcanvase__banner--content">
-                        <img src="frontAssets/images/offcanvase.jpg" alt="offcanvase">
+                        <img src="{{ env('APPLY_IMAGE_URL') }}" alt="offcanvase">
                         <a href="admission.html" class="rts-theme-btn">Apply Now</a>
                     </div>
                 </div>
                 <div class="offcanvase__info">
                     <div class="offcanvase__info--content">
-                        <a href="callto:+61485826710"><span><i class="fa-sharp fa-light fa-phone"></i></span>{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->phone_number) : null }}</a>
-                        <a href="#"><span><i class="fa-sharp fa-light fa-location-dot"></i></span>{{ !empty($pageGlobalData->setting) ? asset($pageGlobalData->setting->address) : null }}</a>
+                        <a href="callto:+61485826710"><span><i class="fa-sharp fa-light fa-phone"></i></span>{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->phone_number : null }}</a>
+                        <a href="#"><span><i class="fa-sharp fa-light fa-location-dot"></i></span>{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->address : null }}</a>
                         <div class="offcanvase__info--content--social">
                             <p class="title">Follow Us:</p>
                             <div class="social__links">
@@ -280,8 +283,8 @@
             </nav>
 
             <div class="offcanvase__info--content mt--30">
-                <a href="callto:+61485826710"><span><i class="fa-sharp fa-light fa-phone"></i></span>+(61) 485-826-710</a>
-                <a href="#"><span><i class="fa-sharp fa-light fa-location-dot"></i></span>Yarra Park, Melbourne, Australia</a>
+                <a href="callto:+61485826710"><span><i class="fa-sharp fa-light fa-phone"></i></span>{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->phone_number : null }}</a>
+                <a href="#"><span><i class="fa-sharp fa-light fa-location-dot"></i></span>{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->address : null }}</a>
                 <div class="offcanvase__info--content--social">
                     <p class="title">Follow Us:</p>
                     <div class="social__links">

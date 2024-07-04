@@ -4,7 +4,7 @@
 
 
  <!-- BREADCRUMB AREA -->
- <section class="rts-breadcrumb breadcrumb-height breadcumb-bg" style="background-image: url('{{ !empty($gallery->banner) ? asset($gallery->banner): '' }}')">
+ <section class="rts-breadcrumb breadcrumb-height breadcumb-bg" style="background-image: url({{ !empty($pageGlobalData->setting)? asset($pageGlobalData->setting->banner) : null}})">
         <div class="container">
             <div class="row">
                 <div class="col-12">

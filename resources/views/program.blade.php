@@ -4,7 +4,7 @@
 
 
  <!-- BREADCRUMB AREA -->
- <section class="rts-breadcrumb breadcrumb-height breadcumb-bg" style="background-image: url('{{ !empty($program->banner) ? asset($program->banner): '' }}');">
+ <section class="rts-breadcrumb breadcrumb-height breadcumb-bg" style="background-image: url({{ !empty($pageGlobalData->setting)? asset($pageGlobalData->setting->banner) : null}});">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row justify-content-sm-center justify-content-md-start g-5">
                 <!-- single event item -->
-                @foreach($program as $item)
+                @foreach($courses as $item)
                     <div class="col-lg-4 col-md-6 col-sm-10">
                         <a href="{{ route('viewProgram', $item->slug) }}">
                             <div class="single-event">

@@ -58,10 +58,10 @@ class PageController extends Controller
         ]);
     }
 
-    public function program(){
-        $program = Program::all();
+    public function courses(){
+        $courses = Program::all();
         return view('program', [
-            'program' => $program
+            'courses' => $courses
         ]);
     }
 
