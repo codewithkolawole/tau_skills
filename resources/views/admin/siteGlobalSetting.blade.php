@@ -2,20 +2,6 @@
 
 @section('content')
 
-
-<script>
-  function setHistoryContent(content) {
-      tinymce.get('history_text').setContent(content);
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-      document.querySelector('.edit').addEventListener('click', function () {
-          var historyContent = this.getAttribute('data-history-content');
-          setHistoryContent(historyContent);
-      });
-  });
-</script>
-
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">

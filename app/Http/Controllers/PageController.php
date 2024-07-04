@@ -64,14 +64,12 @@ class PageController extends Controller
         ]);
     }
 
-    public function viewProgram($slug){
-        $program = Program::where('slug', $slug)->firstOrFail();
-        $feedback = StudentFeedback::all();
-        $contact = ContactUs::first();
+    public function courseDetails($slug){
+        $course = Program::where('slug', $slug)->firstOrFail();
+        $feedbacks = StudentFeedback::all();
         return view('viewProgram', [
-            'program' => $program,
-            'feedback' => $feedback,
-            'contact' => $contact
+            'course' => $course,
+            'feedbacks' => $feedbacks,
         ]);
     }
 

@@ -3,14 +3,6 @@
 
 @section('content')
 
-  document.addEventListener('DOMContentLoaded', function () {
-      document.querySelector('.edit').addEventListener('click', function () {
-          var contactContent = this.getAttribute('data-contact-content');
-          setContactContent(contactContent);
-      });
-  });
-</script>
-
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">

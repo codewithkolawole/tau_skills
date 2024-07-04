@@ -1,26 +1,6 @@
 @extends('admin.layout.dashboard')
 
 @section('content')
-<script src="https://cdn.tiny.cloud/1/i76ab8u665a2vmi4zpvqdl15kpi4a73ypf56qkl7sysbfsvs/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-
-<script>
-  tinymce.init({
-    selector: 'textarea',
-    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-  });
-
-  function setContactContent(content) {
-      tinymce.get('contact').setContent(content);
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-      document.querySelector('.edit').addEventListener('click', function () {
-          var contactContent = this.getAttribute('data-contact-content');
-          setContactContent(contactContent);
-      });
-  });
-</script>
 
 <div class="row">
     <div class="col-12">

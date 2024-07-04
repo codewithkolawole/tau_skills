@@ -2,26 +2,6 @@
 
 @section('content')
 
-
-<script>
-  tinymce.init({
-    selector: 'textarea',
-    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-  });
-
-  function setHistoryContent(content) {
-      tinymce.get('history_text').setContent(content);
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-      document.querySelector('.edit').addEventListener('click', function () {
-          var historyContent = this.getAttribute('data-history-content');
-          setHistoryContent(historyContent);
-      });
-  });
-</script>
-
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">

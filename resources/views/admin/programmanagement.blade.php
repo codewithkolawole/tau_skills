@@ -1,35 +1,6 @@
 @extends('admin.layout.dashboard')
 
 @section('content')
-
-<!-- Include TinyMCE for rich text editing if needed -->
-<script src="https://cdn.tiny.cloud/1/i76ab8u665a2vmi4zpvqdl15kpi4a73ypf56qkl7sysbfsvs/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-  tinymce.init({
-    selector: 'textarea',
-    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-  });
-
-  // Function to set the value of the textarea when edit button is clicked
-  function setProgramContent(content) {
-        tinymce.get('program').setContent(content);
-    }
-
-    // Ensure the document is ready before attaching the click event
-    document.addEventListener('DOMContentLoaded', function () {
-        // Attach the click event to the edit button
-        document.querySelectorAll('.edit-btn').forEach(function(button) {
-            button.addEventListener('click', function () {
-                // Get the about content from the button's data attribute
-                var programContent = this.getAttribute('data-program-content');
-
-                // Set the about content in the textarea
-                setProgramContent(programContent);
-            });
-        });
-    });
-</script>
 <!-- Page Title -->
 <div class="row">
     <div class="col-12">
@@ -85,11 +56,8 @@
                                         </div>
                                     </th>
                                     <th>Image</th>
-                                    <th>Banner</th>
                                     <th class="sort" data-sort="programcode">Code</th>
                                     <th class="sort" data-sort="title">Title</th>
-                                   <!-- <th class="sort" data-sort="overview">Overview</th>
-                                    <th class="sort" data-sort="curriculum">Curriculum</th> -->
                                     <th class="sort" data-sort="action">Action</th>
                                 </tr>
                             </thead>
@@ -101,12 +69,9 @@
                                             <input class="form-check-input" type="checkbox" value="{{ $program->id }}">
                                         </div>
                                     </td>
-                                    <td><img src="{{ asset($program->banner) }}" alt="banner" width="50"></td>
                                     <td><img src="{{ asset($program->program_image) }}" alt="Image" width="50"></td>
                                     <td>{{ $program->programcode }}</td>
                                     <td>{{ $program->title }}</td>
-                                    <!--<td>{!! $program->overview !!}</td>
-                                    <td>{!! $program->curriculum !!}</td> -->
                                     <td>
                                         <div class="d-flex gap-2">
                                             <button class="btn btn-sm btn-primary edit-btn" data-bs-toggle="modal" data-bs-target="#editProgramModal{{$program->id}}">
@@ -142,18 +107,11 @@
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="overview" class="form-label">Overview</label>
-                                                        <textarea class="form-control" id="overview" name="overview" rows="2" >{{ $program->overview }}</textarea>
+                                                        <textarea class="form-control ckeditor" id="overview" name="overview" rows="2" >{{ $program->overview }}</textarea>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="curriculum" class="form-label">Curriculum</label>
-                                                        <textarea class="form-control" id="curriculum" name="curriculum" rows="2">{{ $program->curriculum }}</textarea>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="banner" class="form-label">Banner</label>
-                                                        <input type="file" class="form-control" id="banner" name="banner" accept="image/*" onchange="previewImage()">
-                                                        <div id="image-preview{{$program->id}}">
-                                                            <img src="{{ asset($program->banner) }}" alt="Program Banner" class="img-fluid">
-                                                        </div>
+                                                        <textarea class="form-control ckeditor" id="curriculum" name="curriculum" rows="2">{{ $program->curriculum }}</textarea>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="program_image" class="form-label">Image</label>
@@ -248,15 +206,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="overview" class="form-label">Overview</label>
-                        <textarea class="form-control" id="overview" name="overview" rows="2" ></textarea>
+                        <textarea class="form-control ckeditor" id="overview" name="overview" rows="2" ></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="curriculum" class="form-label">Curriculum</label>
-                        <textarea class="form-control" id="curriculum" name="curriculum" rows="2" ></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="banner" class="form-label">banner</label>
-                        <input type="file" class="form-control" id="banner" name="banner" accept="image/*" required>
+                        <textarea class="form-control ckeditor" id="curriculum" name="curriculum" rows="2" ></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="program_image" class="form-label">Image</label>

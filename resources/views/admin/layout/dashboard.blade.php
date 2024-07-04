@@ -41,12 +41,14 @@
 
     <script src="{{ env('CKEDITOR_CDN') }}"></script>
     <script>
-        document.querySelectorAll('.editor').forEach((element) => {
-            ClassicEditor
-                .create(element)
-                .catch(error => {
-                    console.error(error);
-                });
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.ckeditor').forEach((textarea) => {
+                ClassicEditor
+                    .create(textarea)
+                    .catch(error => {
+                        console.error(error);
+                    });
+            });
         });
     </script>
 </head>

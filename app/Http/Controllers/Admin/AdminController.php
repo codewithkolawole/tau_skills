@@ -993,7 +993,6 @@ public function addProgram(Request $request)
     $validator = Validator::make($request->all(), [
         'program_image' => 'required|image',
         'title'=> 'required|string',
-        'banner' => 'required',
         'overview'=> 'required|string',
         'curriculum'=> 'required|string',
         'programcode'=> 'required|string',
@@ -1014,18 +1013,11 @@ public function addProgram(Request $request)
         $image->move(public_path('uploads/program'), $imageUrl);
     }
 
-    $bannerUrl = null;
-    if ($request->has('banner')) {
-    $bannerUrl = 'uploads/program/banner_' . $slug . '.' . $request->file('banner')->getClientOriginalExtension();
-    $request->file('banner')->move('uploads/program', $bannerUrl);
-    }
-
     $newProgram = [
         'program_image' => $imageUrl,
         'overview' => $request->overview,
         'curriculum' => $request->curriculum,
         'title' => $request->title,
-        "banner" =>$bannerUrl,
         'programcode' => $request->programcode,
         'slug' => $slug,
     ];

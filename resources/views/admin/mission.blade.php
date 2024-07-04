@@ -2,9 +2,6 @@
 
 @section('content')
 
-<!-- Include TinyMCE for rich text editing if needed -->
-<script src="https://cdn.tiny.cloud/1/i76ab8u665a2vmi4zpvqdl15kpi4a73ypf56qkl7sysbfsvs/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-
 <!-- Page Title -->
 <div class="row">
     <div class="col-12">

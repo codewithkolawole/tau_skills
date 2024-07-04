@@ -2,34 +2,6 @@
 
 @section('content')
 
-<!-- Include TinyMCE for rich text editing if needed -->
-<script src="https://cdn.tiny.cloud/1/i76ab8u665a2vmi4zpvqdl15kpi4a73ypf56qkl7sysbfsvs/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-  tinymce.init({
-    selector: 'textarea',
-    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-  });
-
-  // Function to set the value of the textarea when edit button is clicked
-  function setInstructorContent(content) {
-        tinymce.get('instructor').setContent(content);
-    }
-
-    // Ensure the document is ready before attaching the click event
-    document.addEventListener('DOMContentLoaded', function () {
-        // Attach the click event to the edit button
-        document.querySelectorAll('.edit-btn').forEach(function(button) {
-            button.addEventListener('click', function () {
-                // Get the about content from the button's data attribute
-                var instructorContent = this.getAttribute('data-instructor-content');
-
-                // Set the about content in the textarea
-                setInstructorContent(instructorContent);
-            });
-        });
-    });
-</script>
 <!-- Page Title -->
 <div class="row">
     <div class="col-12">
