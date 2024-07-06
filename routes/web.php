@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {return view('welcome');});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 Route::get('/contact', [App\Http\Controllers\PageController::class, 'contact'])->name('contact');
 Route::get('/about', [App\Http\Controllers\PageController::class, 'about'])->name('about');
 Route::get('/gallery', [App\Http\Controllers\PageController::class, 'gallery'])->name('gallery');
@@ -102,6 +102,9 @@ Route::group(['prefix' => 'admin'], function () {
   
   Route::get('/contact', [App\Http\Controllers\Admin\AdminController::class, 'contact'])->name('contact')->middleware(['auth:admin']);
   Route::post('/updateContact', [App\Http\Controllers\Admin\AdminController::class, 'updateContact'])->name('updateContact')->middleware(['auth:admin']);
+  Route::get('/slider', [App\Http\Controllers\Admin\AdminController::class, 'slider'])->name('slider')->middleware(['auth:admin']);
+  Route::post('/addSlider', [App\Http\Controllers\Admin\AdminController::class, 'addSlider'])->name('addSlider')->middleware(['auth:admin']);
+  Route::post('/deleteSlider', [App\Http\Controllers\Admin\AdminController::class, 'deleteSlider'])->name('deleteSlider')->middleware(['auth:admin']);
 
 
 
@@ -109,4 +112,4 @@ Route::group(['prefix' => 'admin'], function () {
 
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');

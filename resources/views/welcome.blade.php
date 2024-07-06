@@ -31,7 +31,7 @@
                                                     Unleashing Potential
                                                     Fostering Excellence
                                                 </h1>
-                                                <a href="{{ url('/program') }}" class="rts-theme-btn btn-arrow">View Our Program
+                                                <a href="{{ url('/courses') }}" class="rts-theme-btn btn-arrow">View Our Program
                                                     <span><i class="fa-regular fa-arrow-right"></i></span>
                                                 </a>
                                             </div>
@@ -58,7 +58,7 @@
                                                     Unleashing Potential
                                                     Fostering Excellence
                                                 </h1>
-                                                <a href="{{ url('/program') }}" class="rts-theme-btn btn-arrow">View Our Program
+                                                <a href="{{ url('/courses') }}" class="rts-theme-btn btn-arrow">View Our Program
                                                     <span><i class="fa-regular fa-arrow-right"></i></span>
                                                 </a>
                                             </div>
@@ -74,7 +74,7 @@
             <div class="banner__slides--navigation">
                 <div class="banner__slides--navigation--single">
                     <h5 class="nav__title">Our Programs</h5>
-                    <a href="{{ url('/program') }}" class="nav__description">Browse our acquirable skills</a>
+                    <a href="{{ url('/courses') }}" class="nav__description">Browse our acquirable skills</a>
                 </div>
             </div>
         </div>
@@ -116,7 +116,7 @@
                             <img src="{{asset('frontAssets/images/icon/e-cap-pix.svg')}}" alt="cap">
                             knowledge meets innovation
                         </div>
-                        <h2 class="about__right--content--title">About University</h2>
+                        <h2 class="about__right--content--title">About University {{ env('APP_NAME') }} </h2>
                         <p class="about__right--content--description">At Unipix University, we believe in the
                             transformative power of education and the boundless potential that resides within each
                             individual.</p>
@@ -487,7 +487,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="rts__section--wrapper v__9">
-                        <h2 class="rts__section--title">My Students Feedback</h2>
+                        <h2 class="rts__section--title">Our Students Feedback</h2>
                         <p class="rts__section--description">You'll find something to spark your curiosity and enhance</p>
                     </div>
                 </div>

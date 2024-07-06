@@ -109,6 +109,12 @@
                             <label for="floatingLinkedInInput">LinkedIn URL</label>
                         </div>
                     </fieldset>
+                    <fieldset class="mb-3">
+                        <p>Slider Image</p>
+                        <div class="form-floating mb-3">
+                            <input type="file" class="form-control" id="floatingLogoWInput" name="slider">
+                        </div>
+                    </fieldset>
                    
                     <div>
                         <button type="submit" class="btn btn-primary w-md float-end">Save</button>

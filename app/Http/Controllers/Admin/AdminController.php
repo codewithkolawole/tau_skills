@@ -27,6 +27,7 @@ use App\Models\Gallery;
 use App\Models\Instructor;
 use App\Models\ContactUs;
 use App\Models\Setting;
+use App\Models\Slider;
 
 
 
@@ -58,8 +59,9 @@ class AdminController extends Controller
             alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
             return redirect()->back();
         }
-
-        $setting = Setting::first(); 
+        $setting = Setting::first();
+        
+    
         if (!$setting) {
             $setting = new Setting; 
         }
@@ -81,7 +83,6 @@ class AdminController extends Controller
             $image = $request->file('banner')->move('uploads/setting', $imageUrl);
             $setting->banner = $imageUrl;
         }
-
 
         if(!empty($request->description)){
             $description = $request->description;
@@ -132,6 +133,14 @@ class AdminController extends Controller
         return redirect()->back();
     }
     
+
+
+    public function slider(){
+        $sliders = Slider::get();
+        return view('admin.slider', [
+            'sliders' => $sliders,
+        ]);
+    }
 
     public function about(){
         $about = About::first();
@@ -190,7 +199,75 @@ public function addMission(Request $request){
 }
 
 
+public function addSlider(Request $request) {
 
+    $validator = Validator::make($request->all(), [
+        'slider_image' => 'required',
+        'slider_text' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+        alert()->error('Error', $validator->messages()->first())->persistent('Close');
+        return redirect()->back();
+    }
+    $sliderImageUrl = null;
+    if ($request->has('image')) {
+    $sliderImageUrl = 'uploads/slider/' . $slug . '.' . $request->file('image')->getClientOriginalExtension();
+    $request->file('image')->move('uploads/slider', $sliderImageUrl);
+        }
+
+    $newSlider=([
+        'slider_image' => $sliderImageUrl,
+        'slider_text' => $request -> slider_text,
+    ]);
+
+
+    if(Slider::create($newSlider)){
+        alert()->success('Slider Added successfully', '')->persistent('Close');
+        return redirect()->back();
+    }
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    return redirect()->back();
+
+    
+}
+
+public function deleteSlider(Request $request){
+        $validator = Validator::make($request->all(), [
+        'slider_id' => 'required',
+    ]);
+
+    if($validator->fails()) {
+        alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+        return redirect()->back();
+    }
+
+    if(!$slider = Slider::find($request->slider_id)){
+        alert()->error('Oops', 'invalid slider')->persistent('Close');
+        return redirect()->back();
+    }
+
+    if(!empty($request->slider_text) &&  $request->slider_text != $slider->slider_text){
+        $slider->slider_text = $request->slider_text;
+    }
+
+    if(!empty($request->slider_image) &&  $request->slider_image != $slider->slider_image){
+        $slider->slider_image = $request->slider_image;
+    }
+    
+    if($slider->delete()){
+        alert()->success('Changes Saved', 'Slider changes saved successfully')->persistent('Close');
+        return redirect()->back();
+    }
+   
+
+    alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+return redirect()->back();
+
+
+
+
+}
 
 
 //--------------------------------------------------------------------------------------------
