@@ -15,6 +15,7 @@
                             "delay":"7000"
                 }}'>
                 <div class="swiper-wrapper">
+                @if(!empty($sliders))
                     <!-- single slides -->
                     <div class="swiper-slide">
                         <div class="banner__wrapper--bg" style="background-image: url(frontAssets/images/banner/01.jpg);">
@@ -24,7 +25,7 @@
                                         <div class="banner__slides--container banner__height">
                                             <div class="banner__slides--content">
                                                 <div class="banner__slides--content--sub">
-                                                    <img src="{{asset('frontAssets/images/icon/e-cap.svg')}}" alt="cap"> knowledge meets
+                                                    <img src="{{ asset($sliders ->slider_image) }}" alt="cap"> knowledge meets
                                                     innovation
                                                 </div>
                                                 <h1 class="banner__slides--content--title">
@@ -41,34 +42,9 @@
                             </div>
                         </div>
                     </div>
+                @endif
                     <!-- single slides end -->
                     <!-- single slides -->
-                    <div class="swiper-slide">
-                        <div class="banner__wrapper--bg" style="background-image: url(frontAssets/images/banner/02.jpg);">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="banner__slides--container banner__height">
-                                            <div class="banner__slides--content">
-                                                <div class="banner__slides--content--sub">
-                                                    <img src="{{asset('frontAssets/images/icon/e-cap.svg')}}" alt="cap"> knowledge meets
-                                                    innovation
-                                                </div>
-                                                <h1 class="banner__slides--content--title">
-                                                    Unleashing Potential
-                                                    Fostering Excellence
-                                                </h1>
-                                                <a href="{{ url('/courses') }}" class="rts-theme-btn btn-arrow">View Our Program
-                                                    <span><i class="fa-regular fa-arrow-right"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single slides end -->
                 </div>
             </div>
             <div class="banner__slides--navigation">

@@ -203,22 +203,25 @@ public function addSlider(Request $request) {
 
     $validator = Validator::make($request->all(), [
         'slider_image' => 'required',
-        'slider_text' => 'required',
     ]);
 
     if ($validator->fails()) {
         alert()->error('Error', $validator->messages()->first())->persistent('Close');
         return redirect()->back();
     }
+    
+    $uuid = 'slider' . Carbon::now();
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+
     $sliderImageUrl = null;
-    if ($request->has('image')) {
-    $sliderImageUrl = 'uploads/slider/' . $slug . '.' . $request->file('image')->getClientOriginalExtension();
-    $request->file('image')->move('uploads/slider', $sliderImageUrl);
+    if ($request->has('slider_image')) {
+    $sliderImageUrl = 'uploads/slider/' . $slug . '.' . $request->file('slider_image')->getClientOriginalExtension();
+    $request->file('slider_image')->move('uploads/slider', $sliderImageUrl);
         }
 
     $newSlider=([
         'slider_image' => $sliderImageUrl,
-        'slider_text' => $request -> slider_text,
+       
     ]);
 
 
@@ -245,10 +248,6 @@ public function deleteSlider(Request $request){
     if(!$slider = Slider::find($request->slider_id)){
         alert()->error('Oops', 'invalid slider')->persistent('Close');
         return redirect()->back();
-    }
-
-    if(!empty($request->slider_text) &&  $request->slider_text != $slider->slider_text){
-        $slider->slider_text = $request->slider_text;
     }
 
     if(!empty($request->slider_image) &&  $request->slider_image != $slider->slider_image){

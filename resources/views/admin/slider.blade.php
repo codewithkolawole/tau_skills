@@ -148,13 +148,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="slider_text" class="form-label">Slider Text</label>
-                        <input type="text" name="slider_text" class="form-control" id="slider_text" required>
-                    </div>
+                    
                     <div class="mb-3">
                         <label for="slider_image" class="form-label">Image</label>
-                        <input type="file" class="form-control" id="slider_image" name="image" accept="image/*" onchange="previewImage()">
+                        <input type="file" class="form-control" id="slider_image" name="slider_image" accept="image/*" onchange="previewImage()">
                     </div>
                     <div id="image-preview"></div>
                 </div>
