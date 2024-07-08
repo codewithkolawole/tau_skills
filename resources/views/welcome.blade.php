@@ -15,18 +15,17 @@
                             "delay":"7000"
                 }}'>
                 <div class="swiper-wrapper">
-                @if(!empty($sliders))
                     <!-- single slides -->
+                    @foreach ($sliders as $slider)
                     <div class="swiper-slide">
-                        <div class="banner__wrapper--bg" style="background-image: url(frontAssets/images/banner/01.jpg);">
+                        <div class="banner__wrapper--bg"  style="background-image: url({{ asset($slider->slider_image) }})"> 
                             <div class="container">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="banner__slides--container banner__height">
                                             <div class="banner__slides--content">
                                                 <div class="banner__slides--content--sub">
-                                                    <img src="{{ asset($sliders ->slider_image) }}" alt="cap"> knowledge meets
-                                                    innovation
+                                                    <img src="{{ asset($slider->slider_image)}}" alt="cap"> knowledge meets innovation
                                                 </div>
                                                 <h1 class="banner__slides--content--title">
                                                     Unleashing Potential
@@ -42,9 +41,8 @@
                             </div>
                         </div>
                     </div>
-                @endif
-                    <!-- single slides end -->
-                    <!-- single slides -->
+                    @endforeach
+                    <!-- single slides end -->     
                 </div>
             </div>
             <div class="banner__slides--navigation">
@@ -92,14 +90,8 @@
                             <img src="{{asset('frontAssets/images/icon/e-cap-pix.svg')}}" alt="cap">
                             knowledge meets innovation
                         </div>
-                        <h2 class="about__right--content--title">About University {{ env('APP_NAME') }} </h2>
-                        <p class="about__right--content--description">At Unipix University, we believe in the
-                            transformative power of education and the boundless potential that resides within each
-                            individual.</p>
-                        <p class="about__right--content--description">Our mission is to foster intellectual curiosity,
-                            empower individuals to realize their fullest potential, and contribute meaningfully to the
-                            betterment of society. commitment to academic excellence, diversity, and community
-                            engagement.</p>
+                        <h2 class="about__right--content--title">About Us </h2>
+                        <p class="about__right--content--description"></p> {{strip_tags($about->about)}}</p>
                         <div class="about__right--content--vision">
                             <div class="mision">
                                 <div class="mision__icon">
@@ -343,21 +335,6 @@
         </div>
     </section> --}}
     <!-- tution fee end -->
-    {{-- <!-- scholarship appication -->
-    <section class="rts-scholarship rts-scholarship-bg rts-section-height">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="rts-scholarship-info">
-                        <h2 class="rts-section-title">Scholarships and Financial Aid</h2>
-                        <p class="w-740 mb--50">Each semester, Brac University is proud to honor academically talented and exceptionally skilled students with a variety of scholarships and awards. The university annually awards more than 100 million takas as scholarships to both undergraduate and postgraduate students.</p>
-                        <a href="scholarship.html" class="rts-theme-btn btn-arrow">Know More<span><i class="fa-thin fa-arrow-right"></i></span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- scholarship appication end --> --}}
 
     <!-- notice board start -->
     <section class="rts-notice rts-section-padding">
@@ -463,218 +440,119 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="rts__section--wrapper v__9">
-                        <h2 class="rts__section--title">Our Students Feedback</h2>
+                        <h2 class="rts__section--title">Our Feedbacks</h2>
                         <p class="rts__section--description">You'll find something to spark your curiosity and enhance</p>
                     </div>
                 </div>
             </div>
             <!-- feedback slider -->
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="rts__testimonial--active swiper swiper-data" data-swiper='{
-                        "slidesPerView":3,
-                        "loop": true,
-                        "speed": 1000,
-                        "pagination":{
-                            "el":".rts__pagination",
-                            "clickable": true
-                        },
-                        "autoplay":{
-                            "delay":"7000"
-                        },
-                        "breakpoints":{
-                            "320":{
-                                "slidesPerView": 1
-                            },
-                            "575":{
-                                "slidesPerView": 1.5
-                            },
-                            "768":{
-                                "slidesPerView": 2
-                            },
-                            "991":{
-                                "slidesPerView": 2.2
-                            },
-                            "1201":{
-                                "slidesPerView": 3
-                            }
-                        }
-                    }'>
-                        <div class="swiper-wrapper">
-                            <!-- single slide -->
-                            <div class="swiper-slide">
-                                <div class="rts__single--testimonial">
-                                    <div class="rts__rating--star">
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-light fa-star"></i>
-                                    </div>
-                                    <p class="rts__single--testimonial--text">
-                                        I can't recommend The Gourmet Haven enough. It's a place for special date in nights, or whenever you're in the mood for a culinary.
-                                    </p>
-                                    <div class="rts__single--testimonial--author">
-                                        <div class="rts__single--testimonial--author--meta">
-                                            <div class="rts__author--img">
-                                                <img src="frontAssets/images/testimonial/author-1.png" alt="author">
-                                            </div>
-                                            <div class="rts__author--info">
-                                                <h5 class="mb-0">Emma Elizabeth</h5>
-                                                <span class="designation">Assistant Teacher</span>
-                                            </div>
-                                        </div>
-                                        <div class="rts__single--testimonial--quote">
-                                            <img src="frontAssets/images/testimonial/quote.svg" alt="quote">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single slide end -->
-                            <!-- single slide -->
-                            <div class="swiper-slide">
-                                <div class="rts__single--testimonial">
-                                    <div class="rts__rating--star">
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-light fa-star"></i>
-                                    </div>
-                                    <p class="rts__single--testimonial--text">
-                                        I can't recommend The Gourmet Haven enough. It's a place for special date in nights, or whenever you're in the mood for a culinary.
-                                    </p>
-                                    <div class="rts__single--testimonial--author">
-                                        <div class="rts__single--testimonial--author--meta">
-                                            <div class="rts__author--img">
-                                                <img src="frontAssets/images/testimonial/author-2.png" alt="author">
-                                            </div>
-                                            <div class="rts__author--info">
-                                                <h5 class="mb-0">Samantha Willow</h5>
-                                                <span class="designation"> Teacher</span>
-                                            </div>
-                                        </div>
-                                        <div class="rts__single--testimonial--quote">
-                                            <img src="frontAssets/images/testimonial/quote.svg" alt="quote">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single slide end -->
-                            <!-- single slide -->
-                            <div class="swiper-slide">
-                                <div class="rts__single--testimonial">
-                                    <div class="rts__rating--star">
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-light fa-star"></i>
-                                    </div>
-                                    <p class="rts__single--testimonial--text">
-                                        I can't recommend The Gourmet Haven enough. It's a place for special date in nights, or whenever you're in the mood for a culinary.
-                                    </p>
-                                    <div class="rts__single--testimonial--author">
-                                        <div class="rts__single--testimonial--author--meta">
-                                            <div class="rts__author--img">
-                                                <img src="frontAssets/images/testimonial/author-3.png" alt="author">
-                                            </div>
-                                            <div class="rts__author--info">
-                                                <h5 class="mb-0">Zent Ekizie</h5>
-                                                <span class="designation">Assistant Teacher</span>
-                                            </div>
-                                        </div>
-                                        <div class="rts__single--testimonial--quote">
-                                            <img src="frontAssets/images/testimonial/quote.svg" alt="quote">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single slide end -->
+    <div class="col-lg-12">
+        <div class="rts__testimonial--active swiper swiper-data" data-swiper='{
+            "slidesPerView":3,
+            "loop": true,
+            "speed": 1000,
+            "pagination":{
+                "el":".rts__pagination",
+                "clickable": true
+            },
+            "autoplay":{
+                "delay":"7000"
+            },
+            "breakpoints":{
+                "320":{
+                    "slidesPerView": 1
+                },
+                "575":{
+                    "slidesPerView": 1.5
+                },
+                "768":{
+                    "slidesPerView": 2
+                },
+                "991":{
+                    "slidesPerView": 2.2
+                },
+                "1201":{
+                    "slidesPerView": 3
+                }
+            }
+        }'>
+            <div class="swiper-wrapper">
+                @foreach($feedbacks as $feedback)
+                <!-- single slide -->
+                <div class="swiper-slide">
+                    <div class="rts__single--testimonial">
+                        <div class="rts__rating--star">
+                            <i class="fa-sharp fa-solid fa-star"></i>
+                            <i class="fa-sharp fa-solid fa-star"></i>
+                            <i class="fa-sharp fa-solid fa-star"></i>
+                            <i class="fa-sharp fa-solid fa-star"></i>
+                            <i class="fa-sharp fa-light fa-star"></i>
                         </div>
-                        <div class="rts__pagination v__1"></div>
+                        <p class="rts__single--testimonial--text">
+                            {{ $feedback->feedback }}
+                        </p>
+                        <div class="rts__single--testimonial--author">
+                            <div class="rts__single--testimonial--author--meta">
+                                <div class="rts__author--img">
+                                    <img src="{{ asset($feedback->image) }}" alt="author">
+                                    <h5 class="mb-0" style="white-space: nowrap;">{{ $feedback->name }}</h5>
+                                    <span class="designation">{{ $feedback->title }}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <!-- single slide end -->
+                @endforeach
             </div>
+            <div class="rts__pagination v__1"></div>
         </div>
-    </section>
-    <!-- student feedback end -->
+    </div>
+</div>
+</div>
+</section>
+<!-- student feedback end -->
 
-    {{-- <!-- brand slider -->
-    <div class="rts-brand v_1 pb--85 pt--85">
-        <div class="container">
-            <div class="row justify-content-md-center">
-                <div class="col-lg-12 col-md-11">
-                    <div class="rts-brand-slider swiper swiper-data" data-swiper='{
-                    "slidesPerView":6,
-                    "loop": true,
-                    "autoplay":{
-                        "delay":"3000"
+{{-- <!-- brand slider -->
+<div class="rts-brand v_1 pb--85 pt--85">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-lg-12 col-md-11">
+                <div class="rts-brand-slider swiper swiper-data" data-swiper='{
+                "slidesPerView":6,
+                "loop": true,
+                "autoplay":{
+                    "delay":"3000"
+                },
+                "breakpoints":{
+                    "320":{
+                        "slidesPerView": 3,
+                        "centeredSlides": true
                     },
-                    "breakpoints":{
-                        "320":{
-                            "slidesPerView": 3,
-                            "centeredSlides": true
-                        },
-                        "575":{
-                            "slidesPerView": 4,
-                            "centeredSlides": true
-                        },
-                        "768":{
-                            "slidesPerView": 5,
-                            "centeredSlides": true
-                        },
-                        "991":{
-                            "slidesPerView": 6,
-                            "centeredSlides": true
-                        },
-                        "1201":{
-                            "slidesPerView": 6
-                        }
+                    "575":{
+                        "slidesPerView": 4,
+                        "centeredSlides": true
+                    },
+                    "768":{
+                        "slidesPerView": 5,
+                        "centeredSlides": true
+                    },
+                    "991":{
+                        "slidesPerView": 6,
+                        "centeredSlides": true
+                    },
+                    "1201":{
+                        "slidesPerView": 6
                     }
-            }'>
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="single-brand-logo">
-                                    <a href="#">
-                                        <img src="frontAssets/images/brand/01.svg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="single-brand-logo">
-                                    <a href="#">
-                                        <img src="frontAssets/images/brand/02.svg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="single-brand-logo">
-                                    <a href="#">
-                                        <img src="frontAssets/images/brand/03.svg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="single-brand-logo">
-                                    <a href="#">
-                                        <img src="frontAssets/images/brand/04.svg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="single-brand-logo">
-                                    <a href="#">
-                                        <img src="frontAssets/images/brand/05.svg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="single-brand-logo">
-                                    <a href="#">
-                                        <img src="frontAssets/images/brand/06.svg" alt="">
-                                    </a>
-                                </div>
+                }
+        }'>
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="single-brand-logo">
+                                <a href="#">
+                                    <img src="frontAssets/images/brand/01.svg" alt="">
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -682,7 +560,8 @@
             </div>
         </div>
     </div>
-    <!-- brand slider end --> --}}
+</div>
+<!-- brand slider end --> --}}
 
 
 @endsection
