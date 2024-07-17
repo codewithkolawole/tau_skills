@@ -21,6 +21,7 @@ use App\Models\Program;
 use App\Models\StudentFeedback;
 use App\Models\About;
 use App\Models\Gallery;
+use App\Models\Instructor;
 
 class HomeController extends Controller
 {
@@ -36,6 +37,7 @@ class HomeController extends Controller
         $sliders = Slider::all();
         $gallery = Gallery::all();
         $feedbacks = StudentFeedback::all();
+        $instructor = Instructor::all();
 
         return view('welcome',[
             'sliders' => $sliders,
@@ -43,6 +45,7 @@ class HomeController extends Controller
             'feedbacks'=>$feedbacks,
             'about'=> $about,
             'gallery' => $gallery,
+            'instructor' =>$instructor,
         ]);
     }
 

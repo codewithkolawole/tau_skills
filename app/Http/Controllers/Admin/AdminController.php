@@ -447,6 +447,15 @@ public function editMission(Request $request){
         'mission_id' => 'required',
     ]);
     
+    $uuid = 'mission' . Carbon::now();
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+
+    $imageUrl = null;
+    if($request->has('image')) {
+        $imageUrl = 'uploads/mission/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
+        $image = $request->file('image')->move('uploads/mission', $imageUrl);
+    }
+    
     if($validator->fails()) {
         alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
         return redirect()->back();
@@ -465,9 +474,10 @@ public function editMission(Request $request){
     if(!empty($request->title) &&  $request->title != $mission->title){
         $mission->title = $request->title;
     }
+    
 
-    if(!empty($request->image) &&  $request->image != $mission->image){
-        $mission->image = $request->image;
+    if(!empty($request->image)){
+        $mission->image =$imageUrl;
     }
 
     if($mission->save()){
@@ -522,6 +532,15 @@ public function deleteMission(Request $request){
             'feedback_id' => 'required',
         ]);
 
+        $uuid = 'feedback' . Carbon::now();
+        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+    
+        $imageUrl = null;
+        if($request->has('image')) {
+            $imageUrl = 'uploads/feedback/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
+            $image = $request->file('image')->move('uploads/feedback', $imageUrl);
+        }
+
         if($validator->fails()) {
             alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
             return redirect()->back();
@@ -537,8 +556,8 @@ public function deleteMission(Request $request){
             $feedback->name = $request->name;
         }
     
-        if(!empty($request->image) &&  $request->image != $feedback->image){
-            $feedback->image = $request->image;
+        if(!empty($request->image)){
+            $feedback->image = $imageUrl;
         }
 
         
@@ -891,6 +910,15 @@ public function addGallery(Request $request){
             'image' => 'nullable|image',
             'title' => 'required|string|max:255',
         ]);
+
+        $uuid = 'gallery' . Carbon::now();
+        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+    
+        $imageUrl = null;
+        if($request->has('image')) {
+            $imageUrl = 'uploads/gallery/'.$slug.'.'.$request->file('image')->getClientOriginalExtension();
+            $image = $request->file('image')->move('uploads/gallery', $imageUrl);
+        }
     
         if($validator->fails()) {
             alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
@@ -902,8 +930,8 @@ public function addGallery(Request $request){
             return redirect()->back();
         }
     
-        if(!empty($request->image) &&  $request->image != $gallery->image){
-            $gallery->image = $request->image;
+        if(!empty($request->image) ){
+            $gallery->image = $imageUrl;
         }
     
         
@@ -1018,6 +1046,16 @@ public function editProgram(Request $request){
         'program_id' => 'required',
     ]);
 
+    $uuid = 'program' . Carbon::now();
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
+
+    $imageUrl = null;
+    if($request->has('program_image')) {
+        $imageUrl = 'uploads/program/'.$slug.'.'.$request->file('program_image')->getClientOriginalExtension();
+        $image = $request->file('program_image')->move('uploads/program', $imageUrl);
+    }
+
+
     if($validator->fails()) {
         alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
         return redirect()->back();
@@ -1028,9 +1066,10 @@ public function editProgram(Request $request){
         return redirect()->back();
     }
 
-    if(!empty($request->program_image) &&  $request->program_image != $program->program_image){
-        $program->program_image = $request->program_image;
+    if(!empty($request->program_image)){
+        $program->program_image = $imageUrl;
     }
+
     if(!empty($request->overview) &&  $request->overview != $program->overview){
         $program->overview = $request->overview;
     }
@@ -1059,11 +1098,12 @@ public function editProgram(Request $request){
 public function addProgram(Request $request)
 {
     $validator = Validator::make($request->all(), [
-        'program_image' => 'required|image',
-        'title'=> 'required|string',
-        'overview'=> 'required|string',
-        'curriculum'=> 'required|string',
-        'programcode'=> 'required|string',
+        'program_image' => 'sometimes',
+        'title'=> 'required',
+        'overview'=> 'required',
+        'curriculum'=> 'required',
+        'programcode'=> 'required',
+        'slug' =>'slug',
     ]);
 
     if ($validator->fails()) {
@@ -1071,14 +1111,14 @@ public function addProgram(Request $request)
         return redirect()->back();
     }
 
-    $uuid = 'program' . Carbon::now()->format('YmdHis');
+    $uuid = 'program' . Carbon::now();
     $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
 
+
     $imageUrl = null;
-    if ($request->hasFile('program_image')) {
-        $image = $request->file('program_image');
-        $imageUrl = 'uploads/program/' . $slug . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('uploads/program'), $imageUrl);
+    if($request->has('program_image')) {
+        $imageUrl = 'uploads/program/'.$slug.'.'.$request->file('program_image')->getClientOriginalExtension();
+        $image = $request->file('program_image')->move('uploads/program', $imageUrl);
     }
 
     $newProgram = [
@@ -1120,6 +1160,10 @@ public function deleteInstructor(Request $request) {
 
     if(!empty($request->image) &&  $request->image != $instructor->image){
         $instructor->image = $request->image;
+    }
+
+    if(!empty($request->title) &&  $request->title != $instructor->title){
+        $instructor->title= $request->title;
     }
 
     if(!empty($request->name) &&  $request->name != $instructor->name){
@@ -1171,6 +1215,9 @@ public function editInstructor(Request $request){
     if(!empty($request->name) &&  $request->name != $instructor->name){
         $instructor->name = $request->name;
     }
+    if(!empty($request->title) &&  $request->title != $instructor->title){
+        $instructor->title= $request->title;
+    }
 
     if(!empty($request->portfolio) &&  $request->portfolio != $instructor->portfolio){
         $instructor->portfolio = $request->portfolio;
@@ -1198,6 +1245,7 @@ public function addInstructor(Request $request){
 
     $validator = Validator::make($request->all(), [
         'image' => 'required',
+        'title' => 'required',
         'name'=> 'required',
         'portfolio'=> 'required',
         'email'=> 'required',
@@ -1209,7 +1257,7 @@ public function addInstructor(Request $request){
         return redirect()->back();
     }
 
-    $uuid = 'program' . Carbon::now();
+    $uuid = 'instructor' . Carbon::now();
 
     $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $uuid)));
     $imageUrl = null;
@@ -1221,6 +1269,7 @@ public function addInstructor(Request $request){
     $newInstructor= ([
         'image' => $imageUrl,
         'name' => $request->name,
+        'title' =>$request->title,
         'portfolio' => $request->portfolio,
         'email' => $request -> email,
         'phone' => $request -> phone,

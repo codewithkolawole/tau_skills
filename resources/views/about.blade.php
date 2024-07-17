@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-lg-8 col-md-7">
                         <p class="rts-section-description">
-                            {{$about->about}}
+                        {{ strip_tags($about->about) }}
                         </p>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="single-about-info">
                             <div class="content">
-                                <h3 class="title">16,214</h3>
+                                <h3 class="title">214</h3>
                                 <img src="{{ asset('frontAssets/images/icon/12.svg') }}" alt="">
                             </div>
                             <div class="desc">
@@ -82,7 +82,7 @@
                 </div>
                 <div class="col-lg-6 col-md-11">
                     <div class="rts-history-section">
-                        <h4 class="rts-section-title mb--40">History</h4>
+                        <h4 class="rts-section-title mb--10">{{ env('APP_NAME') }} History</h4>
                         <p class="rts-section-description">
                              {!! $about->history !!}
                         </p>
@@ -221,7 +221,7 @@
                                             <div class="single-testimonial">
                                                 <div class="rt-between mb--50">
                                                     <div class="rt-icon">
-                                                        <img src="{{ asset('frontAssets/images/testimonial/quote.svg') }}" alt="quote icon">
+                                                        <img src="{{ asset($feedback->image) }}" alt="quote icon">
                                                     </div>
                                                 </div>
                                                 <p class="testimonial-text">

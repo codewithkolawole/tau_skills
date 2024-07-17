@@ -128,7 +128,7 @@
             <div class="row rt-center">
                 <div class="col-sm-12">
                     <div class="rts__section--wrapper v__5">
-                        <h2 class="rts__section--title">Academics & Program</h2>
+                        <h2 class="rts__section--title">Core Values</h2>
                     </div>
                 </div>
             </div>
@@ -138,26 +138,11 @@
                         <div class="program__single--item--bg">
                             <img src="{{asset('frontAssets/images/program/program__bg.jpg')}}" alt="">
                         </div>
-                        <h5 class="program__single--item--title">undergraduate</h5>
+                        <h5 class="program__single--item--title">Mission</h5>
 
                         <ul class="program__single--item--list">
                             <li class="program__single--item--list--item">
-                                <a href="program-single.html" class="link__list">Anthropology
-                                    <span><i class="fa-regular fa-arrow-right"></i></span>
-                                </a>
-                            </li>
-                            <li class="program__single--item--list--item">
-                                <a href="program-single.html" class="link__list">Applied Mathematics
-                                    <span><i class="fa-regular fa-arrow-right"></i></span>
-                                </a>
-                            </li>
-                            <li class="program__single--item--list--item">
-                                <a href="program-single.html" class="link__list">Biomedical Engineering
-                                    <span><i class="fa-regular fa-arrow-right"></i></span>
-                                </a>
-                            </li>
-                            <li class="program__single--item--list--item">
-                                <a href="program-single.html" class="link__list">Astrophysics
+                                <a href="/" class="link__list">mission
                                     <span><i class="fa-regular fa-arrow-right"></i></span>
                                 </a>
                             </li>
@@ -169,26 +154,11 @@
                         <div class="program__single--item--bg">
                             <img src="{{asset('frontAssets/images/program/program__bg.jpg')}}" alt="">
                         </div>
-                        <h5 class="program__single--item--title">graduate</h5>
+                        <h5 class="program__single--item--title">Vision</h5>
 
                         <ul class="program__single--item--list">
                             <li class="program__single--item--list--item">
-                                <a href="program-single.html" class="link__list">Applied Computation
-                                    <span><i class="fa-regular fa-arrow-right"></i></span>
-                                </a>
-                            </li>
-                            <li class="program__single--item--list--item">
-                                <a href="program-single.html" class="link__list">Applied Mathematics
-                                    <span><i class="fa-regular fa-arrow-right"></i></span>
-                                </a>
-                            </li>
-                            <li class="program__single--item--list--item">
-                                <a href="program-single.html" class="link__list">Applied Computation
-                                    <span><i class="fa-regular fa-arrow-right"></i></span>
-                                </a>
-                            </li>
-                            <li class="program__single--item--list--item">
-                                <a href="program-single.html" class="link__list">Architecture
+                                <a href="/" class="link__list">vision
                                     <span><i class="fa-regular fa-arrow-right"></i></span>
                                 </a>
                             </li>
@@ -200,26 +170,11 @@
                         <div class="program__single--item--bg">
                             <img src="{{asset('frontAssets/images/program/program__bg.jpg')}}" alt="">
                         </div>
-                        <h5 class="program__single--item--title">Lifelong Learning</h5>
+                        <h5 class="program__single--item--title">Community Imapact</h5>
 
                         <ul class="program__single--item--list">
                             <li class="program__single--item--list--item">
-                                <a href="program-single.html" class="link__list">Personal Development
-                                    <span><i class="fa-regular fa-arrow-right"></i></span>
-                                </a>
-                            </li>
-                            <li class="program__single--item--list--item">
-                                <a href="program-single.html" class="link__list">Arts and Humanities
-                                    <span><i class="fa-regular fa-arrow-right"></i></span>
-                                </a>
-                            </li>
-                            <li class="program__single--item--list--item">
-                                <a href="program-single.html" class="link__list">Health and Wellness
-                                    <span><i class="fa-regular fa-arrow-right"></i></span>
-                                </a>
-                            </li>
-                            <li class="program__single--item--list--item">
-                                <a href="program-single.html" class="link__list">Social Sciences
+                                <a href="/" class="link__list">Imapact
                                     <span><i class="fa-regular fa-arrow-right"></i></span>
                                 </a>
                             </li>
@@ -230,6 +185,71 @@
         </div>
     </section>
     <!-- academic program end -->
+
+
+     <!-- our program -->
+     <section class="program rts-section-padding">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-5">
+                    <div class="rts__section--wrapper v__2">
+                        <h2 class="rts__section--title text-capitalize">Our Programs</h2>
+                        <p class="rts__section--description">Join us in an empowering program designed to elevate your skills and mindset. Experience personalized guidance and innovative learning, paving the way to your ultimate success.</p>
+                        <div class="campus__vector">
+                            <img src="assets/images/campus/campus__vector.svg" alt="">
+                        </div>
+                        <a href="" class="rts-theme-btn btn-arrow">View All Program
+                            <span><i class="fa-regular fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-10 mt-5 mt-md-0">
+                    <div class="row g-5">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="program__content">
+                                <div class="rts__program--item v__2" style="background-image: url(assets/images/program/program__1.jpg);">
+                                    <h5 class="rts__program--item--title">Summer Program</h5>
+                                    <p class="rts__program--item--description">Embark on a journey of knowledge discovery, and growth at Unipix University.</p>
+                                    <a href="program-single.html" class="rts-nbg-btn btn-arrow">Learn More<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                                    </span></a>
+                                    <h5 class="rts__program--item--title--show">Summer Program</h5>
+                                </div>
+                                <!-- second one -->
+                                <div class="rts__program--item v__2" style="background-image: url(assets/images/program/program__2.jpg);">
+                                    <h5 class="rts__program--item--title">Undergraduate</h5>
+                                    <p class="rts__program--item--description">Embark on a journey of knowledge discovery, and growth at Unipix University.</p>
+                                    <a href="program-single.html" class="rts-nbg-btn btn-arrow">Learn More<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                                    </span></a>
+                                    <h5 class="rts__program--item--title--show">Undergraduate</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="program__content mt--85">
+                                <div class="rts__program--item v__2" style="background-image: url(assets/images/program/program__3.jpg);">
+                                    <h5 class="rts__program--item--title">Summer Program</h5>
+                                    <p class="rts__program--item--description">Embark on a journey of knowledge discovery, and growth at Unipix University.</p>
+                                    <a href="program-single.html" class="rts-nbg-btn btn-arrow">Learn More<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                                    </span></a>
+                                    <h5 class="rts__program--item--title--show">Summer Program</h5>
+                                </div>
+                                <!-- second one -->
+                                <div class="rts__program--item v__2" style="background-image: url(assets/images/program/program__4.jpg);">
+                                    <h5 class="rts__program--item--title">Online Program</h5>
+                                    <p class="rts__program--item--description">Embark on a journey of knowledge discovery, and growth at Unipix University.</p>
+                                    <a href="program-single.html" class="rts-nbg-btn btn-arrow">Learn More<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                                    </span></a>
+                                    <h5 class="rts__program--item--title--show">Online Program</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- our program end -->
+
     {{-- <!-- campus life -->
     <section class="campus rts__primary__bg-2 rts-section-padding">
         <div class="container">
@@ -334,106 +354,87 @@
             </div>
         </div>
     </section> --}}
-    <!-- tution fee end -->
 
-    <!-- notice board start -->
-    <section class="rts-notice rts-section-padding">
+
+    <!-- research -->
+     <section class="rts__section rts-section-padding">
         <div class="container">
             <div class="row">
-                <div class="rts__section--wrapper v__8">
-                    <h2 class="rts__section--title">Alumni Event</h2>
-                    <div class="rts__section--link">
-                        <a href="event.html" class="rts-nbg-btn btn-arrow">View All
-                            <span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                <div class="rts__section--wrapper v__3">
+                    <h2 class="rts__section--title">Our Focus</h2>
+                    <div class="rts__section--details">
+                        <p class="rts__description">
+                        1.	To create and promote entrepreneurial education and awareness/opportunities in the university <br>
+                        2.	To foster entrepreneurship spirit among TAU undergraduates while exposing them to practical training and hands-on learning in entrepreneurship development.<br>
+                        3.	To nurture entrepreneurship knowledge among TAU undergraduates. <br>
+                        4.	To promote self-reliance, entrepreneurship, leadership, and capacity development skills among TAU undergraduates. <br>
+                        5.	To enhance capacity potential and making self–employed and self-dependent students, thereby making employers of labor in TAU graduates to reduce the level of unemployment in the country.<br>
+                        6.	To stimulate the development and growth of entrepreneurship in Nigeria.<br>
+                        </p>
+                        <!--<a href="research.html" class="rts-nbg-btn btn-arrow">Learn More<span><i class="fa-sharp fa-regular fa-arrow-right"></i>-->
                         </span></a>
                     </div>
                 </div>
             </div>
-            <div class="row g-0 justify-content-md-center">
-                <div class="col-md-11 col-lg-7">
-                    <div class="rts-event-section">
-                        <div class="rts-event-section-content">
-                            <ul class="list-unstyled rts-counter">
-                                <li class="single-event">
-                                    <div class="single-event-counter">
-                                        <div class="count-number rt-clip-text"></div>
-                                    </div>
-                                    <div class="single-event-content">
-                                        <h5 class="event-title">Diversity, Equity, and Inclusion</h5>
-                                        <div class="single-event-content-meta">
-                                            <div class="event-date">
-                                                <span><i class="fal fa-calendar"></i></span>
-                                                <span>November 28, 2023</span>
-                                            </div>
-
-                                            <div class="event-time">
-                                                <span><i class="fa-sharp fa-thin fa-clock"></i></span>
-                                                <span>10:30 am</span>
-                                            </div>
-                                            <div class="event-place">
-                                                <span><i class="fa-sharp fa-thin fa-location-dot"></i></span>
-                                                <span>Yarra Park, UK</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="single-event">
-                                    <div class="single-event-counter">
-                                        <div class="count-number rt-clip-text"></div>
-                                    </div>
-                                    <div class="single-event-content">
-                                        <h5 class="event-title">Talking Money With Kids and Teens</h5>
-                                        <div class="single-event-content-meta">
-                                            <div class="event-date">
-                                                <span><i class="fal fa-calendar"></i></span>
-                                                <span>November 28, 2023</span>
-                                            </div>
-                                            <div class="event-time">
-                                                <span><i class="fa-sharp fa-thin fa-clock"></i></span>
-                                                <span>10:30 am</span>
-                                            </div>
-                                            <div class="event-place">
-                                                <span><i class="fa-sharp fa-thin fa-location-dot"></i></span>
-                                                <span>Yarra Park, UK</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="single-event">
-                                    <div class="single-event-counter">
-                                        <div class="count-number rt-clip-text"></div>
-                                    </div>
-                                    <div class="single-event-content">
-                                        <h5 class="event-title">Planning for College After Affirmative Action</h5>
-                                        <div class="single-event-content-meta">
-                                            <div class="event-date">
-                                                <span><i class="fal fa-calendar"></i></span>
-                                                <span>November 28, 2023</span>
-                                            </div>
-                                            <div class="event-time">
-                                                <span><i class="fa-sharp fa-thin fa-clock"></i></span>
-                                                <span>10:30 am</span>
-                                            </div>
-                                            <div class="event-place">
-                                                <span><i class="fa-sharp fa-thin fa-location-dot"></i></span>
-                                                <span>Yarra Park, UK</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+            <!-- research content -->
+            <div class="row g-5">
+                <!-- single item -->
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="rts__research--single">
+                        <div class="rts__research--single--thumb">
+                            <a href="research.html">
+                                <img src="assets/images/research/01.jpg" alt="">
+                            </a>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-11 col-lg-5">
-                    <div class="event__background">
-                        <img src="frontAssets/images/event/event__bg.jpg" alt="">
+                        <div class="rts__research--single--meta">
+                            <a class="rts__research--single--meta--title" href="research.html">Are Social Net Work Beneficial for our Society?</a>
+                            <p class="rts__research--single--meta--excerpt">
+                                The American Journal of Applied Scientific Research (AJASR): A Rigorous Peer-Reviewed Platform.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- notice board end -->
+    <!-- research end -->
+
+
+        <!-- team -->
+        <section class="rts__section rts__light rts-section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="rts__section--wrapper">
+                    <h2 class="rts__section--title">Facilitator</h2>
+                </div>
+            </div>
+            <!-- team member area -->
+            <div class="row g-5">
+                @foreach($instructor as $instructors)
+                <!-- single team -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="rts__single--member">
+                        <div class="rts__single--member--thumb">
+                            <a href="/">
+                                <img src="{{asset($instructors->image)}}" alt="">
+                            </a>
+                        </div>
+                        <div class="rts__single--member--meta">
+                            <h5 class="rts__single--member--meta--title">
+                                <a href="/">{{$instructors->name }}</a>
+                            </h5>
+                            <span class="rts__single--member--meta--designation">
+                            {{$instructors->title }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            </div>
+            <!-- team member area end -->
+        </div>
+    </section>
+    <!-- team end -->
     <!-- student feedback -->
     <section class="feedback rts-section-padding">
         <div class="container">

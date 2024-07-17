@@ -32,9 +32,6 @@
                             <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#instructorModal">
                                 <i class="ri-add-line align-bottom me-1"></i> Add
                             </button>
-                            <button class="btn btn-soft-danger" onClick="deleteMultiple()">
-                                <i class="ri-delete-bin-2-line"></i>
-                            </button>
                         </div>
                         <div class="col-sm">
                             <div class="d-flex justify-content-sm-end">
@@ -61,6 +58,7 @@
                                     <!--<th class="sort" data-sort="portfolio">Portfolio</th>-->
                                     <th class="sort" data-sort="email">Email</th>
                                     <th class="sort" data-sort="phone">Phone</th>
+                                    <th class="sort" data-sort="title">Title</th>
                                     <th class="sort" data-sort="action">Action</th>
                                 </tr>
                             </thead>
@@ -77,6 +75,8 @@
                                     <!--<td>{{ $instructor->portfolio }}</td>-->
                                     <td>{{ $instructor->email }}</td>
                                     <td>{{ $instructor->phone }}</td>
+                                    <td>{{ $instructor->title }}</td>
+                                    
                                     <td>
                                         <div class="d-flex gap-2">
                                             <button class="btn btn-sm btn-primary edit-btn" data-bs-toggle="modal" data-bs-target="#editInstructorModal{{$instructor->id}}">
@@ -105,6 +105,10 @@
                                                     <div class="mb-3">
                                                         <label for="name" class="form-label">Name</label>
                                                         <input type="text" name="title" class="form-control" id="name" required value="{{ $instructor->name }}">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="title" class="form-label">Title</label>
+                                                        <input type="text" name="title" class="form-control" id="title" required value="{{ $instructor->title }}">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="email" class="form-label">Email</label>
@@ -205,6 +209,11 @@
                         <label for="name" class="form-label">Name</label>
                         <input type="text" name="name" class="form-control" id="name" required> 
                     </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" name="title" class="form-control" id="title" required>
+                    </div>
+                    
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="text" name="email" class="form-control" id="email" required>

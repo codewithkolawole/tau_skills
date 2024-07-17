@@ -115,7 +115,7 @@
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="program_image" class="form-label">Image</label>
-                                                        <input type="file" class="form-control" id="program_image" name="image" accept="image/*" onchange="previewImage()">
+                                                        <input type="file" class="form-control" id="program_image" name="program_image" accept="program_image/*" onchange="previewImage()">
                                                         <div id="image-preview{{$program->id}}">
                                                             <img src="{{ asset($program->program_image) }}" alt="Program Image" class="img-fluid">
                                                         </div>
@@ -230,7 +230,7 @@
 
 <script>
     function previewImage() {
-        var fileInput = document.getElementById('image');
+        var fileInput = document.getElementById('program_image');
         var file = fileInput.files[0];
         var reader = new FileReader();
 
